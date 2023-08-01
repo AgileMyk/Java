@@ -1,0 +1,74 @@
+
+//Exe 6.14 -- Variable-Length Argument List
+//calculates the product of a series of integers that are passed to method product using a variable-length argument list.
+
+package mhall__wk5_pg1;
+
+
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+
+public class MHALL__wk5_Pg1 {
+
+    public static ArrayList<Integer> numbersList = new ArrayList<Integer>();
+    public static Scanner numInput = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+        
+        int numsSummed = 0;
+        int singleNum = 0;
+        
+                System.out.printf("Michael Hall - Asignment 1 of week 5%n%n%n%n");
+
+        
+        System.out.printf("Hello, we are going to do some addition. " +
+                "How many numbers would you like to total together?%n");
+                numsSummed = numInput.nextInt();
+
+                //System.out.printf("How many numbers would you like to total together?%n");
+                    
+        int[] listToArray = new int[numsSummed];// declare array that will be the size of the ArrayList. Used for later methods, after ArrayList --> Array
+                
+                for (int counter = 0; counter < numsSummed; counter++) {
+                    System.out.printf("Please choose a number: %n");
+                    singleNum = numInput.nextInt();
+
+                    numbersList.add(singleNum);
+                }
+ 
+                
+                System.out.printf("You chose: %n");
+                for (int value : converter()) {
+                    System.out.printf("%d ", value);
+                }
+                
+                System.out.printf("%nThe summed total of these values come to %d%n", sum(converter()));
+
+    }
+
+ 
+    //developing a method to achieve the below results utilized a lesson from https://www.tutorialspoint.com/how-to-convert-integer-array-list-to-integer-array-in-java
+    public static int[] converter() {
+        int[] listToArray = new int[numbersList.size()];// create empy list size of numbersList ArrayList
+
+        int index = 0; //set location injecting ArrayList values into Array values
+        for ( Integer valueOf : numbersList) { //grab each 'Integer' in ArrayList for conversion to 'int'
+            listToArray[index++] = valueOf; //increment from initial zero index(int index), inputing numbersList values to listToArray values for conversion to 
+        }
+        
+        return listToArray;
+    }
+    
+    public static int sum(int [] arr) { //pass int array to method
+        int total = 0;
+        for (int value : arr) {
+         total += value;   
+        }
+        return total;
+        // aspects of this method taken from https://www.tutorialspoint.com/How-to-pass-Arrays-to-Methods-in-Java
+    }
+
+
+}
