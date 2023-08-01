@@ -1,0 +1,73 @@
+//Exe 5.16 -- isMultiple
+//takes two integers and determines if second is multiple of first -- returns true or false accordingly
+
+package mhall__wk4_pg1;
+
+import java.util.Scanner;
+
+public class MHALL__wk4_Pg1 {
+
+    
+    static Scanner num = new Scanner(System.in);
+    
+    //variables for compared integer-pairs
+    static int oneOfFirstPair;
+    static int twoOfFirstPair;
+    static int oneOfSecondPair;
+    static int twoOfSecondPair;
+    static int oneOfThirdPair;
+    static int twoOfThirdPair;
+    static int oneOfFourthPair;
+    static int twoOfFourthPair;
+    static int oneOfFifthPair;
+    static int twoOfFifthPair;
+    
+
+    //receive input from user to get the compared numbers
+    public static void main(String[] args) {
+        
+        System.out.printf("Michael Hall - Asignment 1 of week 4%n%n%n%n");
+
+        
+        System.out.printf("%s%n%s%n%n%s%n","Please choose a series of five 2-number combinations.",
+                    "That is, you will select two numbers which will go together, 5 separate times.",
+                    "We will then determine if the second number is a multiple of the first. Choose a first pair: ");
+            oneOfFirstPair = num.nextInt();
+            twoOfFirstPair = num.nextInt();
+            
+            System.out.println("Now choose your two numbers for pair 2");
+            oneOfSecondPair = num.nextInt();
+            twoOfSecondPair = num.nextInt();
+            System.out.println("Now choose your two numbers for pair 2");
+
+            oneOfThirdPair = num.nextInt();
+            twoOfThirdPair = num.nextInt();
+            System.out.println("Now choose your two numbers for pair 2");
+
+            oneOfFourthPair = num.nextInt();
+            twoOfFourthPair = num.nextInt();
+            System.out.println("Now choose your two numbers for pair 2");
+
+            oneOfFifthPair = num.nextInt();
+            twoOfFifthPair = num.nextInt();
+            
+            System.out.printf("Our function will scan your pairs to see where there is divisability: %n%n");
+
+            isMultiple(oneOfFirstPair, twoOfFirstPair);
+            isMultiple(oneOfSecondPair, twoOfSecondPair);
+            isMultiple(oneOfThirdPair, twoOfThirdPair);
+            isMultiple(oneOfFourthPair, twoOfFourthPair);
+            isMultiple(oneOfFifthPair, twoOfFifthPair);
+
+    }
+    
+    //condition to check if number is divisible or not with appropriate response
+    public static void isMultiple(int a, int b) {
+        if (b % a == 0) {
+            System.out.printf("%s%d%s%d%n%n", "TRUE: ", b," is a multiple of ", a);
+        } else {
+            System.out.printf("%s%d%s%d%n%n","FALSE: ", b ," is not a multiple of ", a);
+        }
+    }
+
+}
