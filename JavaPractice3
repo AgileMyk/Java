@@ -1,0 +1,185 @@
+//Exe 5.35 -- Computer-assisted instruction
+//tests student on answer X number of multiplication problems --
+//continues until answer is correct then moves on to next
+//responds with verbage per the assignment instructions
+
+package mhall_wk4_pg3;
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class MHALL__wk4_pg3 {
+    
+        static Scanner input = new Scanner(System.in);
+        
+        static int rightAnswer;
+        enum outcome {
+            TBD,
+            CORRECT,
+            WAITING,
+            INCORRECT
+                     };
+        enum gameState {
+            RUNNING,
+            WAITING,
+            QUIT
+        };
+
+    public static void main(String[] args) {
+        
+        System.out.printf("Michael Hall - Asignment 3 of week 4%n%n%n%n");
+        
+        gameState currentState;
+        currentState = gameState.RUNNING;
+        
+        System.out.println("Welcome... and you are?");
+        String name = input.next();
+        //ask if user would like to practice multiplication
+        System.out.printf("Hello %s, would you like to practice some multiplication?%n", name);
+        String response = input.next();
+        //create response for various possible inputs
+        switch (response) {
+        case "y":
+        case "yes":
+        case "yeS":
+        case "yES":
+        case "yEs":    
+        case "YES":
+            currentState = gameState.RUNNING;
+            break;
+        case "n":
+        case "no":
+        case "No":
+        case "nO":
+        case "NO":
+            System.out.print("Goodbye");
+            break;
+        default: 
+            System.out.print("No appropriate response was given. Goodbye%n");
+    }
+        
+  while (currentState == gameState.RUNNING) {
+            //prompt user for number of questions -- safeguard against a 0 response or a response of more than 50 practice questions
+            int rounds = 0;
+
+            if (rounds == 0 ) {
+                System.out.printf("How many practice questions would you like to attempt, %s?%n",name);
+                currentState = gameState.WAITING; //waiting status is to prevent game from going back to initial runnning status 
+                                                  //and repeating the 'if rounds == 0' condition code
+                rounds = input.nextInt();
+                }
+            if (rounds <= 50 && rounds >= 1) {
+                    currentState = gameState.WAITING;
+                    System.out.printf("%d questions it is. Let\'s begin%n%n", rounds);
+                        for (int i = 1; i <= rounds; i++) {
+                            System.out.printf("question %d of %d: %n", i, rounds);
+                            randomProblem();
+                        }   
+                }
+            while (rounds > 50) {
+                System.out.printf("That\'s a bit much... let\'s go for up to 50... if you do 50, you can take a short break%n");
+                System.out.printf("How many practice questions would you like to attempt, %s?%n",name);
+                rounds = input.nextInt();
+                currentState = gameState.WAITING;
+                
+                if (rounds <= 0) { //prevent logic error if user moves from [rounds > 50 && rounds != 0] answer range to [rounds > 50 && rounds != 0] answer range
+                System.out.printf("Do you want to practice? If so, you need to do at least one question!%n");
+                System.out.printf("How many practice questions would you like to attempt, %s?%n",name);
+                rounds = input.nextInt();
+                currentState = gameState.WAITING;
+                System.out.printf("%d questions it is. Let\'s begin%n%n", rounds);
+                        for (int i = 1; i <= rounds; i++) {
+                        System.out.printf("question %d of %d: %n", i, rounds);
+                        randomProblem();
+                    }   
+                } else if (rounds <= 50 && rounds >= 1) {
+                    rounds = input.nextInt();
+                    currentState = gameState.WAITING;
+                    System.out.printf("%d questions it is. Let\'s begin%n%n", rounds);
+                        for (int i = 1; i <= rounds; i++) {
+                        System.out.printf("question %d of %d: %n", i, rounds);
+                        randomProblem();
+                    }   
+                }
+            } 
+            while (rounds <= 0) {
+                System.out.printf("Do you want to practice? If so, you need to do at least one question!%n");
+                System.out.printf("How many practice questions would you like to attempt, %s?%n",name);
+                currentState = gameState.WAITING;
+                rounds = input.nextInt();
+                
+                    if (rounds > 50) { ////prevent logic error if user moves from [rounds <= 0] answer range to [rounds > 50 && rounds != 0] answer range
+                    System.out.printf("That\'s a bit much... let\'s go for up to 50... if you do 50, you can take a short break%n");
+                    System.out.printf("How many practice questions would you like to attempt, %s?%n",name);
+                    currentState = gameState.WAITING;
+                    rounds = input.nextInt();
+                    System.out.printf("%d questions it is. Let\'s begin%n%n", rounds);
+                         for (int i = 0; i < rounds; i++) {
+                            System.out.printf("question %d of %d: %n", i + 1, rounds);
+                            randomProblem();
+                            }
+                  } else if (rounds <= 50 && rounds >= 1) {
+                        rounds = input.nextInt();
+                        currentState = gameState.WAITING;
+                        System.out.printf("%d questions it is. Let\'s begin%n%n", rounds);
+                         for (int i = 0; i < rounds; i++) {
+                            System.out.printf("question %d of %d: %n", i + 1, rounds);
+                            randomProblem();
+                }   
+            }
+ 
+        }
+            
+        System.out.printf("You\'re study session is finished, %s. Well done. Hope to see you soon!%n", name);
+    }
+  }
+    
+    public static void randomProblem() {
+        
+        //outcome result;
+       // result = outcome.TBD;
+        gameState subState;
+        subState = gameState.RUNNING;
+        
+        while (subState == gameState.RUNNING) {
+        int randInt1 = new Random().nextInt(9) + 1;
+        int ifWrong1 = randInt1;
+        int randInt2 = new Random().nextInt(9) + 1;
+        int ifWrong2 = randInt2; // to save initial randInt1 and randInt2 --> if the answer was wrong, 
+                                 // the next multiplation question would go to different different
+                                 // numbers (Random would generate a new pair and not allow the 
+                                 // the program to continue working with the previous pair
+                                 // to which the user gave a wrong answer)
+                                 // if the answer was wrong, a new pair would be asked next, 
+                                 // the wrong pair being forgotten and moved past
+        System.out.printf("What is %d times %d?%n", randInt1, randInt2);
+        rightAnswer = randInt1 * randInt2;
+        int answer = input.nextInt();
+            if (rightAnswer == answer) {
+                System.out.printf("Very Good!%n%n");
+               // result = outcome.CORRECT;
+                subState = gameState.QUIT;
+            } else if (rightAnswer != answer) {
+                subState = gameState.WAITING;
+                System.out.printf("That is not the product of %d and %d. Please try again.%n", ifWrong1, ifWrong2);
+                System.out.printf("What is the product of %d and %d?%n", ifWrong1, ifWrong2);
+                answer = input.nextInt();
+                
+              while (rightAnswer != answer) {
+                   System.out.printf("That is not the product of %d and %d. Please try again.%n", ifWrong1, ifWrong2);
+                   System.out.printf("What is the product of %d and %d?%n", ifWrong1, ifWrong2);
+                   answer = input.nextInt();
+              }
+              
+              if (rightAnswer == answer) {
+                    System.out.println("Very Good!");
+                  //  result = outcome.CORRECT;   
+              }
+
+            }
+        }
+     
+    }
+
+    
+}
