@@ -1,0 +1,59 @@
+//Exe 6.17 -- Variable-Length Argument List
+//toll two dice(value 1-6), and calculate sum 36,000 times. tally the resules in a one-dimensional array and represent those results in a tabular format 
+
+
+/*
+(Dice Rolling) Write an application to simulate the rolling of two dice.
+The application should use an object of class Random once to roll the first die and again to roll
+the second die. The sum of the two values should then be calculated. Each die can show an
+integer value from 1 to 6, so the sum of the clause will vary from 2 to 12, with 7 being the most
+frequent sum, and 2 and 12 the least frequent. Figure 6.21 shows the 36 possible combinations
+of the two die. Your application should roll the dice 36,000 times. Use a one-dimensional array
+to tally the number of times each possible sum appears. Display the results in a tabular format.
+*/
+package mhall__wk5_pg2;
+
+import java.util.Random;
+
+public class MHALL__wk5_Pg2 {
+
+    public static final Random rand = new Random();
+    public static int[] rollTally = new int[13]; //array containing possible roll values via index locations
+    
+    public static void main(String[] args) {
+        
+        
+        
+
+    System.out.printf("Michael Hall - Asignment 2 of week 5%n%n%n%n");
+
+    statTest();
+
+    }
+    
+    //method that rolls twice (1-6) and returns the total sum (2-12)
+    public static int dblRoll() {
+        int sum = 0;
+        int roll1 = rand.nextInt(6) + 1;
+        int roll2 = rand.nextInt(6) + 1;
+        sum += roll1 + roll2;
+        return sum;
+    }
+    
+    //method that executes dblRoll 36000 times
+    public static void statTest() {
+        for (int i = 0; i < 36_000; i++) {
+         rollTally[dblRoll()] ++;   
+        }
+        
+        System.out.printf("We rolled two 6-sided die 36,000 times; the results were as follows: %n%n");
+        System.out.printf("%8s    %8s%n", "roll value", "times rolled");
+        System.out.printf("--------------------------%n");
+
+        for (int i = 2; i <= 12; i++) {
+            System.out.printf("%7d : %15d%n",i, rollTally[i]);
+        }
+
+    }
+
+}
