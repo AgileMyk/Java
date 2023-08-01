@@ -1,0 +1,60 @@
+//Exe 5.20 -- circle area
+//prompts user for radius and returns area with method
+
+
+package mhall__wk4_pg2;
+
+import java.util.Scanner;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+
+public class MHALL__wk4_Pg2 {
+    
+    static double area;
+ 
+
+    public static void main(String[] args) {
+        
+        System.out.printf("Michael Hall - Asignment 2 of week 4%n%n%n%n");
+
+        Scanner radius = new Scanner(System.in);
+        double rad1;
+        
+        int a = (int) 111111111111L;
+        
+        System.out.println("Let\'s calculate the area of a circle. " +
+                           "Input a value for a radius " +
+                           "and we\'ll see what area results");
+        
+        System.out.println("Please choose a radius to work with:");
+        rad1 = radius.nextDouble();
+        //BigDecimal radiusDecimal = new BigDecimal(rad1);
+        
+        System.out.println(rad1 * rad1);
+        
+        System.out.println(circleArea(rad1));
+        
+
+
+        
+        
+        /*
+         -->convert double to a string
+                --> remove trailing zeros from string
+                    --> convert to BigDecimal
+                        --> respresent BigDecimal as string
+                            --> limit string result to 7 characters maximum
+        */
+        System.out.printf("%s%s%s%3.7s%n","With a radius of ", new BigDecimal(Double.toString(rad1)).stripTrailingZeros().toPlainString(), 
+                ", the area will be ", new BigDecimal(Double.toString(area)).stripTrailingZeros().toPlainString());
+  
+    }
+    
+    //method for calculating area of circle with given radius 
+    public static double circleArea(double rad1) {
+        area = (rad1 * rad1) * Math.PI;
+        return area;
+    }
+    
+}
