@@ -25,7 +25,7 @@ public class Date {
     public enum verbalDay {
         //associate constant that cannot have spaces with a space-allowed equivalent value;
         //this approach discussed at https://stackoverflow.com/questions/8389150/java-enum-elements-with-spaces
-        THEFIRST("the first"),
+ THEFIRST("the first"),
         THESECOND("the second"),
         THETHIRD("the third"),
         THEFOURTH("the fourth"),
@@ -34,14 +34,34 @@ public class Date {
         THESEVENTH("the seventh"),
         THEEIGHTH("the eight"),
         THENINTH("the ninth"),
-        THETENTH("the tenth");
-        private String displayName;
+        THETENTH("the tenth"),
+        THEELEVENTH("the eleventh"),
+        THETWELTH("the twlth"),
+        THETHIRTEENTH("the thirteenth"),
+        THEFOURTEENTH("the fourteenth"),
+        THEFIFTEENTH("the fifteenth"),
+        THESIXTEENTH("the sixteenth"),
+        THESEVENTEENTH("the seventeenth"),
+        THEEIGHTEENTH("the eighteenth"),
+        THENINETEENTH("the ninteenth"),
+        THETWENTIETH("the twentieth"),
+        THETWENTYFIRST("the twenty-first"),
+        THETWENTSECOND("the twenty-second"),
+        THETWENTTHIRD("the twenty-third"),
+        THETWENTFOURTH("the twenty-fourth"),
+        THETWENTFIFTH("the twenty-fifth"),
+        THETWENTSIXTH("the twenty-sixth"),
+        THETWENTSEVENTH("the twenty-seventh"),
+        THETWENTEIGHTH("the twenty-eighth"),
+        THETWENTNINTH("the twenty-ninth"),
+        THIRTIETH("the thertieth");
+        final private String displayName;
         
-        verbalDay(String displayName) {
+        VerbalDay(String displayName) {
          this.displayName = displayName;   
         }
         
-        public String returnDisplayNanme() {
+        public String getDisplayName() {
          return displayName;   
         }
     }
@@ -232,30 +252,6 @@ public class Date {
      return day;   
     }
     
-    public String setVerbalDay(String choice) {
-     switch(day) {   
-         case 1:
-             verbalDay = "the first";
-             verbalDayShort = "the 1st";
-         case 2:
-             verbalDay = "the second";
-             verbalDayShort = "the 2nd";
-        case 3:
-             verbalDay = "the third";
-             verbalDayShort = "the 3rd";
-        case 4:
-             verbalDay = "the fourth";
-             verbalDayShort = "the 4th";
-        case 5:
-             verbalDay = "the fifth";
-             verbalDayShort = "the 5th";
-        case 6:
-             verbalDay = "the sixth";
-             verbalDayShort = "the 6th";
-        }
-     
-        return (choice == "short") ? verbalDayShort : verbalDay;
-    }
     
     public void setYear(int year) {
          this.month = year;
