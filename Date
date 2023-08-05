@@ -3,6 +3,8 @@
 
 package com.mycompany.mhall__wk6_pg1;
 
+                System.out.printf("Michael Hall - Asignment 1 of week 6%n%n%n%n");
+
 
 import java.util.EnumSet;
 import java.util.EnumMap;
