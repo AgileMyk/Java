@@ -1,0 +1,46 @@
+//for testing Date
+package com.mycompany.mhall__wk6_pg1;
+
+import java.util.Scanner;
+
+public class DateTest {
+    
+    public static Scanner input = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+
+                System.out.printf("Michael Hall - Asignment 2 of week 6%n%n%n%n");
+
+     
+        System.out.println("Please choose name for a date followed by the actual date itself(day/month/year)");
+        System.out.println("The date name is: ");
+        String dateName = input.nextLine();
+        System.out.println("The actual date of this day is: ");
+        System.out.println("The day of the month in numerical format(1-31)");
+        int day = input.nextInt();
+        System.out.println("The month in numerical format(1-12)");
+        int month = input.nextInt();
+        System.out.println("The year in numerical 4-number format(2000, etc)");
+        int year = input.nextInt();
+        
+        Date newDate = new Date(dateName,month,day,year); 
+        
+        
+        System.out.printf("Let\'s test our date object and see what happens...%n%n%s%s%n%s%s%n%s%s%n%s%s%n", 
+                "The name of the date is: ", newDate.getName(),
+                "The day of the date is: ", newDate.getDay(),
+                "The month of the date is: ", newDate.getMonth(),
+                "The year of the date is: " , newDate.getYear());
+        
+        System.out.printf("%s%n","We could also use the built-in dsiplayDate method of class Date: ");
+        newDate.displayDate();
+        System.out.printf("%n ------------------------------------ %n");
+        System.out.println(newDate.displayDate2());
+        
+        System.out.println(newDate.setMonthName());
+        System.out.println(newDate.setVerbalDay("short"));
+    }
+    
+ 
+    
+}
