@@ -1,0 +1,287 @@
+//Exe 7.12 -- Date Class
+//create a Date class; 3 instance variables, constructor, set and get methods, displayDate method, test application
+
+package com.mycompany.mhall__wk6_pg1;
+
+
+import java.util.EnumSet;
+import java.util.EnumMap;
+public class Date {
+    
+    private String name;
+    private int month; 
+    private String monthName;
+    private int day; 
+    private String verbalDay;
+    private String verbalDayShort;
+    private int year;
+    
+    
+    //enums set for representing fixed sets of constants
+    //docs.oracle.com/javase/tutorial/java/javaOO/enum.html
+    public enum months {JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER};
+    public enum verbalDay {
+        //associate constant that cannot have spaces with a space-allowed equivalent value;
+        //this approach discussed at https://stackoverflow.com/questions/8389150/java-enum-elements-with-spaces
+        THEFIRST("the first"),
+        THESECOND("the second"),
+        THETHIRD("the third"),
+        THEFOURTH("the fourth"),
+        THEFIFTH("the fifth"),
+        THESIXTH("the sixth"),
+        THESEVENTH("the seventh"),
+        THEEIGHTH("the eight"),
+        THENINTH("the ninth"),
+        THETENTH("the tenth");
+        private String displayName;
+        
+        verbalDay(String displayName) {
+         this.displayName = displayName;   
+        }
+        
+        public String returnDisplayNanme() {
+         return displayName;   
+        }
+    }
+    //overloaded constructors for creation of Objects with 0 or more set isntance variables
+    
+    //0-instance variable object; allows client classes to create valueless Date objects
+    public Date() {
+     this(null, 0, 0, 0);   
+    }
+    
+    //create a name-only date Object
+    public Date(String name) { 
+     this(name,0,0,0);   
+    }
+    
+    //create a name-and-year only date Object
+    public Date(String name, int year) {
+     this(name, 0, 0, year);   
+    }
+    
+    //create a name-month-day date object
+    public Date(String name, int month, int day) {
+     this(name, month, day, 0);   
+    }
+    
+    public Date(String name, int month, int day, int year) {
+     this.name = name;
+     this.month = month;
+     this.day = day;
+     this.year = year;
+     
+     if (month <= 0 || month > 12) {
+          throw new IllegalArgumentException (
+          "Month out of range; please choose betwen a range of 1 to 12"
+          );   
+         }
+     
+              switch(month) {
+             case 1:
+             case 3:
+             case 5:
+             case 7:
+             case 8:
+             case 10:
+             case 12:
+                 if (day <= 0 || day > 31) {
+                     throw new IllegalArgumentException(
+                     "Please choose a date within the month between 1 and 31"
+                     );
+                 }
+                 break;
+             case 4:
+             case 6:
+             case 9:
+             case 11:
+                 if (day <= 0 || day > 30) {
+              throw new IllegalArgumentException (
+                "Please choose a date within the month between 1 and 30"
+              );   
+             }
+                 break;
+             case 2:
+                 if ( day <= 0 || day > 28) {
+                  throw new IllegalArgumentException(
+                  "Please choose a date within the month between 1 and 28"
+                  );// leap year check   
+                 } else if (year % 100 == 0 && year % 400 == 0 && day <= 0 || day > 29) {
+                  throw new IllegalArgumentException(
+                  "Please choose a date within the month between 1 and 29"
+                          + "(this February was a leap year)");
+                 }
+                 break;
+             default:
+                 System.out.println("An invalid value was used for inputting a day of the month");
+         }
+     
+     if (year > 2023 || year < 1900) {
+        throw new IllegalArgumentException (
+        "Year out of range; please choose between 1900 and 2023"
+        );
+    }
+     
+        
+    }
+    
+    public void setName(String name) {
+     this.name = name;   
+    }
+    
+    public String getName() {
+        return name;
+    }
+         
+    public void setMonth(int month) {
+         this.month = month;
+         if (month <= 0 || month > 12) {
+          throw new IllegalArgumentException (
+          "Month out of range; please choose betwen a range of 1 to 12"
+          );   
+         }
+    }
+    
+    public String setMonthName() {
+        switch(month) {
+            case 1:
+                monthName = "January";
+                break;
+            case 2:
+                monthName = "February";
+                break;
+            case 3:
+                monthName = "March";
+                break;
+            case 4:
+                monthName = "April";
+                break;
+            case 5:
+                monthName = "May";
+                break;
+            case 6:
+                monthName = "June";
+                break;
+            case 7:
+                monthName = "July";
+                break;
+            case 8:
+                monthName = "August";
+                break;
+            case 9:
+                monthName = "September";
+                break;
+            case 10:
+                monthName = "October";
+                break;
+            case 11:
+                monthName = "November";
+                break;
+            case 12:
+                monthName = "December";
+                break;    
+        }
+        return monthName;
+    }
+    
+    public int getMonth() {
+     return month;   
+    }
+        
+    public void setDay(int day) {
+         this.day = day;
+         switch(month) {
+             case 1:
+             case 3:
+             case 5:
+             case 7:
+             case 8:
+             case 10:
+             case 12:
+                 if (day <= 0 || day >31) {
+                     throw new IllegalArgumentException(
+                     "Please choose a date within the month between 1 and 31"
+                     );
+                 }
+                 break;
+             case 4:
+             case 6:
+             case 9:
+             case 11:
+                 if (day <= 0 || day > 30) {
+              throw new IllegalArgumentException (
+                "Please choose a date within the month between 1 and 30"
+              );   
+             }
+                 break;
+             case 2:
+                 if ( day <= 0 || day > 28) {
+                  throw new IllegalArgumentException(
+                  "Please choose a date within the month between 1 and 28"
+                  );   
+                 }
+                 break;
+             default:
+                 System.out.println("An invalid value was used for inputting a day of the month");
+         }
+    }
+    
+    public int getDay() {
+     return day;   
+    }
+    
+    public String setVerbalDay(String choice) {
+     switch(day) {   
+         case 1:
+             verbalDay = "the first";
+             verbalDayShort = "the 1st";
+         case 2:
+             verbalDay = "the second";
+             verbalDayShort = "the 2nd";
+        case 3:
+             verbalDay = "the third";
+             verbalDayShort = "the 3rd";
+        case 4:
+             verbalDay = "the fourth";
+             verbalDayShort = "the 4th";
+        case 5:
+             verbalDay = "the fifth";
+             verbalDayShort = "the 5th";
+        case 6:
+             verbalDay = "the sixth";
+             verbalDayShort = "the 6th";
+        }
+     
+        return (choice == "short") ? verbalDayShort : verbalDay;
+    }
+    
+    public void setYear(int year) {
+         this.month = year;
+         
+         if (year > 2023 || year < 1900) {
+        throw new IllegalArgumentException (
+        "Year out of range; please choose between 1900 and 2023"
+        );
+        }
+    }
+    
+    public int getYear() {
+     return year;   
+    }
+    
+    public void displayDate() {
+     System.out.printf("The day is %s%s%n", getName(), " which took place on: ");
+     System.out.printf("%02d/%02d/%4d", getDay(),getMonth(),getYear());   
+    }
+    
+    
+    public String displayDate2() {
+     return String.format("%02d/%02d/%4d",month,day,year);   
+    }
+    
+    //create a date object using another already-created date object
+    public Date(Date d) {
+        this(d.getName(), d.getMonth(), d.getDay(), d.getYear());
+    }
+    
+}
