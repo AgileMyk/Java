@@ -1,0 +1,147 @@
+//Exe 8.4 -- Rectangle Class
+//create a rectangle class, length and width attributes that defualt to 1, methods to calculate perimeter and area, set/get methods for width and length
+//set/get methods will verify that values are floating point values greater than 0.0 and less than 20.0
+
+package com.mycompany.mhall__wk6_pg2;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.math.BigDecimal;
+
+public class Rectangle {
+    
+     private float width;
+     private float height;
+     private static int choice;
+     private BigDecimal heightPrecision;
+    
+     private String width2;
+     private String height2;
+     
+     static Scanner input = new Scanner(System.in); 
+     
+     
+    //various constructors
+   public Rectangle(float width, float height) {
+       if (width <= 0.0 || width >= 20.0) {
+        throw new IllegalArgumentException(
+        "The width value must be greater than 0 and less than 20");   
+       }
+       
+       if (height <= 0.0 || height >= 20.0) {
+        throw new IllegalArgumentException(
+        "The height value must be greater than 0 and less than 20");   
+       }
+       
+        this.width = width;
+        this.height = height;
+   }
+   
+   //constructor to set default hieght/width to 1
+   public Rectangle() {
+    this(1,1);   
+   }
+   
+  //set methods
+   
+   public void setHeight(float height) {
+       if ((float) height != height) {//casting to check data type of input value
+           throw new IllegalArgumentException(
+           "The input value must be a float value (a decimal value)");
+       }
+       
+       if (height <= 0.0 || height >= 20.0) {
+        throw new IllegalArgumentException(
+        "The width value must be greater than 0 and less than 20");   
+       }
+       this.height = height;
+   }
+   
+   public void setWidth(float width) {
+       if ((float) width != width) {//casting to check data type of input value
+        throw new IllegalArgumentException(
+        "The height value must be greater than 0 and less than 20");   
+       }
+       
+       if (width <= 0.0 || width >= 20.0) {
+        throw new IllegalArgumentException(
+        "The height value must be greater than 0 and less than 20");   
+       }
+       this.width = width;
+   }
+   
+   //get methods
+   
+   public float getHeight() {
+    return height;   
+   }
+   
+   public float getWidth() {
+    return width;   
+   }
+   
+   //calculation methods
+   
+   public float calcPerimeter() {
+    return width + width + height + height;   
+   }
+   
+   //attempted to get a more precise result when calculating the are of decimals; read to use strings for better converstion outcomes
+   //tutorialspoint.com/multiply-one-bigdecimal-to-another-bigdecimal-in-java
+   //javatpoint.com/java-float-to-string
+   public BigDecimal calcArea() {
+       String width2 = String.valueOf(width);
+       String height2 = String.valueOf(height);
+       BigDecimal valueOne = new BigDecimal(width2);
+       BigDecimal valueTwo = new BigDecimal(height2);
+       valueTwo = valueTwo.multiply(valueOne);
+       return valueTwo;
+       
+   }
+
+   public static void menu(Rectangle r) {
+
+           System.out.println("We are going to build a rectangle and then calculate the area and perimeter."
+                   + " Please chooce by typing 1, 2 or 3: ");
+           System.out.printf("%19s%n"," ________________ ");
+           System.out.printf("%19s%n"," |                | ");
+           System.out.printf("%19s%n","| 1. Set Width   |");
+           System.out.printf("%19s%n","| 2. Set Height  |");
+           System.out.printf("%19s%n","| 3. Exit        |");
+           System.out.printf("%19s%n%n","|________________|");
+
+           choice = input.nextInt();
+
+          while (r.width == (float) 1.0 || r.height == (float) 1.0) {
+
+           if (choice == 1) {
+                System.out.println("Please choose a width");
+                float width = input.nextFloat();
+                r.setWidth(width);
+                System.out.println("Please choose a height");
+                float height = input.nextFloat();
+                r.setHeight(height);
+            } else if (choice == 2) {
+                System.out.println("Please choose a height");
+                float height = input.nextFloat();
+                r.setHeight(height);
+                System.out.println("Please choose a width");
+                float width = input.nextFloat();
+                r.setWidth(width);
+            } else if (choice ==3) {
+                System.out.printf("%nGood bye%n");
+                System.exit(0); //terminate JVM; from https://www.scaler.com/topics/java/exit-in-java/
+            } else {
+                throw new IllegalArgumentException (
+                        "Choice must be 1, 2 or 3");
+            }
+                System.out.printf("%n%n");
+
+        }
+
+   }
+ 
+   public static void outputResults(Rectangle r) {
+            System.out.printf("%s%.02f%n","The perimeter is: ",r.calcPerimeter());
+            System.out.printf("%s%.02f%n","The area is: ",r.calcArea());
+        }
+}
