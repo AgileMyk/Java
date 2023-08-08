@@ -1,0 +1,26 @@
+//test should print a menu the reflects the input values
+//test file should use try catch illegalArgumentException to determin if width/length values are valid
+
+package com.mycompany.mhall__wk6_pg2;
+
+
+public class RectangleTest {
+    
+    public static void main(String[] args) {
+
+         Rectangle rectangle = new Rectangle();
+         
+            //showing default constructor values and uses get methods
+            System.out.printf(
+                    "%n%n       A default no-argument rectangle constructor was exececuted.%n"
+                            + "       Per the default values of that constructor, %n"
+                            + "       the height of the rectangle is %.01f %n"
+                            + "       and the width of the rectangle is %.01f %n%n",
+                    rectangle.getHeight(), rectangle.getWidth());
+
+        Rectangle.menu(rectangle);
+        Rectangle.outputResults(rectangle);
+      
+    }
+    
+}
