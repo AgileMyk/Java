@@ -1,0 +1,122 @@
+import java.util.Scanner;
+
+public class MHALL__wk8_Pg1 {
+    static int[] idNumbers = {7438,2039,5307,5281,3219,4638,4351,4022,7321,3723};
+    static String[] names = {"Amber","Brian","Chad","Daisy","Erin","Fred","Gary","Hilde","Irwin","Jen"};
+    static int[] gAverages = {84,79,92,86,77,75,81,90,89,95};
+    
+    static Scanner input = new Scanner(System.in);
+    
+public static void main(String[] args) {
+    
+        System.out.println("Michael Hall -- Final Assignment, part 1");
+    
+        System.out.println("Hello professor, let\'s calculate our student GPAs");
+        
+        requestInfoById();
+        tryAgain();
+        
+    }
+
+public static void requestInfoById() {
+    
+        System.out.println("Please enter one of the 4-digit ID numbers to access that students information: ");
+        System.out.println("Id numbers:");
+        for (int id = 0; id < idNumbers.length; id++) {
+         System.out.printf("- %d -", idNumbers[id]);
+        }
+        System.out.printf("%n%nType -1 to exit%n");
+        int response = input.nextInt();
+        
+            for (int i = 0; i < idNumbers.length; i++) {
+                
+                if (response == idNumbers[i]) {   
+                System.out.printf("For the student corresponding to %d: %n"
+                        + "Student name: %s %n"
+                        + "Student average: %d %n", idNumbers[i],names[i],gAverages[i]);   
+               } else {
+                System.out.printf("An invalid student ID was entered(%d); "
+                        + "please enter a valid student ID %n", response);
+                System.out.printf("valid student Id numbers include:"); 
+                for (int j = 0; j < idNumbers.length; j++) {
+                   System.out.printf("%d%n",idNumbers[j]);
+                }
+            }
+        }
+    }
+   
+public static void tryAgain() {        
+    System.out.printf("%n%nWould you like to make further inquiries??");
+    String tryAgain = input.next();
+    if (tryAgain != "n"   || tryAgain != "no"  ||tryAgain != "nO"   ||tryAgain != "No"  || 
+        tryAgain != "NO"  ||tryAgain != "y"    ||tryAgain != "Y"    ||tryAgain != "yes" || 
+        tryAgain != "yEs" || tryAgain != "yES" || tryAgain != "YES" || tryAgain != "YEs") {
+        System.out.printf("Please response with an appropriate y/yes or n/no.%n");
+        
+        switch(tryAgain) {
+        case "y":
+        case "Y":
+        case "yes":
+        case "yES":
+        case "yeS":
+        case "YeS":
+        case "Yes":
+        System.out.println("Please enter a valid ID student number:");
+        int nextAttempt = input.nextInt();
+        
+        for (int i = 0; i < idNumbers.length; i++) {
+            if (nextAttempt == idNumbers[i]) {   
+            System.out.printf("For the student corresponding to %d: %n"
+                    + "Student name: %s %n"
+                    + "Student average: %d %n", idNumbers[i],names[i],gAverages[i]);   
+           } else {
+                throw new IllegalArgumentException(
+                        String.format("%n%nYou did not enter a valid ID number. Good bye."));
+            }
+        }
+        
+        break;
+        case "n":
+        case "N":
+        case "no":
+        case "No":
+        case "nO":
+        case "NO":
+            System.out.println("Good bye");
+        break;
+        }
+    }
+    switch(tryAgain) {
+        case "y":
+        case "Y":
+        case "yes":
+        case "yES":
+        case "yeS":
+        case "YeS":
+        case "Yes":
+        System.out.println("Please enter a valid ID student number:");
+        int nextAttempt = input.nextInt();
+        
+        for (int i = 0; i < idNumbers.length; i++) {
+            if (nextAttempt == idNumbers[i]) {   
+            System.out.printf("For the student corresponding to %d: %n"
+                    + "Student name: %s %n"
+                    + "Student average: %d %n", idNumbers[i],names[i],gAverages[i]);   
+           } else {
+                throw new IllegalArgumentException(
+                        String.format("%n%nYou did not enter a valid ID number. Good bye."));
+            }
+        }
+        
+        break;
+        case "n":
+        case "N":
+        case "no":
+        case "No":
+        case "nO":
+        case "NO":
+            System.out.println("Good bye");
+        break;
+        }
+    }   
+}
