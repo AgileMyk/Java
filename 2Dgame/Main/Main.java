@@ -11,9 +11,13 @@ public class Main {
         window.setResizable(false);
         window.setTitle("2D Adventure");
 
+        GamePanel gamePanel = new GamePanel();
+        window.add(gamePanel);
+        window.pack(); //tells window to align dimensions of subcomponents (gamePanel)
+
         window.setLocationRelativeTo(null); //window centered in screen
         window.setVisible(true);
 
-
+        gamePanel.startGameThread();
     }
 }
