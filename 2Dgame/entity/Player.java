@@ -31,29 +31,65 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (keyH.upPressed == true) {
-            direction = "up";
-            y -= speed;
-        } else if (keyH.downPressed == true) {
-            direction = "down";
-            y += speed;
-        } else if (keyH.rightPressed == true) {
-            direction = "right";
-            x += speed;
-        } else if (keyH.leftPressed == true) {
-            direction = "left";
-            x -= speed;
+        if (y <= 5) {
+            y = 5;
+        } else if (y > 520) {
+            y = 520;
         }
 
-        spriteCounter++;
-        if (spriteCounter > 15) {
-            if (spriteNum == 1) {
-                spriteNum = 2;
+        if (x <= 5) {
+            x = 5;
+        } else if (x >= 718) {
+            x = 718;
+        }
+
+        if (keyH.upPressed == true || keyH.downPressed == true || keyH.rightPressed == true || keyH.leftPressed == true) {
+            spriteCounter++;
+            if (keyH.upPressed == true) {
+                direction = "up";
+                y -= speed;
+                if (spriteCounter > 9) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    } else if (spriteNum == 2) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
+            } else if (keyH.downPressed == true) {
+                direction = "down";
+                y += speed;
+                if (spriteCounter > 9) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    } else if (spriteNum == 2) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
+            } else if (keyH.rightPressed == true) {
+                direction = "right";
+                x += speed;
+                if (spriteCounter > 9) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    } else if (spriteNum == 2) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
+            } else if (keyH.leftPressed == true) {
+                direction = "left";
+                x -= speed;
+                if (spriteCounter > 9) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    } else if (spriteNum == 2) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
             }
-            else if (spriteNum == 2) {
-                spriteNum = 1;
-            }
-            spriteCounter = 0;
         }
 
     }
