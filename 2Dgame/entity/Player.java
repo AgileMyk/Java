@@ -31,14 +31,14 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (y <= 5) {
-            y = 5;
+        if (y <= 3) {
+            y = 3;
         } else if (y > 520) {
             y = 520;
         }
 
-        if (x <= 5) {
-            x = 5;
+        if (x <= 3) {
+            x = 3;
         } else if (x >= 718) {
             x = 718;
         }
