@@ -24,6 +24,7 @@ public class TileManager {
         try {
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/bricks.png"));
+            tile[0].collision = true;
 
 
             tile[1] = new Tile();
@@ -35,6 +36,7 @@ public class TileManager {
             tile[3] = new Tile();
 
                 tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/ocean.png"));
+                tile[3].collision = true;
 
             tile[4] = new Tile();
 
@@ -44,66 +46,39 @@ public class TileManager {
 
                 tile[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/shore.png"));
 
+            tile[6] = new Tile();
+
+                tile[6].image = null;
+
         } catch (IOException io) {
             io.printStackTrace();
         }
     }
+
     public void draw(Graphics2D g2) {
+        g2.drawImage(tile[1].image, 0, 0, gp.tileSize,  gp.tileSize, null);
 
-        g2.drawImage(tile[1].image, 0,0,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 48,0,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 96,0,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 144,0,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 192,0,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 240,0,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 288,0,gp.tileSize,gp.tileSize, null);
+        int col = 0;
+        int row = 0;
+        int x = 0;
+        int y = 0;
 
-        g2.drawImage(tile[1].image, 0,48,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 48,48,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 96,48,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 144,48,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 192,48,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 240,48,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 288,48,gp.tileSize,gp.tileSize, null);
+        while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
 
-        g2.drawImage(tile[1].image, 0,96,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 48,96,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 96,96,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 144,96,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 192,96,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 240,96,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 288,96,gp.tileSize,gp.tileSize, null);
+            g2.drawImage(tile[1].image, x, y, gp.tileSize, gp.tileSize, null);
+            col++;
 
-        g2.drawImage(tile[1].image, 0,144,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 48,144,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 96,144,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 144,144,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 192,144,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 240,144,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 288,144,gp.tileSize,gp.tileSize, null);
+            x+=gp.tileSize;
 
-        g2.drawImage(tile[1].image, 0,192,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 48,192,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 96,192,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 144,192,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 192,192,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 240,192,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 288,192,gp.tileSize,gp.tileSize, null);
+            if (col == gp.maxScreenCol) {
+                col = 0;
+                row++;
+                x = 0;
+                y+= gp.tileSize;
+            }
 
-        g2.drawImage(tile[1].image, 0,240,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 48,240,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 96,240,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 144,240,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 192,240,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 240,240,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 288,240,gp.tileSize,gp.tileSize, null);
-
-        g2.drawImage(tile[1].image, 0,288,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 48,288,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 96,288,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 144,288,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 192,288,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 240,288,gp.tileSize,gp.tileSize, null);
-        g2.drawImage(tile[1].image, 288,288,gp.tileSize,gp.tileSize, null);
+        }
     }
+
+
 }
