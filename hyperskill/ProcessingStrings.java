@@ -22,16 +22,22 @@ public class ProcessingStrings {
 
     public static void main(String[] args) {
 
-        String what = "Test me out";
+        String what = "Test me out!";
 
         System.out.println(stringProcessor(what));
     }
 
     public static String stringProcessor(String s) {
+        StringBuilder sb = new StringBuilder(s);
         if (s.length() % 2 == 0) {
-            return s.substring(s.length() /2, s.length() / 2 -2);
+            //System.out.println("Even");
+            sb.deleteCharAt(sb.length() / 2);
+            sb.deleteCharAt(sb.length() / 2);
+            return sb.toString();
         } else {
-            return s.substring(s.length() / 2, s.length() /2 - 1);
+            //sb.deleteCharAt(sb.length() / 2);
+            System.out.println("odd");
+            return sb.toString();
         }
     }
 }
