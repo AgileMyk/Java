@@ -1,15 +1,16 @@
+import java.util.Arrays;
+
 public class NumberOfOccurances2 {
 
 
     public static void main(String[] args) {
-
     }
 
-    public static int occCount(String s, String a) {
-        int count = 0;
-        String temp = "";
-        char[] s2 = s.toCharArray();
 
+    public static int occCount(String s, String a) {
+        if (a.length() <= 0 ) {
+            return 0;
+        }
 
 
       /*
@@ -28,7 +29,7 @@ public class NumberOfOccurances2 {
         }
        */
 
-        return count;
+        return 1;
     }
 }
 
