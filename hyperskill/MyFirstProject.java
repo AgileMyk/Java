@@ -9,7 +9,8 @@ list of all the products with their prices.
 
 public class MyFirstProject {
 
-
+    static Scanner in = new Scanner(System.in);
+//enum
     public enum flavors {
         BUBBLEGUM("Bubble Gum", 202),
         TOFFEE("Toffee", 118),
@@ -35,10 +36,16 @@ public class MyFirstProject {
             total += flavor.spent;
             System.out.println(flavor.name + ": $" + flavor.spent);
         }
-        System.out.print("Income: $");
         return total;
     }
 
+    public static int amount() {
+        int total = 0;
+        for (flavors flavor: flavors.values()) {
+            total += flavor.spent;
+        }
+        return total;
+    }
 
     public static void main(String[] args) {
 
@@ -61,8 +68,25 @@ public class MyFirstProject {
         firstProjectProductPrices flavor6 = pancake;
 
 
+        int staffExp = 0;
+        int otherExp = 0;
+        int amount = amount();
         total();
 
+        System.out.println("\nStaff expenses: ");
+        try {
+            staffExp = in.nextInt();
+        } catch (IllegalArgumentException iae) {
+            System.out.println(iae.getMessage() + " // " + iae.getCause());
+        }
+
+        System.out.println("Other expenses: ");
+        try {
+            otherExp = in.nextInt();
+        } catch (IllegalArgumentException iae) {
+            System.out.println(iae.getMessage() + " // " + iae.getCause());
+        }
+        System.out.printf("Net income: $%d\n", amount - (staffExp + otherExp));
 
         /*
         System.out.printf("%s%n%s%n%s%n%s%n%s%n%s%n%s%n",

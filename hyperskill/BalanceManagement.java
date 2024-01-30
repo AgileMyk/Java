@@ -58,6 +58,7 @@ public class BalanceManagement {
 
     /**
      * The method change the balance of the given account according to an operation.
+     *
      * @param account
      * @param operation
      * @return true if the balance has changed, otherwise - false.
@@ -74,12 +75,12 @@ public class BalanceManagement {
             }
         }
 
-        if (operation.equals("DEPOSIT"))  {
+        else {
             long current = account.getBalance();
             account.setBalance(current += sum);
             return true;
         }
-
+    }
 
         /* Do not change code below */
         enum Operation {
@@ -111,7 +112,7 @@ public class BalanceManagement {
             }
         }
 
-        public static void main(String[] args) {
+        public static void main (String[]args){
             Scanner scanner = new Scanner(System.in);
 
             String[] parts = scanner.nextLine().split("\\s+");
@@ -128,3 +129,5 @@ public class BalanceManagement {
             }
         }
     }
+
+
