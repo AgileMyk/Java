@@ -1,16 +1,35 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 public class NumberOfOccurances2 {
 
 
     public static void main(String[] args) {
+        String stringVariable = null;
+        String one = "test";
+        String two = "test";
+        String three = "fail";
+
+        Objects.equals(one, two);
+        Objects.equals(two, three);
+        Objects.equals(one, three);
+
+
+        if ("Abc".equals(stringVariable)) {
+            System.out.println("yep");
+        } else {
+            System.out.println("nope");
+        }
+
     }
 
+    public static String toUpperCase(String str) {
+        return str == null ? "" : str.toUpperCase();
+    }
 
     public static int occCount(String s, String a) {
-        if (a.length() <= 0 ) {
-            return 0;
-        }
+        int sLength = s != null ? s.length() : 0;
+        int aLength = a != null ? a.length() : 0;
 
 
       /*
