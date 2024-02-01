@@ -56,63 +56,19 @@ import java.util.Scanner;
 
 public class BalanceManagement {
 
-    /**
-     * The method change the balance of the given account according to an operation.
-     *
-     * @param account
-     * @param operation
-     * @return true if the balance has changed, otherwise - false.
-     */
-    public static boolean changeBalance(Account account, Operation operation, Long sum) {
-        if (operation.equals("WITHDRAWAL")) {
-            long current = account.getBalance();
-            if (current >= sum) {
-                account.setBalance(current -= sum);
-                return true;
-            } else {
-                System.out.println("Not enough money to withdraw.");
-                return false;
+        int arr[] = {1,2,3,4,5};
+        int size = arr.length == 0 ? 1 : arr.length;
+
+        public void getInd(int[] a, int i) {
+            try {
+                System.out.printf("%d is at location %d\n", a[i], i);
+            } catch (IndexOutOfBoundsException obe) {
+                System.out.println(obe.getMessage());
             }
         }
-
-        else {
-            long current = account.getBalance();
-            account.setBalance(current += sum);
-            return true;
-        }
-    }
-
-        /* Do not change code below */
-        enum Operation {
-            /**
-             * deposit (add) an amount into an Account
-             */
-            DEPOSIT,
-            /**
-             * withdraw (subtract) an amount from an Account
-             */
-            WITHDRAW
-        }
-
-        static class Account {
-
-            private String code;
-            private Long balance;
-
-            public String getCode() {
-                return code;
-            }
-
-            public Long getBalance() {
-                return balance;
-            }
-
-            public void setBalance(Long balance) {
-                this.balance = balance;
-            }
-        }
-
         public static void main (String[]args){
+
+
             Scanner scanner = new Scanner(System.in);
 
             String[] parts = scanner.nextLine().split("\\s+");
@@ -128,6 +84,29 @@ public class BalanceManagement {
                 System.out.println(account.getBalance());
             }
         }
-    }
 
+        public static boolean changeBalance(Account account, Operation operation, long sum) {
+            long accountAmount = account.getBalance();
+            boolean result = false;
+
+            switch (operation) {
+                case WITHDRAW:
+                    if (sum > accountAmount) {
+                        System.out.println("Not enough money to withdraw.");
+                    } else {
+                        account.setBalance(accountAmount - sum);
+                    }
+                    break;
+                case DEPOSIT:
+                        account.setBalance(accountAmount + sum);
+                    break;
+            }
+
+            if (accountAmount != account.getBalance()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
 
