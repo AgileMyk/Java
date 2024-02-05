@@ -35,8 +35,8 @@ public class SquirrelsAndNuts {
 
         int squirrels = 14;
         int nuts = 3;
-
-        System.out.print(snQ(nuts, squirrels));
+        int result = sNQ(3, 14);
+        System.out.println(result);
+        System.out.println(sNQ(nuts, squirrels));
     }
-
 }
