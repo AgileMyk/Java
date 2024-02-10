@@ -16,6 +16,8 @@ Sample Output 1:
  */
 
 public class SquirrelsAndNuts {
+    static char ch = '/';
+    static int num = ch;
 
     public static int sNQ(int n, int k) {
         int d = k / n;
@@ -30,13 +32,28 @@ public class SquirrelsAndNuts {
     }
 
     public static void main(String[] args) {
+
         long n1 = 213_234_345;
         long k1 = 104_567_678;
+
+        char ch2 = '>';
+        double chTwo = ch2;
+
+        long bigLong = 1_200_000_000_000_000_000L;
+        double bigDouble = bigLong;
+
+        int smaller = 1;
+        float medium = smaller;
+        long bigger = smaller;
+        long alsoBigger = (long)medium;
 
         int squirrels = 14;
         int nuts = 3;
         int result = sNQ(3, 14);
         System.out.println(result);
         System.out.println(sNQ(nuts, squirrels));
+        System.out.println("        -----------------------");
+        System.out.println(chTwo + " ?");
+        System.out.print(bigDouble);
     }
 }
