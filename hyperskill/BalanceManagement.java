@@ -56,57 +56,56 @@ import java.util.Scanner;
 
 public class BalanceManagement {
 
-        int arr[] = {1,2,3,4,5};
-        int size = arr.length == 0 ? 1 : arr.length;
+    int arr[] = {1,2,3,4,5};
+    int size = arr.length == 0 ? 1 : arr.length;
 
-        public void getInd(int[] a, int i) {
-            try {
-                System.out.printf("%d is at location %d\n", a[i], i);
-            } catch (IndexOutOfBoundsException obe) {
-                System.out.println(obe.getMessage());
-            }
+    public void getInd(int[] a, int i) {
+        try {
+            System.out.printf("%d is at location %d\n", a[i], i);
+        } catch (IndexOutOfBoundsException obe) {
+            System.out.println(obe.getMessage());
         }
-        public static void main (String[]args){
+    }
+    public static void main (String[]args){
 
 
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-            String[] parts = scanner.nextLine().split("\\s+");
+        String[] parts = scanner.nextLine().split("\\s+");
 
-            Account account = new Account();
-            account.setBalance(Long.parseLong(parts[0]));
+        Account account = new Account();
+        account.setBalance(Long.parseLong(parts[0]));
 
-            Operation operation = Operation.valueOf(parts[1]);
+        Operation operation = Operation.valueOf(parts[1]);
 
-            Long sum = Long.parseLong(parts[2]);
+        Long sum = Long.parseLong(parts[2]);
 
-            if (changeBalance(account, operation, sum)) {
-                System.out.println(account.getBalance());
-            }
-        }
-
-        public static boolean changeBalance(Account account, Operation operation, long sum) {
-            long accountAmount = account.getBalance();
-            boolean result = false;
-
-            switch (operation) {
-                case WITHDRAW:
-                    if (sum > accountAmount) {
-                        System.out.println("Not enough money to withdraw.");
-                    } else {
-                        account.setBalance(accountAmount - sum);
-                    }
-                    break;
-                case DEPOSIT:
-                        account.setBalance(accountAmount + sum);
-                    break;
-            }
-
-            if (accountAmount != account.getBalance()) {
-                return false;
-            } else {
-                return true;
-            }
+        if (changeBalance(account, operation, sum)) {
+            System.out.println(account.getBalance());
         }
     }
 
+    public static boolean changeBalance(Account account, Operation operation, long sum) {
+        long accountAmount = account.getBalance();
+        boolean result = false;
+
+        switch (operation) {
+            case WITHDRAW:
+                if (sum > accountAmount) {
+                    System.out.println("Not enough money to withdraw.");
+                } else {
+                    account.setBalance(accountAmount - sum);
+                }
+                break;
+            case DEPOSIT:
+                account.setBalance(accountAmount + sum);
+                break;
+        }
+
+        if (accountAmount != account.getBalance()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}

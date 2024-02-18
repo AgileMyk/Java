@@ -5,10 +5,19 @@ You need to implement the calculateSquare method.
 It should output the square of the element by the provided index of an array.
 In the case when the exception might happen, your program output should be: Exception!
  */
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.File;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 
 class FixingExceptions {
     public static void calculateSquare(int[] array, int index) {
 
+        File thisFile = new File("Dir\\subFolder\\file.txt");
+        
         int age = 33;
         String status = null;
         String status2 = null;
