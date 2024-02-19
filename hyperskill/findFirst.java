@@ -15,20 +15,14 @@ public class findFirst {
 
     public static int findFirst(String words) {
         int temp = 0;
+        int i = 0;
 
-        for (int i = 0; i < words.length(); i++) {
-            if (words.charAt(i) == 't' || words.charAt(i) == 'T' && words.charAt(i+1) == 'h' && words.charAt(i + 2) == 'e') {
-                return i;
-            }  else {
-                return -1;
-            }
-        }
         return temp;
     }
 
     public static void main(String[] args) {
 
-        String testString = "The apple is red";
+        String testString = "I ate the red apple.";
 
         System.out.println(findFirst(testString));
     }
