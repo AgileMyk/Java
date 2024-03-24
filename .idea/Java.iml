@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/2Dgame" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/res/player" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/hyperskill" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CMSC_115" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
