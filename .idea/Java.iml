@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/res/player" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/hyperskill" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMSC_115" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/animals" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
