@@ -1,7 +1,4 @@
-import javax.rmi.ssl.SslRMIClientSocketFactory;
-import java.util.Scanner;
-
-public class wk3_notes {
+public class wk4_notes {
 
     public static int last(String s) {
         return s.length();
