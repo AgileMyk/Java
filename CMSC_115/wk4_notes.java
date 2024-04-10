@@ -5,6 +5,13 @@ public class wk4_notes {
     }
     public static void main(String[] args) {
 
+
+        char[] charArr = {'2','2','0','-'};
+
+        for (char c: charArr) {
+            int count = 0;
+            count = c == '2' ? ++count : count;
+        }
         String b = """
                 Java
                 \tPython\n
