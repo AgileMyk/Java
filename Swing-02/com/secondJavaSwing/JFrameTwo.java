@@ -5,10 +5,10 @@ public class JFrameTwo {
     //instead of extending from JFrame class, instantiate a private frame class
     private JFrame frame;
     public JFrameTwo() {
-        initalize();
+        initialize();
     }
 
-    public void initalize() {
+    public void initialize() {
         frame = new JFrame();
         //this must be executed by referencing the private instance variable and then
         //performing the methods on that instance
@@ -18,5 +18,6 @@ public class JFrameTwo {
         this.frame.setVisible(true);
         this.frame.setResizable(false);
         this.frame.setLocationRelativeTo(null);
+
     }
 }
