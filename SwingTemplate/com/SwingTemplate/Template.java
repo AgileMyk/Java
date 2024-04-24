@@ -1,3 +1,4 @@
+//
 package com.SwingTemplate;
 import javax.swing.*;
 import javax.swing.text.html.*;
@@ -11,6 +12,7 @@ public class Template {
     private JFrame frame;
     private JPanel panel;
     private JPanel panel2;
+    private JPanel panel3;
     private Panel CharacterPanel;
     private JLabel label;
     private JButton button;
@@ -58,6 +60,14 @@ public class Template {
             }
         });
 
+        panel3 = new JPanel();
+        panel3.setBackground(Color.yellow);
+        panel3.setForeground(Color.BLUE);
+        panel3.setSize(0, frame.getHeight());
+        frame.add(panel3, BorderLayout.WEST);
+        panel3.add(createJTextField());
+
+
     }
 
     public void show() {
@@ -92,6 +102,23 @@ public class Template {
             }
         });
         return button;
+    }
+
+    public JTextField createJTextField() {
+        JTextField jtField = new JTextField("           Enter name here", 15);
+        jtField.setBackground(Color.blue);
+        jtField.setForeground(Color.yellow);
+        jtField.setFont(new Font("Arial", Font.ITALIC, 18));
+        jtField.setMargin(new Insets(2,6,2,6));
+        jtField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                label.setText(jtField.getText());
+                jtField.getText();
+                jtField.setText("");
+            }
+        });
+        return jtField;
     }
 
    /*
