@@ -7,6 +7,8 @@ public class toDoLauncher {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                MainToDoJFrame MainFrameOne = new MainToDoJFrame();
+                MainFrameOne.initialize();
                 for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                     if ("Nimbus".equals(info.getName())) {
                         try {
@@ -23,8 +25,8 @@ public class toDoLauncher {
                         break;
                     }
                 }
-                ToDo ToDo = new ToDo();
-                ToDo.initialize();
+                //ToDo ToDo = new ToDo();
+                //ToDo.initialize();
             }
         });
     }
