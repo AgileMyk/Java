@@ -48,6 +48,8 @@ final public class Height {
         //if (feet <= 0) {
             //feet = (inches / 12);
             //int inchesAdjust = inches % 12;
+
+        //check for feet only or feet and inches height object in constructor method
         if (inches > 0) {
             return "The player's height is " + feet + "' " + inches + "\" inches";
         }
