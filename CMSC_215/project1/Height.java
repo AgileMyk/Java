@@ -37,10 +37,7 @@ final public class Height {
     }
     //A method toInches that returns the height in total inches
     public int toInches() {
-        if (feet > 0) {
-            return feet * 12 + inches;
-        }
-        return inches;
+        return feet*12 + inches;
     }
     //A method toString that returns the string representation of the height with a single
     //quote following the feet and a double quote following the inches
@@ -48,10 +45,11 @@ final public class Height {
     public String toString() {
         //Regardless of what value for inches was supplied to the constructor the toString method should
         //display the height normalized so the inches are less than 12.
-        if (feet <= 0) {
-            feet = (inches / 12);
-            int inchesAdjust = inches % 12;
-            return "The player's height is " + feet + "' " + inchesAdjust + "\" inches";
+        //if (feet <= 0) {
+            //feet = (inches / 12);
+            //int inchesAdjust = inches % 12;
+        if (inches > 0) {
+            return "The player's height is " + feet + "' " + inches + "\" inches";
         }
             return "The player's height is " + feet + "'.";
     }
