@@ -87,45 +87,24 @@ public class Project1 {
 
                 Height currentHeight = new Height(currentFeet, currentInches);
                 //It should create a Player object for each player and add the player to an ArrayList.
-                Player currentPlayer = new Player(currentName, currentAge, currentHeight);
-                Players.add(currentPlayer);
-                System.out.println("Player added: " + currentPlayer);
-                for (Player thisPlayer: Players) {
-                    System.out.println(thisPlayer);
-                }
-                playerPrompt();
-                loopDeterminant();
+                produceCurrentPlayer(Players, currentName, currentAge, currentHeight);
             } else if (heightRep.length() > 1 && heightRep.matches("\\d{2}")) {
                 //create height object with single input value in total inches
                 //currently no player breaks into three-digit inches range in height
 
                 Height currentHeight = new Height(Integer.parseInt(heightRep));
                 //It should create a Player object for each player and add the player to an ArrayList.
-                Player currentPlayer = new Player(currentName, currentAge, currentHeight);
-                Players.add(currentPlayer);
-                System.out.println("Player added: " + currentPlayer);
-                for (Player thisPlayer: Players) {
-                    System.out.println(thisPlayer);
-                }
-                playerPrompt();
-                loopDeterminant();
+                produceCurrentPlayer(Players, currentName, currentAge, currentHeight);
             } else {
                 //create height object with input of one even-feet value
                 int currentFeet = Integer.parseInt(heightRep);
                 Height currentHeight = new Height(currentFeet);
                 //It should create a Player object for each player and add the player to an ArrayList.
-                Player currentPlayer = new Player(currentName, currentAge, currentHeight);
-                Players.add(currentPlayer);
-                System.out.println("Player added: " + currentPlayer);
-                for (Player thisPlayer: Players) {
-                    System.out.println(thisPlayer);
-                }
-                playerPrompt();
-                loopDeterminant();
+                produceCurrentPlayer(Players, currentName, currentAge, currentHeight);
             }
         }
-        //code following loop termination
-        //. Once all player information has been input, the average age of
+                            //code following loop termination
+        //Once all player information has been input, the average age of
         //all players should be output.
         double avgAge = calcAvgAge();
         System.out.printf("The average age of all players is %d(decimal removed). %n", (int) avgAge);
@@ -139,7 +118,16 @@ public class Project1 {
                 tallestPlayer = Players.get(i);
             }
         }
-        System.out.printf("The tallest player whose age is less than or equal to the average age is %s. ", tallestPlayer.getName());
+        System.out.printf("The tallest player whose age is less than or equal to the average age is %s. ",tallestPlayer.getHeight(), tallestPlayer.getName());
         System.out.println(tallestPlayer.getName() + " is " +tallestPlayer.getAge() + " as compared to the average age of " + (int) avgAge);
+        System.out.println(tallestPlayer.getHeight());
+    }
+
+    private static void produceCurrentPlayer(ArrayList<Player> players, String currentName, int currentAge, Height currentHeight) {
+        Player currentPlayer = new Player(currentName, currentAge, currentHeight);
+        players.add(currentPlayer);
+        System.out.println("Player added: " + currentPlayer);
+        playerPrompt();
+        loopDeterminant();
     }
 }
