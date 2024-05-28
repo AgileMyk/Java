@@ -11,26 +11,36 @@ package project1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+The following is a list of the top 7 players for easy entry:
+Gheorghe Dumitru Mureșan, 7 7, 53
+Manute Bol, 7 7, 47 (deceased)
+Tacko Fall, 7 6, 28
+Yao Ming, 7 6, 43
+Shawn Bradley, 7 6, 52
+Slavko Vranes, 7 6, 41
+Sim Bhullar, 7 5, 31
+ */
 public class Project1 {
 
     //As the players are read in, the total age of all players should be computed to enable the average to be
     //calculate once all have been input
-    static Scanner in = new Scanner(System.in);
-    static int totalAges = 0;
-    static int count = 0;
-    static int averageAge = 0;
-    static void updateAges(int val) {
+    private static Scanner in = new Scanner(System.in);
+    private static int totalAges = 0;
+    private static int count = 0;
+    private static int averageAge = 0;
+    private static void updateAges(int val) {
         totalAges += val;
         count++;
     }
-    static void calcAvgAge() {
-        averageAge = totalAges / count;
+    private static double calcAvgAge() {
+        return totalAges / count;
     }
-    static boolean continueBoolean = true;
-    static void Playerprompt() {
+    private static boolean continueBoolean = true;
+    private static void playerPrompt() {
         System.out.println("Would you like to enter another player? (y/n)");
     }
-    static void loopDeterminant() {
+    private static void loopDeterminant() {
         String response = in.next();
         if     (response.equalsIgnoreCase("y") ||
                 response.equalsIgnoreCase("n")) {
@@ -83,7 +93,7 @@ public class Project1 {
                 for (Player thisPlayer: Players) {
                     System.out.println(thisPlayer);
                 }
-                Playerprompt();
+                playerPrompt();
                 loopDeterminant();
             } else if (heightRep.length() > 1 && heightRep.matches("\\d{2}")) {
                 //create height object with single input value in total inches
@@ -97,7 +107,7 @@ public class Project1 {
                 for (Player thisPlayer: Players) {
                     System.out.println(thisPlayer);
                 }
-                Playerprompt();
+                playerPrompt();
                 loopDeterminant();
             } else {
                 //create height object with input of one even-feet value
@@ -110,9 +120,26 @@ public class Project1 {
                 for (Player thisPlayer: Players) {
                     System.out.println(thisPlayer);
                 }
-                Playerprompt();
+                playerPrompt();
                 loopDeterminant();
             }
         }
+        //code following loop termination
+        //. Once all player information has been input, the average age of
+        //all players should be output.
+        double avgAge = calcAvgAge();
+        System.out.printf("The average age of all players is %d(decimal removed). %n", (int) avgAge);
+        int currentHeight = 0;
+        Player tallestPlayer = Players.get(0);
+        //Then the list of players should be traversed to find the tallest player
+        //whose age is less than or equal to the average age of all players
+        for (int i = 0; i < Players.size(); i++) {
+            if (currentHeight < Players.get(i).getHeight().toInches() && Players.get(i).getAge() <= calcAvgAge()) {
+                currentHeight = Players.get(i).getHeight().toInches();
+                tallestPlayer = Players.get(i);
+            }
+        }
+        System.out.printf("The tallest player whose age is less than or equal to the average age is %s. ", tallestPlayer.getName());
+        System.out.println(tallestPlayer.getName() + " is " +tallestPlayer.getAge() + " as compared to the average age of " + (int) avgAge);
     }
 }
