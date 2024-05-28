@@ -8,7 +8,7 @@ Height class - contains fields feet/inches, constructors and conversion for conv
 package project1;
 
 final public class Height {
-        private int feet;
+    private int feet;
     private int inches;
 
     //A constructor that accepts a single value and determines if that value represents
@@ -51,7 +51,7 @@ final public class Height {
 
         //check for feet only or feet and inches height object in constructor method
         if (inches > 0) {
-            return "The player's height is " + feet + "' " + inches + "\" inches";
+            return "The player's height is " + feet + "' " + inches + "\" ";
         }
             return "The player's height is " + feet + "'.";
     }
