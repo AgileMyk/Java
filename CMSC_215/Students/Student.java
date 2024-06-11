@@ -21,7 +21,7 @@ hours earned and quality points.
     protected int creditHours;
     protected int qualityPoints;
     protected Date dateCreated;
-    private double GPA = getGPA();
+    protected double GPA = getGPA();
     protected static Scanner in = new Scanner(System.in);
     private static int studentCount = 0;
     private static int totalAccumulatedGPAPoints = 0;
@@ -79,6 +79,10 @@ hours earned and quality points.
 
         return (total / studentCount) * .85;
     }
+
+    protected void incStudentCount() {
+        Student.studentCount++;
+    }
     /*
                                         -------------------------------
                     getters necessary to perform static calculation on instance variables
@@ -108,18 +112,6 @@ hours earned and quality points.
     protected Date getDateCreated() {
         return dateCreated;
     }
-    public void rankStudentList(Student[] arr) {
-        //create list for labeling student rankings
-        String[] rankings = new String[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            rankings[i] = "rank " + i;
-        }
-        for (int i = 0; i < arr.length; i++) {
-
-        }
-    }
-
-    public abstract boolean equals();
 
     public static int getStudentTotal() {
         return studentCount;
@@ -127,6 +119,11 @@ hours earned and quality points.
     protected abstract String getYear();
     protected abstract String getCurrentDegreePursued();
 
+    public static void validStudentTest(Student currentStudent) {
 
+    }
+    public static void validStudentTest(Student ... currentStudent) {
+
+    }
 }
 

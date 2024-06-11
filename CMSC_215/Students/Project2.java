@@ -32,17 +32,27 @@ public class Project2 {
         File studentFile = new File("C:\\Users\\g\\Hyperskill\\CMSC_215\\Students\\students.txt");
 
         Scanner in = new Scanner(studentFile);
+        int count = 0;
         while (in.hasNextLine()) {
         //split full line string to check conditions for undergrad vs. grad
             String[] result = in.nextLine().split(" ");
+            //test for validity of Student info and add if correct
+            if     (result[0] instanceof String &&
+                    result[1] instanceof String &&
+                    result[2].matches("-?\\d+(\\.\\d+)?") &&
+                    result[3].matches("-?\\d+(\\.\\d+)?") &&
+                    result[4] instanceof String) {
+                count++;
+                //As the students are read in, Student objects of the
+                //appropriate type should be created, and they should be stored in an array list of type Student.
 
-        //As the students are read in, Student objects of the
-        //appropriate type should be created, and they should be stored in an array list of type Student.
-
-            if (result[4].toLowerCase().equals("masters") || result[4].toLowerCase().equals("doctorate")) {
-                Students.add(new Graduate(result[0] + " " + result[1], Integer.parseInt(result[2]), Integer.parseInt(result[3]), result[4]));
+                if (result[4].toLowerCase().equals("masters") || result[4].toLowerCase().equals("doctorate")) {
+                    Students.add(new Graduate(result[0] + " " + result[1], Integer.parseInt(result[2]), Integer.parseInt(result[3]), result[4]));
+                } else {
+                    Students.add(new Undergraduate(result[0] + " " + result[1], Integer.parseInt(result[2]), Integer.parseInt(result[3]), result[4]));
+                }
             } else {
-                Students.add(new Undergraduate(result[0] + " " + result[1], Integer.parseInt(result[2]), Integer.parseInt(result[3]), result[4]));
+                System.out.printf("\nStudent entry number %d had invalid data fields in the text file; will not be added\n", count + 1);
             }
         }
 
@@ -69,4 +79,5 @@ public class Project2 {
 
 
     }
+
 }

@@ -9,15 +9,24 @@ getters, gpaThreshhold, rankStudentList, eligibleForHonorSociety
 
 package Students;
 
+import java.util.Date;
 import java.util.Scanner;
 public class Undergraduate extends Student {
+    private String name;
+    private int creditHours;
+    private int qualityPoints;
+    private Date dateCreated;
     private String year;
-    private static int undergraduateTotal = 0;
+    public static int undergraduateTotal = 0;
 
 
-    protected Undergraduate(String name, int creditHours, int qualityPoints, String year) {
+    public Undergraduate(String name, int creditHours, int qualityPoints, String year) {
         super(name, creditHours, qualityPoints);
         this.year = year;
+        double GPA = getGPA();
+        dateCreated = new Date();
+        incStudentCount();
+        undergraduateTotal++;
     }
     @Override
     protected boolean eligibleForHonorSociety() {
@@ -37,10 +46,6 @@ public class Undergraduate extends Student {
         return "Year: " + getYear();
     }
 
-    @Override
-    public boolean equals() {
-        return false;
-    }
 
 public static int getUndergraduateTotal() {
     return undergraduateTotal;

@@ -8,16 +8,24 @@ extends Student class - contains fields name/creditHours/qualityPoints/dateCreat
 getters, gpaThreshhold, rankStudentList, eligibleForHonorSociety
  */
 
+import java.util.Date;
+
 public class Graduate extends Student {
+    private String name;
+    private int creditHours;
+    private int qualityPoints;
+    private Date dateCreated;
     private String currentDegreePursued;
-    private static int graduateTotal = 0;
-    private double GPA;
+    public static int graduateTotal = 0;
 
 
-    protected Graduate(String name, int creditHours, int qualityPoints, String currentDegreePursued) {
+    public Graduate(String name, int creditHours, int qualityPoints, String currentDegreePursued) {
         super(name, creditHours, qualityPoints);
         this.currentDegreePursued = currentDegreePursued;
         double GPA = getGPA();
+        dateCreated = new Date();
+        incStudentCount();
+        graduateTotal++;
     }
     protected boolean eligibleForHonorSociety() {
         if (getGPA() > setGPAthreshold() && getCurrentDegreePursued().toLowerCase() == "masters") {
@@ -39,11 +47,6 @@ public class Graduate extends Student {
         System.out.println("GPA: " + getGPA());
         System.out.println(eligibleForHonorSociety());
         return "Program: " + currentDegreePursued;
-    }
-
-    @Override
-    public boolean equals() {
-        return false;
     }
 
     @Override
