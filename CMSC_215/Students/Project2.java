@@ -47,11 +47,14 @@ public class Project2 {
         }
 
         for (Student s : Students) {
-            System.out.println(s.toString());
+            System.out.println(s.name + ": " + s.getGPA());
+            System.out.println(s.eligibleForHonorSociety());
         }
 
-        System.out.println(Student.getStudentTotal());
-        System.out.println(Student.setGPAthreshold());
+        System.out.println("student count: " + Student.getStudentTotal());
+        System.out.println("gpa thresh hold: " + Student.setGPAthreshold());
+        //Then a report should be displayed on the console that lists all students who are eligible for membership
+        Student.getEligibleStudents(Students);
 
 /*
 

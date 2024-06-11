@@ -7,11 +7,12 @@ getters, gpaThreshhold, rankStudentList, eligibleForHonorSociety
  */
 package Students;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-abstract public class Student implements Comparable<Student> {
+abstract public class Student {
     /*
 Student class. It has three instance variables which include the student name, credit
 hours earned and quality points.
@@ -20,15 +21,10 @@ hours earned and quality points.
     protected int creditHours;
     protected int qualityPoints;
     protected Date dateCreated;
-
+    private double GPA = getGPA();
     protected static Scanner in = new Scanner(System.in);
-
     private static int studentCount = 0;
-
-    private double GPA;
-
     private static int totalAccumulatedGPAPoints = 0;
-
     private static ArrayList<Student> allStudents = new ArrayList<>();
     /*
     At a minimum, it should have:
@@ -51,12 +47,15 @@ hours earned and quality points.
         this.qualityPoints = qualityPoints;
         studentCount++;
         allStudents.add(this);
-        this.GPA = calcGPA(creditHours, qualityPoints);
+        this.GPA = getGPA();
     };
-    protected double gpa() {
-        return qualityPoints/creditHours;
-    }
-    protected abstract boolean eligibleForHonorSociety(Student s);
+    public double getGPA() {
+        double result = ((double) qualityPoints / creditHours);
+        result *= 100;
+        result = Math.round(result);
+        result /= 100;
+        return result;    }
+    protected abstract boolean eligibleForHonorSociety();
     public abstract String toString();
 
     //takes an array of all the student instances, allowing a static method to access non-static instance variables
@@ -93,9 +92,19 @@ hours earned and quality points.
     protected int getQualityPoints() {
         return qualityPoints;
     }
-    public static boolean gpaThreshhold(Student student) {
-        return student.qualityPoints/student.creditHours >= setGPAthreshold() ? true : false;
-    };
+
+    // this method is used to populate eligibility report
+    public static void getEligibleStudents(ArrayList<Student> students) {
+        for (Student current: students) {
+            String[] names = current.getName().split(" ");
+            String lastName = names[0];
+            String firstName = names[1];
+            String statement = current.eligibleForHonorSociety()
+                    ? firstName + " " + lastName + " is eligible for Honors Society"
+                    : firstName + " " + lastName + " is not eligible for Honors Society";
+            System.out.println(statement);
+        }
+    }
     protected Date getDateCreated() {
         return dateCreated;
     }
@@ -115,23 +124,9 @@ hours earned and quality points.
     public static int getStudentTotal() {
         return studentCount;
     }
-
-    //compareTo method with sub-methods calculating compareTo results
-
-    public abstract int compareTo(Student o);
-
-    //validation methods
+    protected abstract String getYear();
+    protected abstract String getCurrentDegreePursued();
 
 
-    private double calcGPA(int cHour, int qPoints) {
-        double result = ((double) qPoints / cHour);
-        result *= 100;
-        result = Math.round(result);
-        result /= 100;
-        return result;
-    }
-    public double getGPA() {
-        return GPA;
-    }
 }
 
