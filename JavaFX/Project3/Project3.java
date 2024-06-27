@@ -41,14 +41,6 @@ public class Project3 extends Application {
 
         //Layout
         GridPane gridContainer = new GridPane(3,9);
-        /*
-        Slider aSlider = new Slider();
-        aSlider.setOrientation(Orientation.VERTICAL);
-        gridContainer.add(aSlider,9,9);
-        aSlider.setShowTickLabels(true);
-        aSlider.setShowTickMarks(true);
-        aSlider.valueProperty().addListener(ov -> calc.setText(String.valueOf(aSlider.getValue())));
-         */
 
         ComboBox<String> costGalOrLit = new ComboBox<>();
         costGalOrLit.getItems().addAll("dollars/gal","dollars/liter");
@@ -101,12 +93,9 @@ public class Project3 extends Application {
         totalTripCostTextField.setDisable(true);
         totalTripCostTextField.setStyle("-fx-opacity: 1.0");
 
-
         //Layout
-        //gridContainer.setGridLinesVisible(true);
         gridContainer.setPrefSize(WIDTH_DIMENSION, HEIGHT_DIMENSION);
         gridContainer.setHgap(7.5);
-        //430 total width - padding 20/label 120/gap 5/label 120/gap 5/label 120/padding 20
         //row 1
         gridContainer.add(new Label("Distance"),1,1);
         gridContainer.add(distanceTextField,2,1);
@@ -123,65 +112,59 @@ public class Project3 extends Application {
         //row4
         gridContainer.add(new Label("Number Of Days:"),1,4);
         gridContainer.add(numOfDaysTextField,2,4);
-        //row4
+        //row5
         gridContainer.add(new Label("Hotel Cost"),1,5);
         gridContainer.add(hotelCostTextField,2,5);
-        //row4
+        //row6
         gridContainer.add(new Label("Food Cost"),1,6);
         gridContainer.add(foodCostTextField,2,6);
-        //row4
+        //row7
         gridContainer.add(new Label("Attractions"),1,7);
         gridContainer.add(attractionsTextField,2,7);
+
+
         //row8
         //Buttons
         calc = new Button("Calculate");
         calc.setMinWidth(150);
         calc.setOnAction( e -> {
-            System.out.println("works");
-            //construct tripCost object and return total calculation
-        try {
-            TripCost tCost = new TripCost(Integer.parseInt(distanceTextField.getText()),
-                    Double.parseDouble(gasCostTextField.getText()),
-                    Integer.parseInt(gasMileageTextField.getText()),
-                    Integer.parseInt(numOfDaysTextField.getText()),
-                    Integer.parseInt(hotelCostTextField.getText()),
-                    Double.parseDouble(foodCostTextField.getText()),
-                    Integer.parseInt(attractionsTextField.getText()));
-            totalTripCostTextField.setText("$" + tCost.result);
-        } catch (incompleteObject Exception) {
+            for (int i = 0 ; i < Texts.length - 1; i++) {
+                System.out.println("'"+Texts[i].getText()+"'");
+                if (Texts[i].getLength() < 1 ) {
+                    System.out.println("empty");
+                    Texts[i].setText("0");
+                    System.out.println(Texts[i].getText());
+                } else if (Texts[2].getLength() < 1 || Integer.parseInt(Texts[2].getText()) <= 0) {
+                    Texts[2].setText("1");
+                    
+                }
+            }
 
-        }
+            //construct tripCost object and return total calculation
+                tCost = new TripCost(Integer.parseInt(distanceTextField.getText()),
+                        Double.parseDouble(gasCostTextField.getText()),
+                        Integer.parseInt(gasMileageTextField.getText()),
+                        Integer.parseInt(numOfDaysTextField.getText()),
+                        Integer.parseInt(hotelCostTextField.getText()),
+                        Double.parseDouble(foodCostTextField.getText()),
+                        Integer.parseInt(attractionsTextField.getText()));
+
+            totalTripCostTextField.setText("$" + tCost.result);
+
         });
 
 
         gridContainer.add(calc,2,8);
 
-        //row4
+        //row9
         gridContainer.add(new Label("Total Trip Cost"),1,9);
         gridContainer.add(totalTripCostTextField,2,9);
-
-        /*
-              HBox[] HBoxes = {
-                new HBox(distance, distanceTextField, distanceChoice),
-                new HBox(new Label("Gasoline Cost"),new TextField(), gasCost),
-                new HBox(new Label("Gas Mileage"),new TextField(), mileageChoice),
-                new HBox(new Label("Number of Days"),new TextField()),
-                new HBox(new Label("Hotel Cost"),new TextField()),
-                new HBox(new Label("Food Cost"),new TextField()),
-                new HBox(new Label("Attraction"),new TextField()),
-                new HBox(calc),
-                new HBox(new Label("Total Trip Cost"), new TextField())
-        };
-
-        for (int i = 0; i < HBoxes.length; i++) {
-            gridContainer.add(HBoxes[i],1,i);
-        }
-         */
-        //Pane labels = new VBox(9);
-        //labels.setMinHeight(400);
-        //labels.setMinWidth(120);
-        //labels.setPadding(new Insets(5,0,0,0));
-        //gridContainer.add(labels,1,1);
+        TextArea status = new TextArea();
+        status.setPrefWidth(50);
+        status.setPrefHeight(40);
+        status.setDisable(true);
+        status.setStyle("-fx-opacity: 1.0");
+        gridContainer.add(status,3,9);
 
         Pane inputs = new VBox();
         inputs.setMinHeight(400);
@@ -205,3 +188,4 @@ public class Project3 extends Application {
     }
 
 }
+
