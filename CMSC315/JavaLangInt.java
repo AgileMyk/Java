@@ -7,6 +7,10 @@ public class JavaLangInt {
         value = val;
     }
 
+    public JavaLangInt(Integer val) {
+        value = (int) val;
+    }
+
     public JavaLangInt(String val) {
         value = Integer.parseInt(val);
     }
@@ -56,12 +60,20 @@ public class JavaLangInt {
         return new JavaLangInt(Integer.parseInt(s));
     }
 
+    public static JavaLangInt valueOf(String s, int radix) {
+        return new JavaLangInt(Integer.parseInt(s, radix));
+    }
+
     public static JavaLangInt valueOf(int i) {
         return new JavaLangInt(i);
     }
 
-    public static JavaLangInt valueOf(String s, int radix) {
-        return new JavaLangInt(Integer.parseInt(s, radix));
+    public static JavaLangInt parseJavaLangInt(String s)   {
+        return new JavaLangInt(Integer.parseInt(s));
+    }
+
+    public static JavaLangInt parseJavaLangInt(Integer i) {
+        return new JavaLangInt(i);
     }
 
 }
