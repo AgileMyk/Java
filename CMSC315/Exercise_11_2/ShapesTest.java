@@ -4,15 +4,16 @@ public class ShapesTest {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
+
         System.out.println("Hello. We are going to make a triangle\n" +
                 "Please enter a length for the left side, \nthen right side \nand lastly the base");
-            double lSide = in.nextDouble();
-            double rSide = in.nextDouble();
-            double base = in.nextDouble();
+        double lSide = in.nextDouble();
+        double rSide = in.nextDouble();
+        double base = in.nextDouble();
         System.out.println("To continue creating the triangle, please enter a color,\n" +
                 "and whether or not you want the triangle filled with that color\n");
-            String color = in.next();
-            boolean filled = in.nextBoolean();
+        String color = in.next();
+        boolean filled = in.nextBoolean();
 
         Triangle userTriangle = new Triangle(color, filled, base, lSide, rSide);
         System.out.println("stats:");
