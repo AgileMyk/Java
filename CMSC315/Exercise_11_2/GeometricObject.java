@@ -7,7 +7,7 @@ public class GeometricObject {
     protected boolean filled;
     protected Date dateCreated;
 
-    public GeometricObject() {};
+    public GeometricObject() {}
 
     public GeometricObject(String color, boolean filled) {
         this.color = color;
@@ -36,6 +36,6 @@ public class GeometricObject {
 
     @Override
     public String toString() {
-        return "This geoObj --> color: " + this.color + "\nfilled: " + this.isFilled() + "\ndate " + this.getDateCreated();
-    };
+        return "color: " + this.color + "\nfilled: " + this.isFilled() + "\ndate " + this.getDateCreated();
+    }
 }

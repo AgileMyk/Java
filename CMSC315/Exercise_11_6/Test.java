@@ -21,7 +21,7 @@ public class Test {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Let's create an array list and populate it with different objects.");
-        ArrayList arr = new ArrayList();
+        ArrayList<Object> arr = new ArrayList<>();
         System.out.println("A date object representing today's date will be auto populated in the list.");
         System.out.println("It is your job to create a loan object, a string object and a triangle object for the list.");
         System.out.println("Choose a string: ");
@@ -36,25 +36,38 @@ public class Test {
 
         System.out.println("Let's create our triangle: ");
         Triangle userTriangle = createTriangle();
-        arr.add(new Date());
+        Date thisDate = new Date();
+        arr.add(newString);
+        arr.add(thisDate);
         arr.add(thisLoan);
         arr.add(userTriangle);
 
-        for (ele : arr) {
-            System.out.println(ele);
+        System.out.println("the populated objects: ");
+        for (int i = 0; i < arr.size(); i++) {
+            if (i != arr.size() - 1) {
+              System.out.println(arr.get(i));
+              System.out.println("---------------------------------");
+            } else {
+                System.out.println(arr.get(i));
+                System.out.println("The end!");
+            }
         }
 
     }
 
     public static Triangle createTriangle() {
         Scanner in = new Scanner(System.in);
-        System.out.println("Hello. We are going to make a triangle\n" +
-                "Please enter a length for the left side, \nthen right side \nand lastly the base");
+        System.out.println("""
+                Hello. We are going to make a triangle
+                Please enter a length for the left side,\s
+                then right side\s
+                and lastly the base""");
         double lSide = in.nextDouble();
         double rSide = in.nextDouble();
         double base = in.nextDouble();
-        System.out.println("To continue creating the triangle, please enter a color,\n" +
-                "and whether or not you want the triangle filled with that color\n");
+        System.out.println("""
+                To continue creating the triangle, please enter a color
+                and whether or not you want the triangle filled with that color""");
         String color = in.next();
         boolean filled = in.nextBoolean();
 
