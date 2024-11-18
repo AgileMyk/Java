@@ -32,8 +32,9 @@ public class Triangle extends GeometricObject{
     protected double baseLength;
     protected double leftLength;
     protected double rightLength;
-    protected double s = (baseLength + leftLength + rightLength) / 2;
+    protected double s;
     protected double perimeter = baseLength + leftLength + rightLength;
+    protected double area;
 
     //A no-arg constructor that creates a default triangle.
     public Triangle(String color, boolean filled) {
@@ -54,35 +55,20 @@ public class Triangle extends GeometricObject{
         this.baseLength = baseLength;
         this.leftLength = leftLength;
         this.rightLength = rightLength;
+        this.s = (baseLength + leftLength + rightLength) / 2;
+        this.perimeter = baseLength + leftLength + rightLength;
+        this.area = Math.sqrt(this.s * (this.getS()-baseLength) * (this.getS()-rightLength) * (this.getS()-leftLength));
     }
 
     @Override
     public String getColor() {
-        System.out.println("this is a triangle");
+        //System.out.println("this is a triangle");
         return color;
     }
 
     @Override
-    public void setColor(String color) {
-        System.out.println("this is a triangle");
-        this.color = color;
-    }
-
-    @Override
-    public void setFilled(boolean filled) {
-        System.out.println("this is a triangle");
-        this.filled = filled;
-    }
-
-    @Override
-    public boolean isFilled() {
-        System.out.println("this is a triangle");
-        return filled;
-    }
-
-    @Override
     public Date getDateCreated() {
-        System.out.println("this is a triangle");
+        //System.out.println("this is a triangle");
         return super.getDateCreated();
     }
 
@@ -101,18 +87,22 @@ public class Triangle extends GeometricObject{
 
     //A method named getArea() that returns the area of this triangle
     public double getArea() {
-        return Math.sqrt(this.s * (this.getS()-baseLength) * (this.getS()-rightLength) * (this.getS()-leftLength));
+        return area;
     }
 
     @Override
     public String toString() {
         System.out.print(super.toString());
-        System.out.println("this is a triangle: ");
+        //System.out.println("this is a triangle: ");
         return "base length: " +  baseLength + "\n" +
                 "right length: " +  rightLength + "\n" +
                 "left length: " +  leftLength + "\n" +
                 "perimeter: " +  getHeight() + "\n" +
                 "area: " +  getArea() + "\n";
     };
+
+    public String reportFilled() {
+        return this.isFilled() ? "is filled" : "is not filled";
+    }
 
 }
