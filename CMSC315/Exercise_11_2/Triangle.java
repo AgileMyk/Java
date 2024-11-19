@@ -32,10 +32,7 @@ public class Triangle extends GeometricObject{
     protected double baseLength;
     protected double leftLength;
     protected double rightLength;
-    protected double s;
-    private double height;
-    protected double perimeter = baseLength + leftLength + rightLength;
-    protected double area;
+    protected double s = (baseLength + leftLength + rightLength) / 2;
 
     //A no-arg constructor that creates a default triangle.
     public Triangle(String color, boolean filled) {
@@ -45,7 +42,7 @@ public class Triangle extends GeometricObject{
     //Three double data fields named side1, side2, and side3 with default values 1.0 to denote three sides of the triangle.
     public Triangle() {
         baseLength = 1;
-
+        leftLength = 1;
         rightLength = 1;
     }
 
@@ -53,24 +50,24 @@ public class Triangle extends GeometricObject{
     //A constructor that creates a triangle with the specified side1, side2, and side3.
     public Triangle(String color, boolean filled, double baseLength, double leftLength, double rightLength) {
         super(color, filled);
-        if (baseLength == 0) {
+        if (baseLength <= 0) {
             this.baseLength = 1;
+            System.out.println("an invalid value of 0 was input (base); setting to 1");
         } else {
             this.baseLength = baseLength;
         }
-        if (leftLength == 0) {
+        if (leftLength <= 0) {
             this.leftLength = 1;
+            System.out.println("an invalid value of 0 was input (left); setting to 1");
         } else {
             this.leftLength = leftLength;
         }
-        if (rightLength == 0) {
+        if (rightLength <= 0) {
             this.rightLength = 1;
+            System.out.println("an invalid value of 0 was input (right); setting to 1");
         } else {
             this.rightLength = rightLength;
         }
-        this.s = (baseLength + leftLength + rightLength) / 2;
-        this.perimeter = baseLength + leftLength + rightLength;
-        this.area = Math.sqrt(this.s * (this.getS()-baseLength) * (this.getS()-rightLength) * (this.getS()-leftLength));
     }
 
     public double getHeight() {
@@ -79,22 +76,21 @@ public class Triangle extends GeometricObject{
 
     //A method named getPerimeter() that returns the perimeter of this triangle
     public double getPerimeter() {
-        return this.perimeter;
+        return baseLength + leftLength + rightLength;
     }
 
     public double getS() {
-        return s;
+        return (baseLength + leftLength + rightLength) / 2;
     }
 
     //A method named getArea() that returns the area of this triangle
     public double getArea() {
-        return area;
+        return Math.sqrt(this.getS() * (this.getS()-baseLength) * (this.getS()-rightLength) * (this.getS()-leftLength));
     }
 
     @Override
     public String toString() {
         System.out.print(super.toString());
-        //System.out.println("this is a triangle: ");
         return "base length: " +  baseLength + "\n" +
                 "right length: " +  rightLength + "\n" +
                 "left length: " +  leftLength + "\n" +

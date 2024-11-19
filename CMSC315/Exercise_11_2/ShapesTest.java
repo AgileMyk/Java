@@ -25,8 +25,9 @@ public class ShapesTest {
 
 
         System.out.println("The result of your created triangle is as follows:\n");
-        System.out.printf("The perimeter of your triangle is %f\nThe area for your triangle is %f",
+        System.out.printf("The perimeter of your triangle is %f\nThe area of your triangle is %f",
                 userTriangle.getPerimeter(), userTriangle.getArea());
-        System.out.printf("The color of your triangle is %s\nand it %s.", userTriangle.getColor(), userTriangle.reportFilled());
+        System.out.printf("\nThe color of your triangle is %s\nand it %s.", userTriangle.getColor(), userTriangle.reportFilled());
+        System.out.printf("\nThe color of your triangle is %s\nand it %s.", userTriangle.getColor(), userTriangle.reportFilled());
     }
 }
