@@ -5,8 +5,11 @@ public class ShapesTest {
 
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Hello. We are going to make a triangle\n" +
-                "Please enter a length for the left side, \nthen right side \nand lastly the base");
+        System.out.println("""
+                Hello. We are going to make a triangle
+                Please enter a length for the left side, 
+                then right side 
+                and lastly the base""");
         double lSide = in.nextDouble();
         double rSide = in.nextDouble();
         double base = in.nextDouble();
@@ -25,9 +28,7 @@ public class ShapesTest {
 
 
         System.out.println("The result of your created triangle is as follows:\n");
-        System.out.printf("The perimeter of your triangle is %f\nThe area of your triangle is %f",
-                userTriangle.getPerimeter(), userTriangle.getArea());
-        System.out.printf("\nThe color of your triangle is %s\nand it %s.", userTriangle.getColor(), userTriangle.reportFilled());
-        System.out.printf("\nThe color of your triangle is %s\nand it %s.", userTriangle.getColor(), userTriangle.reportFilled());
+        System.out.println(userTriangle);
+
     }
 }
