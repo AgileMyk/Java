@@ -33,6 +33,7 @@ public class Triangle extends GeometricObject{
     protected double leftLength;
     protected double rightLength;
     protected double s;
+    private double height;
     protected double perimeter = baseLength + leftLength + rightLength;
     protected double area;
 
@@ -44,7 +45,7 @@ public class Triangle extends GeometricObject{
     //Three double data fields named side1, side2, and side3 with default values 1.0 to denote three sides of the triangle.
     public Triangle() {
         baseLength = 1;
-        leftLength = 1;
+
         rightLength = 1;
     }
 
@@ -52,28 +53,28 @@ public class Triangle extends GeometricObject{
     //A constructor that creates a triangle with the specified side1, side2, and side3.
     public Triangle(String color, boolean filled, double baseLength, double leftLength, double rightLength) {
         super(color, filled);
-        this.baseLength = baseLength;
-        this.leftLength = leftLength;
-        this.rightLength = rightLength;
+        if (baseLength == 0) {
+            this.baseLength = 1;
+        } else {
+            this.baseLength = baseLength;
+        }
+        if (leftLength == 0) {
+            this.leftLength = 1;
+        } else {
+            this.leftLength = leftLength;
+        }
+        if (rightLength == 0) {
+            this.rightLength = 1;
+        } else {
+            this.rightLength = rightLength;
+        }
         this.s = (baseLength + leftLength + rightLength) / 2;
         this.perimeter = baseLength + leftLength + rightLength;
         this.area = Math.sqrt(this.s * (this.getS()-baseLength) * (this.getS()-rightLength) * (this.getS()-leftLength));
     }
 
-    @Override
-    public String getColor() {
-        //System.out.println("this is a triangle");
-        return color;
-    }
-
-    @Override
-    public Date getDateCreated() {
-        //System.out.println("this is a triangle");
-        return super.getDateCreated();
-    }
-
     public double getHeight() {
-        return this.baseLength + this.leftLength + this.rightLength;
+        return (leftLength + rightLength) / baseLength;
     }
 
     //A method named getPerimeter() that returns the perimeter of this triangle

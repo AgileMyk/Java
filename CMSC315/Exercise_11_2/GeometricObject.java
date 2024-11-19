@@ -3,7 +3,7 @@ package Exercise_11_2;
 import java.util.Date;
 
 public class GeometricObject {
-    protected String color;
+    private String color;
     protected boolean filled;
     protected Date dateCreated;
 
