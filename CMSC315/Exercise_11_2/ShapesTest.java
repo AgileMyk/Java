@@ -5,6 +5,29 @@ public class ShapesTest {
 
         Scanner in = new Scanner(System.in);
 
+
+        System.out.println("---- testing object toString downcast/upcast ----");
+        System.out.println("--- upcasting ---    o --> triangle");
+        Object o1 = new Triangle();
+        System.out.println(o1.toString());
+        System.out.println("status START: " + status(o1));
+        System.out.println("status END");
+        System.out.println("****");
+
+        System.out.println("--- downcasting ---    triangle --> o");
+        Object t2 = new Object();
+        System.out.println("status: " + status(t2));
+        System.out.println(t2.toString());
+
+        Object o = new Object();
+        Object t = new Triangle();
+
+
+        Object aTriangle = new Triangle();
+        System.out.println(((Triangle) aTriangle).getHeight());
+        Triangle bTriangle = new Triangle();
+        System.out.println(bTriangle.getHeight());
+
         System.out.println("""
                 Hello. We are going to make a triangle
                 Please enter a length for the left side, 
@@ -26,9 +49,15 @@ public class ShapesTest {
         System.out.println(userTriangle.leftLength);
         System.out.println(userTriangle.rightLength);
 
-
         System.out.println("The result of your created triangle is as follows:\n");
         System.out.println(userTriangle);
 
+    }
+
+    //static method which accepts any sub-type of the GeoShape hierarchy and
+    //through dynamic binding, performs the appropriate associated toString method
+    //based on the actual type of the object parameter
+    static String status(Object o) {
+        return o.toString();
     }
 }

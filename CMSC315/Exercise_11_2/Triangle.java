@@ -25,16 +25,20 @@ the area, perimeter, color, and true or false to indicate whether it is filled o
 package Exercise_11_2;
 
 
+import java.util.ArrayList;
+
 public class Triangle extends GeometricObject{
 
     protected double baseLength;
     protected double leftLength;
     protected double rightLength;
     protected double s = (baseLength + leftLength + rightLength) / 2;
+    protected ArrayList<GeometricObject> geoObjects;
 
     //A no-arg constructor that creates a default triangle.
     public Triangle(String color, boolean filled) {
         super(color, filled);
+        geoObjects.add(this);
     }
 
     //Three double data fields named side1, side2, and side3 with default values 1.0 to denote three sides of the triangle.
@@ -98,6 +102,12 @@ public class Triangle extends GeometricObject{
 
     public String reportFilled() {
         return this.isFilled() ? "is filled" : "is not filled";
+    }
+
+    public void objectListReport() {
+        for (GeometricObject gObj: geoObjects) {
+            System.out.println(geoObjects.indexOf(gObj) + ": " + gObj);
+        }
     }
 
 }
