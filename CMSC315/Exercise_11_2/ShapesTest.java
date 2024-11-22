@@ -1,6 +1,7 @@
 package Exercise_11_2;
 import java.util.Scanner;
 public class ShapesTest {
+
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
@@ -8,22 +9,42 @@ public class ShapesTest {
 
         System.out.println("---- testing object toString downcast/upcast ----");
         System.out.println("--- upcasting ---    o --> triangle");
-        Object o1 = new Triangle();
+        GeometricObject o1 = new Triangle();
         System.out.println(o1.toString());
         System.out.println("status START: " + status(o1));
+        // upcasting prevents access to GeoObject's inherited getCurrentShapeLocation method below
+        //System.out.println(o1.getCurrentShapeLocation());
         System.out.println("status END");
         System.out.println("****");
 
-        System.out.println("--- downcasting ---    triangle --> o");
-        Object t2 = new Object();
-        System.out.println("status: " + status(t2));
-        System.out.println(t2.toString());
+        GeometricObject o2 = new GeometricObject();
+        Triangle t4 = (Triangle) o2;
 
-        Object o = new Object();
-        Object t = new Triangle();
+
+
+        System.out.println("--- downcasting ---    triangle --> o");
+        // Triangle t2 = new Object(); <-- cannot IMPLICITLY downcast from Object to create t2 and access triangle methods
+        // --> illegal System.out.println("status: " + status(t2));
+        // --> illegal System.out.println(t2.toString());
+        // --> illegal System.out.println(t2.getCurrentShapeLocation());
+
+
+/*
+        Triangle t3 = new Triangle();
+        System.out.println("currentShapeLocation: " + t3.getCurrentShapeLocation());
+        Triangle t4 = new Triangle();
+        System.out.println("currentShapeLocation: " + t3.getCurrentShapeLocation());
+        Triangle t5 = new Triangle();
+        System.out.println("currentShapeLocation: " + t3.getCurrentShapeLocation());
+ */
+
+        GeometricObject o3 = new Triangle("red", true);
+        Triangle t5 = (Triangle) new GeometricObject();
+
 
 
         Object aTriangle = new Triangle();
+
         System.out.println(((Triangle) aTriangle).getHeight());
         Triangle bTriangle = new Triangle();
         System.out.println(bTriangle.getHeight());
@@ -60,4 +81,5 @@ public class ShapesTest {
     static String status(Object o) {
         return o.toString();
     }
+
 }
