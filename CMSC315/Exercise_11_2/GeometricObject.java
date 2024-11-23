@@ -12,6 +12,8 @@ public class GeometricObject {
     private ArrayList<GeometricObject> shapes = new ArrayList<GeometricObject>();
 
     public GeometricObject() {
+        color = "white";
+        filled = false;
         totalNumberOfShapes++;
         shapes.add(this);
     }

@@ -36,9 +36,18 @@ public class Triangle extends GeometricObject{
     protected ArrayList<GeometricObject> geoObjects;
 
     //A no-arg constructor that creates a default triangle.
+   /*
     public Triangle(String color, boolean filled) {
         super(color, filled);
-        geoObjects.add(this);
+        incorporateGeo(this); //Cannot invoke "java.util.ArrayList.add(Object)" because "this.geoObjects" is null
+    }
+    */
+    public Triangle(String color, boolean filled) {
+        super(color, filled);
+    }
+    //created separate method for adding geoObject to arrayList required? cannot be in constructor?
+    public void incorporateGeo(GeometricObject g) {
+        geoObjects.add(g);
     }
 
     //Three double data fields named side1, side2, and side3 with default values 1.0 to denote three sides of the triangle.
@@ -108,6 +117,10 @@ public class Triangle extends GeometricObject{
         for (GeometricObject gObj: geoObjects) {
             System.out.println(geoObjects.indexOf(gObj) + ": " + gObj);
         }
+    }
+
+    public static boolean downCastCheck(Object o) {
+       return o instanceof Triangle;
     }
 
 }
