@@ -4,4 +4,9 @@ import java.util.Date;
 
 public class RightTriangle extends Triangle {
 
+    private final String type = "Right Triangle";
+
+    public String returnType(){
+        return type;
+    }
 }

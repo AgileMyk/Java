@@ -27,7 +27,7 @@ package Exercise_11_2;
 
 import java.util.ArrayList;
 
-public class Triangle extends GeometricObject{
+public class Triangle extends GeometricObject {
 
     protected double baseLength;
     protected double leftLength;
@@ -44,6 +44,10 @@ public class Triangle extends GeometricObject{
     */
     public Triangle(String color, boolean filled) {
         super(color, filled);
+    }
+
+    public String getType() {
+        return "Triangle";
     }
     //created separate method for adding geoObject to arrayList required? cannot be in constructor?
     public void incorporateGeo(GeometricObject g) {
@@ -117,10 +121,6 @@ public class Triangle extends GeometricObject{
         for (GeometricObject gObj: geoObjects) {
             System.out.println(geoObjects.indexOf(gObj) + ": " + gObj);
         }
-    }
-
-    public static boolean downCastCheck(Object o) {
-       return o instanceof Triangle;
     }
 
 }

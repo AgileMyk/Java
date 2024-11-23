@@ -1,15 +1,17 @@
 package Exercise_11_2;
 
+import javax.sound.sampled.Line;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 
 
 public class GeometricObject {
-    private String color;
+    protected String color;
     protected boolean filled;
     protected Date dateCreated;
     private int totalNumberOfShapes = 0;
-    private ArrayList<GeometricObject> shapes = new ArrayList<GeometricObject>();
+    private final ArrayList<GeometricObject> shapes = new ArrayList<>();
 
     public GeometricObject() {
         color = "white";
@@ -23,6 +25,10 @@ public class GeometricObject {
         this.filled = filled;
         shapes.add(this);
         totalNumberOfShapes++;
+    }
+
+    public String getType() {
+        return "geometric object";
     }
 
     public String getColor() {
@@ -53,10 +59,27 @@ public class GeometricObject {
         return shapes.indexOf(this) + 1;
     }
 
+    public double getPerimeter() {
+        System.out.println("As a general Geometric Object, this object has no perimeter field");
+        return 0.0;
+    }
+
     @Override
     public String toString() {
         return "color: " + this.color + "\nfilled: " + this.isFilled() + "\ndate " + this.getDateCreated() +
                 "\nyou have created a total of " + getTotalNumberOfShapes() + " shapes.\n";
     }
+    //generics
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Triangle) {
+            return ((Triangle) obj).getPerimeter() == this.getPerimeter();
+        } else if (obj instanceof Quadrilateral) {
+            return ((Quadrilateral) obj).getPerimeter() == this.getPerimeter();
+        }
+        return false;
+    }
+
 
 }

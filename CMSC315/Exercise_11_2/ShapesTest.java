@@ -1,11 +1,16 @@
 package Exercise_11_2;
 import java.util.Scanner;
+
 public class ShapesTest {
+
 
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
 
+        int age = 40;
+
+        //PrintStats<RightTriangle> tPrint = new PrintStats<>(new RightTriangle());
 
         System.out.println("---- testing object toString downcast/upcast ----");
         System.out.println("--- upcasting ---    o --> triangle");

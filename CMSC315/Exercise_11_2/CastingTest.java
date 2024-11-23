@@ -1,5 +1,5 @@
 package Exercise_11_2;
-
+//delete later
 public class CastingTest {
     public static void main(String[] args) {
 
@@ -20,6 +20,10 @@ public class CastingTest {
             return ((ScaleneTriangle)t).toString();
         } else if (t instanceof AcuteTriangle) {
             return ((AcuteTriangle)t).toString();
+        } else if (t instanceof EquilateralTriangle) {
+            return ((EquilateralTriangle)t).toString();
+        } else if (t instanceof IsoscelesTriangle) {
+            return (((IsoscelesTriangle)t).toString());
         }
             return "invalid Object - non-Triangle";
         }
