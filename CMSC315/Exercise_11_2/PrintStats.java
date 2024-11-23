@@ -14,7 +14,7 @@ public class PrintStats <T> extends GeometricObject {       //make static?
             case ObtuseTriangle obtuseTriangle -> {
                 return object.getType();
             }
-            case IsoscelesTriangle isosceleseTriangle -> {
+            case IsoscelesTriangle isoscelesTriangle -> {
                 return object.getType();
             }
             case EquilateralTriangle equilateralTriangle -> {
