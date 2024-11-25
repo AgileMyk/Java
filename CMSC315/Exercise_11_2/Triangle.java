@@ -30,35 +30,27 @@ import java.util.Date;
 
 public class Triangle extends GeometricObject {
 
-    private final String type = "Triangle";
     protected double baseLength;
     protected double leftLength;
     protected double rightLength;
     protected double s = (baseLength + leftLength + rightLength) / 2;
 
 
-    //A no-arg constructor that creates a default triangle.
-   /*
-    public Triangle(String color, boolean filled) {
-        super(color, filled);
-        incorporateGeo(this); //Cannot invoke "java.util.ArrayList.add(Object)" because "this.geoObjects" is null
-    }
-    */
     private Triangle(String color, boolean filled) {
         super(color, filled);
     }
 
     //static factories
-    public static final Triangle simpleTriangle(String color, boolean filled) {
+    public static Triangle simpleTriangle(String color, boolean filled) {
         return new Triangle(color, filled);
     }
 
-    public static final Triangle instanceOfComplexTriangleOfOnes(String color, boolean filled) {
+    public static Triangle instanceOfComplexTriangleOfOnes(String color, boolean filled) {
         totalNumberOfShapesInc();
         return new Triangle(color, filled, 1,1,1);
     }
 
-    public static final Triangle instanceOfComplexTriangleNonOnes(String color, boolean filled, double baseLength, double leftLength, double rightLength) {
+    public static Triangle instanceOfComplexTriangleNonOnes(String color, boolean filled, double baseLength, double leftLength, double rightLength) {
         totalNumberOfShapesInc();
             double bLength, lLength, rLength;
         if (baseLength <= 0) {
@@ -82,8 +74,8 @@ public class Triangle extends GeometricObject {
         return new Triangle(color, filled, bLength, lLength, rLength);
     }
 
-    public String getType() {
-        return type;
+    public void getType() {
+        System.out.println("Triangle");
     }
     //created separate method for adding geoObject to arrayList required? cannot be in constructor?
     public void incorporateGeo(GeometricObject g) {

@@ -10,18 +10,11 @@ public class ShapesTest {
 
         Scanner in = new Scanner(System.in);
 
-
-
         System.out.println("Geos array: ");
         GeometricObject.objectListReport();
         System.out.println("pre-make shapes count: " + GeometricObject.getNumberOfShapes());
 
-        Triangle first = Triangle.instanceOfComplexTriangleOfOnes("red",false);
-        Triangle second = Triangle.instanceOfComplexTriangleNonOnes("blue",true,10,5,5);
-        Triangle third = new Triangle();
-        System.out.println("-----");
-        Triangle fourth = Triangle.instanceOfComplexTriangleOfOnes("yellow",true);
-        System.out.println("-----");
+
 
 
         System.out.println("---- testing object toString downcast/upcast ----");
@@ -56,9 +49,9 @@ public class ShapesTest {
 
 
 
-        Object aTriangle = new Triangle();
+        Triangle aTriangle = new Triangle();
 
-        System.out.println(((Triangle) aTriangle).getHeight());
+        System.out.println(aTriangle.getHeight());
         Triangle bTriangle = new Triangle();
         System.out.println(bTriangle.getHeight());
 
@@ -70,8 +63,10 @@ public class ShapesTest {
         double lSide = in.nextDouble();
         double rSide = in.nextDouble();
         double base = in.nextDouble();
-        System.out.println("To continue creating the triangle, please enter a color,\n" +
-                "and whether or not you want the triangle filled with that color\n");
+        System.out.println("""
+                To continue creating the triangle, please enter a color,
+                and whether or not you want the triangle filled with that color
+                """);
         String color = in.next();
         boolean filled = in.nextBoolean();
 

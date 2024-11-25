@@ -3,8 +3,8 @@ package Exercise_11_2;
 public class AcuteTriangle extends Triangle {
 
 
-    public String getType() {
-        return "Acute Triangle";
+    public void getType() {
+        System.out.println("Acute Triangle");
     }
     @Override
     public String toString() {

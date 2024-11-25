@@ -7,7 +7,7 @@ import java.util.Date;
 
 
 public class GeometricObject {
-    protected String color;
+    private String color;
     protected boolean filled;
     protected Date dateCreated = new Date();
     private static int totalNumberOfShapes = 0;
@@ -36,8 +36,8 @@ public class GeometricObject {
         totalNumberOfShapesInc();
     }
 
-    public String getType() {
-        return "geometric object";
+    public void getType() {
+        System.out.println("geometric object");
     }
 
     public String getColor() {

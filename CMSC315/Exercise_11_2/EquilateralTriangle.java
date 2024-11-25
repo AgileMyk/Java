@@ -1,10 +1,8 @@
 package Exercise_11_2;
 
 public class EquilateralTriangle extends Triangle {
-    private String type = "Equilateral Triangle";
 
-
-    public String getType() {
-        return type;
+    public void getType() {
+        System.out.println("Equilateral Triangle");
     }
 }

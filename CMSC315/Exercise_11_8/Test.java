@@ -42,5 +42,13 @@ account holder name, interest rate, balance, and all transactions.
  */
 package Exercise_11_8;
 
+import Exercise_11_2.Triangle;
+import Exercise_11_2.Triangular;
+
 public class Test {
+
+    public static void main(String[] args) {
+
+        Triangular triangular = new Triangular();
+    }
 }
