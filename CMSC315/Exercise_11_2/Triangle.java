@@ -35,7 +35,6 @@ public class Triangle extends GeometricObject {
     protected double leftLength;
     protected double rightLength;
     protected double s = (baseLength + leftLength + rightLength) / 2;
-    protected ArrayList<GeometricObject> geoObjects;
 
 
     //A no-arg constructor that creates a default triangle.
@@ -51,15 +50,36 @@ public class Triangle extends GeometricObject {
 
     //static factories
     public static final Triangle simpleTriangle(String color, boolean filled) {
-        return new Triangle();
+        return new Triangle(color, filled);
     }
 
-    public static final Triangle ComplexTriangleOfOnes(String color, boolean filled) {
+    public static final Triangle instanceOfComplexTriangleOfOnes(String color, boolean filled) {
+        totalNumberOfShapesInc();
         return new Triangle(color, filled, 1,1,1);
     }
 
-    public static final Triangle ComplexTriangleNonOnes(String color, boolean filled, double baseLength, double leftLength, double rightLength) {
-        return new Triangle(color, filled, baseLength, leftLength, rightLength);
+    public static final Triangle instanceOfComplexTriangleNonOnes(String color, boolean filled, double baseLength, double leftLength, double rightLength) {
+        totalNumberOfShapesInc();
+            double bLength, lLength, rLength;
+        if (baseLength <= 0) {
+            bLength = 1;
+            System.out.println("an invalid value of 0 was input (base); setting to 1");
+        } else {
+            bLength = baseLength;
+        }
+        if (leftLength <= 0) {
+            lLength = 1;
+            System.out.println("an invalid value of 0 was input (left); setting to 1");
+        } else {
+            lLength = leftLength;
+        }
+        if (rightLength <= 0) {
+            rLength = 1;
+            System.out.println("an invalid value of 0 was input (right); setting to 1");
+        } else {
+            rLength = rightLength;
+        }
+        return new Triangle(color, filled, bLength, lLength, rLength);
     }
 
     public String getType() {
@@ -131,12 +151,6 @@ public class Triangle extends GeometricObject {
 
     public String reportFilled() {
         return this.isFilled() ? "is filled" : "is not filled";
-    }
-
-    public void objectListReport() {
-        for (GeometricObject gObj: geoObjects) {
-            System.out.println(geoObjects.indexOf(gObj) + ": " + gObj);
-        }
     }
 
 }

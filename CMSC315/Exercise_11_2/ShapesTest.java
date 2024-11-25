@@ -11,38 +11,30 @@ public class ShapesTest {
         Scanner in = new Scanner(System.in);
 
 
-        //PrintStats<RightTriangle> tPrint = new PrintStats<>(new RightTriangle());
 
-        GeometricObject[] Geos = {new Triangle(), new RightTriangle(), new ScaleneTriangle(), new IsoscelesTriangle()};
+        System.out.println("Geos array: ");
+        GeometricObject.objectListReport();
+        System.out.println("pre-make shapes count: " + GeometricObject.getNumberOfShapes());
 
-        Triangle first = Triangle.ComplexTriangleOfOnes("red",false);
+        Triangle first = Triangle.instanceOfComplexTriangleOfOnes("red",false);
+        Triangle second = Triangle.instanceOfComplexTriangleNonOnes("blue",true,10,5,5);
+        Triangle third = new Triangle();
         System.out.println("-----");
-        first.toString();
+        Triangle fourth = Triangle.instanceOfComplexTriangleOfOnes("yellow",true);
         System.out.println("-----");
 
-
-        Triangle[] Tris1 = new Triangle[5];
-        Triangle[] Tris2 = {new Triangle(), new Triangle(), new Triangle(), new Triangle()};
-        ArrayList<GeometricObject> GeosArray = new ArrayList<>(Arrays.asList(Geos));
 
         System.out.println("---- testing object toString downcast/upcast ----");
         System.out.println("--- upcasting ---    o --> triangle");
         GeometricObject o1 = new Triangle();
-        Triangle t1 = (Triangle) o1;
-        double h1 = ((Triangle) o1).getHeight();
-        System.out.println("t1 base: " + t1.baseLength);
+
         System.out.println("status START: " + status(o1));
         // upcasting prevents access to GeoObject's inherited getCurrentShapeLocation method below
         //System.out.println(o1.getCurrentShapeLocation());
         System.out.println("status END");
         System.out.println("****");
 
-        GeometricObject o2 = new Triangle();
-        GeometricObject t3 = (GeometricObject) o2;
-        Triangle t4 = new Triangle();
-        RightTriangle rt = new RightTriangle();
-        Triangle t5 = (Triangle) rt;
-        rt = new RightTriangle();
+
 
         System.out.println("--- downcasting ---    triangle --> o");
         // Triangle t2 = new Object(); <-- cannot IMPLICITLY downcast from Object to create t2 and access triangle methods
@@ -61,7 +53,6 @@ public class ShapesTest {
  */
 
         //Triangle t5 = (Triangle) new GeometricObject();
-        t4 = (Triangle) o1;
 
 
 

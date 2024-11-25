@@ -10,21 +10,30 @@ public class GeometricObject {
     protected String color;
     protected boolean filled;
     protected Date dateCreated = new Date();
-    private int totalNumberOfShapes = 0;
-    private final ArrayList<GeometricObject> shapes = new ArrayList<>();
+    private static int totalNumberOfShapes = 0;
+    protected static ArrayList<GeometricObject> geoObjects = new ArrayList<>();
+
+
+    public static void totalNumberOfShapesInc() {
+        totalNumberOfShapes++;
+    }
+
+    public static int getNumberOfShapes() {
+        return totalNumberOfShapes;
+    }
 
     public GeometricObject() {
         color = "white";
         filled = false;
-        totalNumberOfShapes++;
-        shapes.add(this);
+        totalNumberOfShapesInc();
+        geoObjects.add(this);
     }
 
     public GeometricObject(String color, boolean filled) {
         this.color = color;
         this.filled = filled;
-        shapes.add(this);
-        totalNumberOfShapes++;
+        geoObjects.add(this);
+        totalNumberOfShapesInc();
     }
 
     public String getType() {
@@ -56,7 +65,7 @@ public class GeometricObject {
     }
 
     public int getCurrentShapeLocation() {
-        return shapes.indexOf(this) + 1;
+        return geoObjects.indexOf(this) + 1;
     }
 
     public double getPerimeter() {
@@ -69,7 +78,15 @@ public class GeometricObject {
         return "color: " + this.color + "\nfilled: " + this.isFilled() + "\ndate " + this.getDateCreated() +
                 "\nyou have created a total of " + getTotalNumberOfShapes() + " shapes.\n";
     }
+
+
     //generics
+
+    public static void objectListReport() {
+        for (GeometricObject gObj: geoObjects) {
+            System.out.println(geoObjects.indexOf(gObj) + ": " + gObj);
+        }
+    }
 
     @Override
     public boolean equals(Object obj) {
