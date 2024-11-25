@@ -6,7 +6,7 @@ public class RightTriangle extends Triangle {
 
     private final String type = "Right Triangle";
 
-    public String returnType(){
+    public String getType(){
         return type;
     }
 }

@@ -1,4 +1,6 @@
 package Exercise_11_2;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ShapesTest {
@@ -8,9 +10,20 @@ public class ShapesTest {
 
         Scanner in = new Scanner(System.in);
 
-        int age = 40;
 
         //PrintStats<RightTriangle> tPrint = new PrintStats<>(new RightTriangle());
+
+        GeometricObject[] Geos = {new Triangle(), new RightTriangle(), new ScaleneTriangle(), new IsoscelesTriangle()};
+
+        Triangle first = Triangle.ComplexTriangleOfOnes("red",false);
+        System.out.println("-----");
+        first.toString();
+        System.out.println("-----");
+
+
+        Triangle[] Tris1 = new Triangle[5];
+        Triangle[] Tris2 = {new Triangle(), new Triangle(), new Triangle(), new Triangle()};
+        ArrayList<GeometricObject> GeosArray = new ArrayList<>(Arrays.asList(Geos));
 
         System.out.println("---- testing object toString downcast/upcast ----");
         System.out.println("--- upcasting ---    o --> triangle");
@@ -47,7 +60,6 @@ public class ShapesTest {
         System.out.println("currentShapeLocation: " + t3.getCurrentShapeLocation());
  */
 
-        GeometricObject o3 = new Triangle("red", true);
         //Triangle t5 = (Triangle) new GeometricObject();
         t4 = (Triangle) o1;
 

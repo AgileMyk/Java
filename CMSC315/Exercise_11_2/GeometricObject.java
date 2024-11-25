@@ -9,7 +9,7 @@ import java.util.Date;
 public class GeometricObject {
     protected String color;
     protected boolean filled;
-    protected Date dateCreated;
+    protected Date dateCreated = new Date();
     private int totalNumberOfShapes = 0;
     private final ArrayList<GeometricObject> shapes = new ArrayList<>();
 
