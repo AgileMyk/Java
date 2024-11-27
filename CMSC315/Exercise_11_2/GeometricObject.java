@@ -1,10 +1,10 @@
 package Exercise_11_2;
 
+
 import javax.sound.sampled.Line;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
-
 
 public class GeometricObject {
     private String color;
@@ -40,14 +40,13 @@ public class GeometricObject {
         System.out.println("geometric object");
     }
 
-    public String getColor() {
-        return color;
-    }
-
     public void setColor(String color) {
         this.color = color;
     }
 
+    public String getColor() {
+        return color;
+    }
     public void setFilled(boolean filled) {
         this.filled = filled;
     }
