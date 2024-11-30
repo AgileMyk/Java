@@ -14,7 +14,9 @@ with 0, and invokes this method to return the largest number in the input.
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         ArrayList<Integer> list = new ArrayList<>();
-        System.out.println("Please enter a series of integer values: ");
+        System.out.println("""
+                Please enter a series of integer value.
+                To stop entering values, enter any non-number value.""");
         while (in.hasNextInt()) {
             list.add(in.nextInt());
         }
