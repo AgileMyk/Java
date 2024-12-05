@@ -49,29 +49,22 @@ public class Triangle extends GeometricObject {
         return new Triangle(color, filled, 1,1,1);
     }
 
-    public Triangle instanceOfComplexTriangleNonOnes(String color, boolean filled,
-                                                            double baseLength, double leftLength, double rightLength)
-                                                            throws IllegalArgumentException {
+    public static Triangle instanceOfComplexTriangleNonOnes(String color, boolean filled,
+                                                            double bLength, double lLength, double rLength) {
         totalNumberOfShapesInc();
-        if (baseLength <=  0 ) {
-            baseLength = 1;
-            throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
-        } else {
-            this.baseLength = baseLength;
+        if (bLength <=  0 ) {
+            bLength = 1;
+            System.out.println("\"an invalid value of or 0 less was input (base); setting to 1");
         }
-        if (leftLength <=  0 ) {
-            this.leftLength = 1;
-            throw new IllegalArgumentException("an invalid value of or 0 less was input (left); setting to 1");
-        } else {
-            this.rightLength = leftLength;
+        if (lLength <=  0 ) {
+            lLength = 1;
+            System.out.println("an invalid value of or 0 less was input (left); setting to 1");
         }
-        if (rightLength <=  0) {
-            this.rightLength = 1;
-            throw new IllegalArgumentException("an invalid value of or 0 less was input (right); setting to 1");
-        } else {
-            this.rightLength = rightLength;
+        if (rLength <=  0) {
+            rLength = 1;
+            System.out.println("an invalid value of or 0 less was input (right); setting to 1");
         }
-        return new Triangle(color, filled, baseLength, leftLength, rightLength);
+        return new Triangle(color, filled, bLength, lLength, rLength);
     }
 
     public void getType() {
@@ -113,24 +106,24 @@ public class Triangle extends GeometricObject {
         }
     }
 
-    public void setBaseLength(double base) throws IllegalArgumentException {
+    public void setBaseLength(double base)  {
         if (base <=  0 ) {
             baseLength = 1;
-            throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
+            System.out.println("\"an invalid value of or 0 less was input (base); setting to 1");
         } baseLength = base;
     }
 
-    public void setLeftLength(double left) throws IllegalArgumentException {
+    public void setLeftLength(double left)  {
         if (left <= 0 ) {
             leftLength = 1;
-            throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
+            System.out.println("\"an invalid value of or 0 less was input (base); setting to 1");
         } leftLength = left;
     }
 
     public void setRightLength(double right) {
         if (right <=  0 ) {
             rightLength = 1;
-            throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
+            System.out.println("\"an invalid value of or 0 less was input (base); setting to 1");
         } rightLength = right;
     }
 
