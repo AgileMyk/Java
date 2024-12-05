@@ -37,9 +37,6 @@ public class Triangle extends GeometricObject {
 
 
     private Triangle(String color, boolean filled) {
-        IllegalArgumentException ea = new IllegalArgumentException("""
-                Either a String and boolean value were not passed to the contructor
-                or the arguments were passed int he wrong order (string then boolean).""");
     }
 
     //static factories
