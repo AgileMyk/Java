@@ -10,6 +10,7 @@ public class ShapesTest {
 
         Scanner in = new Scanner(System.in);
 
+
         System.out.println("Geos array: ");
         GeometricObject.objectListReport();
         System.out.println("pre-make shapes count: " + GeometricObject.getNumberOfShapes());

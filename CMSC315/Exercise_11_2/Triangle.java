@@ -159,4 +159,5 @@ public class Triangle extends GeometricObject {
         return this.isFilled() ? "is filled" : "is not filled";
     }
 
+
 }
