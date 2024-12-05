@@ -37,7 +37,9 @@ public class Triangle extends GeometricObject {
 
 
     private Triangle(String color, boolean filled) {
-        super(color, filled);
+        IllegalArgumentException ea = new IllegalArgumentException("""
+                Either a String and boolean value were not passed to the contructor
+                or the arguments were passed int he wrong order (string then boolean).""");
     }
 
     //static factories
@@ -50,24 +52,26 @@ public class Triangle extends GeometricObject {
         return new Triangle(color, filled, 1,1,1);
     }
 
-    public static Triangle instanceOfComplexTriangleNonOnes(String color, boolean filled, double baseLength, double leftLength, double rightLength) {
+    public static Triangle instanceOfComplexTriangleNonOnes(String color, boolean filled,
+                                                            double baseLength, double leftLength, double rightLength)
+                                                            throws IllegalArgumentException {
         totalNumberOfShapesInc();
             double bLength, lLength, rLength;
         if (baseLength <= 0) {
             bLength = 1;
-            System.out.println("an invalid value of 0 was input (base); setting to 1");
+            throw new IllegalArgumentException("\"an invalid value of 0 was input (base); setting to 1");
         } else {
             bLength = baseLength;
         }
         if (leftLength <= 0) {
             lLength = 1;
-            System.out.println("an invalid value of 0 was input (left); setting to 1");
+            throw new IllegalArgumentException("an invalid value of 0 was input (left); setting to 1");
         } else {
             lLength = leftLength;
         }
         if (rightLength <= 0) {
             rLength = 1;
-            System.out.println("an invalid value of 0 was input (right); setting to 1");
+            throw new IllegalArgumentException("an invalid value of 0 was input (right); setting to 1");
         } else {
             rLength = rightLength;
         }

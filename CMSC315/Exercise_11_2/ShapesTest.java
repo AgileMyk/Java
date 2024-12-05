@@ -54,7 +54,7 @@ public class ShapesTest {
         System.out.println(aTriangle.getHeight());
         Triangle bTriangle = new Triangle();
         System.out.println(bTriangle.getHeight());
-
+        //change prompt to allow options to user, creating triangle per stat via setters with try catch
         System.out.println("""
                 Hello. We are going to make a triangle
                 Please enter a length for the left side, 
@@ -63,6 +63,7 @@ public class ShapesTest {
         double lSide = in.nextDouble();
         double rSide = in.nextDouble();
         double base = in.nextDouble();
+
         System.out.println("""
                 To continue creating the triangle, please enter a color,
                 and whether or not you want the triangle filled with that color
@@ -70,7 +71,12 @@ public class ShapesTest {
         String color = in.next();
         boolean filled = in.nextBoolean();
 
-        Triangle userTriangle = new Triangle(color, filled, base, lSide, rSide);
+        Triangle userTriangle = new Triangle();
+        try {
+            userTriangle = new Triangle(color, filled, base, lSide, rSide);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("stats:");
         System.out.println(userTriangle.getColor());
         System.out.println(userTriangle.isFilled());

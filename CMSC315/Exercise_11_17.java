@@ -30,6 +30,23 @@ public class Exercise_11_17 {
         for (int ele: factors) {
             System.out.println(ele);
         }
+
+        try {
+            System.out.println(10/0);
+        } catch (ArithmeticException e) {
+            System.out.println("bad math!");
+        }
+    }
+
+    public void badMethods() throws IllegalAccessError, InstantiationError, RuntimeException {
+        int i = 0;
+        if (i == 2) {
+            throw new IllegalAccessError();
+        } else if (i == 3) {
+            throw new InstantiationError();
+        } else if (i == 4) {
+            throw new RuntimeException();
+        }
     }
 
     public static ArrayList<Integer> findAllFactors(int i) {
