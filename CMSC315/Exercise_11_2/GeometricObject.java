@@ -33,8 +33,8 @@ public class GeometricObject {
     }
 
     public GeometricObject(String color, boolean filled) {
-        this.color = color;
-        this.filled = filled;
+        setColor(color);
+        setFilled(filled);
         geoObjects.add(this);
         totalNumberOfShapesInc();
     }

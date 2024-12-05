@@ -49,30 +49,29 @@ public class Triangle extends GeometricObject {
         return new Triangle(color, filled, 1,1,1);
     }
 
-    public static Triangle instanceOfComplexTriangleNonOnes(String color, boolean filled,
+    public Triangle instanceOfComplexTriangleNonOnes(String color, boolean filled,
                                                             double baseLength, double leftLength, double rightLength)
                                                             throws IllegalArgumentException {
         totalNumberOfShapesInc();
-            double bLength, lLength, rLength;
         if (baseLength <=  0 ) {
-            bLength = 1;
+            baseLength = 1;
             throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
         } else {
-            bLength = baseLength;
+            this.baseLength = baseLength;
         }
         if (leftLength <=  0 ) {
-            lLength = 1;
+            this.leftLength = 1;
             throw new IllegalArgumentException("an invalid value of or 0 less was input (left); setting to 1");
         } else {
-            lLength = leftLength;
+            this.rightLength = leftLength;
         }
         if (rightLength <=  0) {
-            rLength = 1;
+            this.rightLength = 1;
             throw new IllegalArgumentException("an invalid value of or 0 less was input (right); setting to 1");
         } else {
-            rLength = rightLength;
+            this.rightLength = rightLength;
         }
-        return new Triangle(color, filled, bLength, lLength, rLength);
+        return new Triangle(color, filled, baseLength, leftLength, rightLength);
     }
 
     public void getType() {
@@ -116,18 +115,21 @@ public class Triangle extends GeometricObject {
 
     public void setBaseLength(double base) throws IllegalArgumentException {
         if (base <=  0 ) {
+            baseLength = 1;
             throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
         } baseLength = base;
     }
 
     public void setLeftLength(double left) throws IllegalArgumentException {
         if (left <= 0 ) {
+            leftLength = 1;
             throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
         } leftLength = left;
     }
 
     public void setRightLength(double right) {
         if (right <=  0 ) {
+            rightLength = 1;
             throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
         } rightLength = right;
     }

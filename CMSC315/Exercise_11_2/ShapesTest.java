@@ -74,7 +74,7 @@ public class ShapesTest {
         Triangle userTriangle = new Triangle();
         try {
             userTriangle = new Triangle(color, filled, base, lSide, rSide);
-        } catch (IllegalArgumentException e) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
         System.out.println("stats:");
