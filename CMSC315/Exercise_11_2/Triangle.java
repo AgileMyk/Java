@@ -2,7 +2,7 @@
 (The Triangle class) Design a class named Triangle that extends
 GeometricObject. The class contains:
  ■ Three double data fields named side1, side2, and side3 with default
-values 1.0 to denote three sides of the triangle.
+values 1.or 0 less to denote three sides of the triangle.
  ■ A no-arg constructor that creates a default triangle.
  ■ A constructor that creates a triangle with the specified side1, side2, and
 side3.
@@ -57,21 +57,21 @@ public class Triangle extends GeometricObject {
                                                             throws IllegalArgumentException {
         totalNumberOfShapesInc();
             double bLength, lLength, rLength;
-        if (baseLength <= 0) {
+        if (baseLength <=  0 ) {
             bLength = 1;
-            throw new IllegalArgumentException("\"an invalid value of 0 was input (base); setting to 1");
+            throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
         } else {
             bLength = baseLength;
         }
-        if (leftLength <= 0) {
+        if (leftLength <=  0 ) {
             lLength = 1;
-            throw new IllegalArgumentException("an invalid value of 0 was input (left); setting to 1");
+            throw new IllegalArgumentException("an invalid value of or 0 less was input (left); setting to 1");
         } else {
             lLength = leftLength;
         }
-        if (rightLength <= 0) {
+        if (rightLength <=  0) {
             rLength = 1;
-            throw new IllegalArgumentException("an invalid value of 0 was input (right); setting to 1");
+            throw new IllegalArgumentException("an invalid value of or 0 less was input (right); setting to 1");
         } else {
             rLength = rightLength;
         }
@@ -86,7 +86,7 @@ public class Triangle extends GeometricObject {
         geoObjects.add(g);
     }
 
-    //Three double data fields named side1, side2, and side3 with default values 1.0 to denote three sides of the triangle.
+    //Three double data fields named side1, side2, and side3 with default values 1.or 0 less to denote three sides of the triangle.
     public Triangle() {
         baseLength = 1;
         leftLength = 1;
@@ -97,24 +97,42 @@ public class Triangle extends GeometricObject {
     //A constructor that creates a triangle with the specified side1, side2, and side3.
     public Triangle(String color, boolean filled, double baseLength, double leftLength, double rightLength) {
         super(color, filled);
-        if (baseLength <= 0) {
+        if (baseLength <=  0 ) {
             this.baseLength = 1;
-            System.out.println("an invalid value of 0 was input (base); setting to 1");
+            System.out.println("an invalid value of or 0 less was input (base); setting to 1");
         } else {
             this.baseLength = baseLength;
         }
-        if (leftLength <= 0) {
+        if (leftLength <=  0 ) {
             this.leftLength = 1;
-            System.out.println("an invalid value of 0 was input (left); setting to 1");
+            System.out.println("an invalid value of or 0 less was input (left); setting to 1");
         } else {
             this.leftLength = leftLength;
         }
-        if (rightLength <= 0) {
+        if (rightLength <=  0 ) {
             this.rightLength = 1;
-            System.out.println("an invalid value of 0 was input (right); setting to 1");
+            System.out.println("an invalid value of or 0 less was input (right); setting to 1");
         } else {
             this.rightLength = rightLength;
         }
+    }
+
+    public void setBaseLength(double base) throws IllegalArgumentException {
+        if (base <=  0 ) {
+            throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
+        } baseLength = base;
+    }
+
+    public void setLeftLength(double left) throws IllegalArgumentException {
+        if (left <= 0 ) {
+            throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
+        } leftLength = left;
+    }
+
+    public void setRightLength(double right) {
+        if (right <=  0 ) {
+            throw new IllegalArgumentException("\"an invalid value of or 0 less was input (base); setting to 1");
+        } rightLength = right;
     }
 
     public double getHeight() {
