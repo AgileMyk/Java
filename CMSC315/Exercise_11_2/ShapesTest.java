@@ -9,7 +9,26 @@ public class ShapesTest {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
+        int first = 1;
+        int last = 1;
 
+       try {
+           first = Integer.parseInt(divideByZero(13, 7));
+       } catch (Exception e) {
+           System.out.println(e.getMessage());
+       }
+           try {
+               last = Integer.parseInt(divideByZero(10, 3));
+           } catch (Exception e) {
+               System.out.println(e.getMessage());
+               throw e;
+           }
+                try {
+                   Integer.parseInt(divideByZero(first, last));
+                } catch (Exception e) {
+                   System.out.println(e.getMessage());
+                   throw e;
+                }
 
         System.out.println("Geos array: ");
         GeometricObject.objectListReport();
@@ -72,12 +91,10 @@ public class ShapesTest {
         String color = in.next();
         boolean filled = in.nextBoolean();
 
-        Triangle userTriangle = new Triangle();
-        try {
-            userTriangle = new Triangle(color, filled, base, lSide, rSide);
-        } catch (NullPointerException | IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+
+
+        Triangle userTriangle = new Triangle(color, filled, base, lSide, rSide);
+
         System.out.println("stats:");
         System.out.println(userTriangle.getColor());
         System.out.println(userTriangle.isFilled());
@@ -97,4 +114,14 @@ public class ShapesTest {
         return o.toString();
     }
 
+
+    public static String divideByZero(int y, int x) throws ArithmeticException {
+        if (x == 0) {
+            throw new ArithmeticException("cannot divide by zero");
+        }
+        return y/x + "";
+    }
 }
+
+
+
