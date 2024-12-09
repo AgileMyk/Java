@@ -20,7 +20,7 @@ public class FileEdit {
                     String line1 = sc1.nextLine();
                     String line2 = ("0.0.0.0    ");
                     System.out.println(line2+line1);
-                    fw.append(line2).append(line1);
+                    fw.append(line2).append(line1).append("\r\n");
                 }
             }
     }
