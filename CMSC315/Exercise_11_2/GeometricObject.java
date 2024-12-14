@@ -1,18 +1,15 @@
 package Exercise_11_2;
 
 
-import javax.sound.sampled.Line;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Enumeration;
 
 
-
-public class GeometricObject {
+public class GeometricObject extends Shape {
     private String color;
     protected boolean filled;
     protected Date dateCreated = new Date();
+    private double area;
     private static int totalNumberOfShapes = 0;
     protected static ArrayList<GeometricObject> geoObjects = new ArrayList<>();
 
@@ -73,6 +70,16 @@ public class GeometricObject {
     public double getPerimeter() {
         System.out.println("As a general Geometric Object, this object has no perimeter field");
         return 0.0;
+    }
+
+
+    protected double getArea() {
+        return this.area;
+    };
+
+    @Override
+    protected boolean compareArea(GeometricObject g) {
+        return this.getArea() == g.getArea();
     }
 
     @Override
