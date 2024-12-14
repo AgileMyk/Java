@@ -6,9 +6,11 @@ import java.util.Scanner;
 
 public class Calculator {
 
+            static int total;
+
             final static String stopOne = "s".toLowerCase();
             final static String stopTwo = "stop".toLowerCase();
-            final static String[] OPERATORS = {"+","-","/","*"};
+            final static String[] OPERATORS = {"\\+","-","/","\\*"};
   /** Main method */
           public static void main(String[] args) {
 
@@ -25,18 +27,58 @@ public class Calculator {
               char[] allInputs = input.toCharArray();
               ArrayList<String> OperatorInputs = new ArrayList<>();
               ArrayList<String> OperandInputs = new ArrayList<>();
-              int total = 0;
-              int count = 0;
+
               for (char ele: allInputs) {
                   if (String.valueOf(ele).matches(OPERATORS[0]) ||
-                      String.valueOf(ele).matches(OPERATORS[1]) ||
-                      String.valueOf(ele).matches(OPERATORS[2]) ||
-                      String.valueOf(ele).matches(OPERATORS[3])) {
+                          String.valueOf(ele).matches(OPERATORS[1]) ||
+                          String.valueOf(ele).matches(OPERATORS[2]) ||
+                          String.valueOf(ele).matches(OPERATORS[3])) {
                       OperatorInputs.add(String.valueOf(ele));
                   } else if (String.valueOf(ele).matches("\\d")) {
                       OperandInputs.add(String.valueOf(ele));
                   }
-                  /*
+              }
+              //remove first int value and assign as starting total
+              total = Integer.parseInt(OperatorInputs.getFirst());
+              OperatorInputs.removeFirst();
+              int result = 1;
+
+              for (String s: OperatorInputs) {
+                  System.out.print(s + " ");
+              }
+              System.out.println();
+              for (String s: OperandInputs) {
+                  System.out.print(s + " ");
+              }
+
+
+              while (!OperatorInputs.isEmpty()) {
+              result = perCalcResult(OperandInputs.getFirst(), result);
+
+                  OperatorInputs.removeFirst();
+                  OperandInputs.removeFirst();
+              }
+
+              //re enter copy pasted old code here
+
+          }
+
+    public static int perCalcResult(String operand, int operator) {
+        if (operand.equals(OPERATORS[0])) {
+            total += operator;
+        } else if (operand.equals(OPERATORS[1])) {
+            total -= operator;
+        } else if (operand.equals(OPERATORS[2])) {
+            total /= operator;
+        } else if (operand.equals(OPERATORS[3])) {
+            total *= operator;
+        } else {
+            System.out.println("There was an error with operator placement; exiting");
+        }
+        return total;
+    }
+
+                /*
 
                   ) && count == 0) {
                       total = Integer.parseInt(ele);
@@ -59,7 +101,7 @@ public class Calculator {
                       System.out.print(s + " ");
                   }
                   */
-              }
+
               /*
 
               //Scanner in = new Scanner(Arrays.toString(userInput.toArray()));
@@ -109,22 +151,6 @@ public class Calculator {
                     System.out.println(total);
               }
                */
-          }
-
-    public static int perCalcResult(String first, String second, String third) {
-        if (second.equals(OPERATORS[0])) {
-            return Integer.parseInt(first) + Integer.parseInt(third);
-        } else if (second.equals(OPERATORS[1])) {
-            return Integer.parseInt(first) - Integer.parseInt(third);
-        } else if (second.equals(OPERATORS[2])) {
-            return Integer.parseInt(first) / -Integer.parseInt(third);
-        } else if (second.equals(OPERATORS[3])) {
-            return Integer.parseInt(first) * -Integer.parseInt(third);
-        } else {
-            System.out.println("There was an error with operator placement; exiting");
-            return 0;
-        }
-    }
               /*
                  System.out.print("count: "+count);
                   if (in.next().equals(stopOne) || in.next().equals(stopTwo)) {
