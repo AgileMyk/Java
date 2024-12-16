@@ -1,6 +1,8 @@
 package Exercise_11_2;
 
 public class Quadrilateral extends GeometricObject {
+    static int sides = 4;
+    String type = "Quadrilateral";
     private double side1, side2, side3, side4;
 
     public Quadrilateral() {

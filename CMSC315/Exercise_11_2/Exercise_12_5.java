@@ -16,28 +16,29 @@ package Exercise_11_2;
 
 public class Exercise_12_5 {
     public static void main(String[] args) throws IllegalTriangleException {
+
         try {
-            Triangle t1 = new Triangle(1,1,10);
-            Triangle t2 = new Triangle(10,1,1);
-            Triangle t3 = new Triangle(1,10,1);
-        } catch (IllegalTriangleException e) {
-            e.getMessage();
+            Triangle t = new Triangle(33,3,3);
+            System.out.println(t);
+        } catch (IllegalTriangleException _) {
+        }
+
+        try {
+            Triangle t1 = new Triangle(1,1,1);
+            Triangle t2 = new Triangle(2,1,1);
+            Triangle t3 = new Triangle(1,2,1);
+
+            System.out.println("t1\n"+t1);
+            System.out.println("t2\n"+t2);
+            System.out.println("t3\n"+t3);
+        } catch (IllegalTriangleException _) {
         }
 
         try {
             Triangle t2 = new Triangle(10,1,1);
             Triangle t1 = new Triangle(1,1,10);
             Triangle t3 = new Triangle(1,10,1);
-        } catch (IllegalTriangleException e) {
-            e.getMessage();
-        }
-
-        try {
-            Triangle t3 = new Triangle(1,10,1);
-            Triangle t1 = new Triangle(1,1,10);
-            Triangle t2 = new Triangle(10,1,1);
-        } catch (IllegalTriangleException e) {
-            e.getMessage();
+        } catch (IllegalTriangleException _) {
         }
     }
 

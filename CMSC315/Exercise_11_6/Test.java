@@ -8,6 +8,7 @@ method
 
 package Exercise_11_6;
 
+import Exercise_11_2.IllegalTriangleException;
 import Exercise_11_2.Triangle;
 
 import java.util.ArrayList;
@@ -57,6 +58,9 @@ public class Test {
 
     public static Triangle createTriangle() {
         Scanner in = new Scanner(System.in);
+
+        Triangle triangle = new Triangle();
+
         System.out.println("""
                 Hello. We are going to make a triangle
                 Please enter a length for the left side,\s
@@ -71,6 +75,11 @@ public class Test {
         String color = in.next();
         boolean filled = in.nextBoolean();
 
-        return new Triangle(color, filled, base, lSide, rSide);
+        try {
+            triangle = new Triangle(color, filled, base, lSide, rSide);
+        } catch (IllegalTriangleException e) {
+            e.getMessage();
+        }
+        return triangle;
     }
 }

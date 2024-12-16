@@ -1,12 +1,33 @@
 package Exercise_11_2;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import javax.swing.text.Style;
+import java.util.*;
 
 public class ShapesTest {
 
+    public static String calendarDayOfWeekConversion(int i) {
+        return switch (i) {
+            case 1 -> "Sunday";
+            case 2 -> "Monday";
+            case 3 -> "Tuesday";
+            case 4 -> "Wednesday";
+            case 5 -> "Thursday";
+            case 6 -> "Friday";
+            case 7 -> "Saturday";
+            default -> "Invalid number for day representation";
+        };
+    }
 
     public static void main(String[] args) {
+
+        Triangle at1 = new AcuteTriangle();
+        at1.setBaseLength(Triangle.getNumberOfShapes());
+
+        Calendar calendar = new GregorianCalendar();
+        System.out.println("current date: " + new Date());
+        System.out.println("year:\t" + calendar.get(Calendar.YEAR));
+        Calendar calendar2 = new GregorianCalendar(2024, Calendar.DECEMBER,7,12,17,34);
+
+        System.out.println("The day of the week is " + calendarDayOfWeekConversion(calendar2.get(Calendar.DAY_OF_WEEK)));
 
         Scanner in = new Scanner(System.in);
         int first = 1;
@@ -91,10 +112,12 @@ public class ShapesTest {
         String color = in.next();
         boolean filled = in.nextBoolean();
 
-
-
-        Triangle userTriangle = new Triangle(color, filled, base, lSide, rSide);
-
+            Triangle userTriangle = new Triangle();
+        try {
+            userTriangle = new Triangle(color, filled, base, lSide, rSide);
+        } catch (IllegalTriangleException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("stats:");
         System.out.println(userTriangle.getColor());
         System.out.println(userTriangle.isFilled());

@@ -6,8 +6,9 @@ import java.util.Date;
 
 
 public class GeometricObject extends Shape {
-    private String color;
+    protected String color;
     protected boolean filled;
+    String type = "Geometric Object";
     protected Date dateCreated = new Date();
     private double area;
     private static int totalNumberOfShapes = 0;
@@ -18,13 +19,13 @@ public class GeometricObject extends Shape {
         totalNumberOfShapes++;
     }
 
-    public static int getNumberOfShapes() {
+    protected static int getNumberOfShapes() {
         return totalNumberOfShapes;
     }
 
     public GeometricObject() {
-        color = "white";
-        filled = false;
+        setColor("white");
+        setFilled(false);
         totalNumberOfShapesInc();
         geoObjects.add(this);
     }
@@ -36,8 +37,8 @@ public class GeometricObject extends Shape {
         totalNumberOfShapesInc();
     }
 
-    public void getType() {
-        System.out.println("geometric object");
+    public String getType() {
+        return type;
     }
 
     public void setColor(String color) {
@@ -55,7 +56,7 @@ public class GeometricObject extends Shape {
         return filled;
     }
 
-    public Date getDateCreated() {
+    protected Date getDateCreated() {
         return dateCreated;
     }
 
@@ -67,9 +68,14 @@ public class GeometricObject extends Shape {
         return geoObjects.indexOf(this) + 1;
     }
 
-    public double getPerimeter() {
+    protected double getPerimeter() {
         System.out.println("As a general Geometric Object, this object has no perimeter field");
         return 0.0;
+    }
+
+    @Override
+    protected boolean comparePerimeter(GeometricObject g) {
+        return this.getPerimeter() == g.getPerimeter();
     }
 
 
@@ -84,8 +90,8 @@ public class GeometricObject extends Shape {
 
     @Override
     public String toString() {
-        return "color: " + this.color + "\nfilled: " + this.isFilled() + "\ndate " + this.getDateCreated() +
-                "\nyou have created a total of " + getTotalNumberOfShapes() + " shapes.\n";
+        return "color: " + this.getColor() + "\nfilled: " + this.isFilled() + "\ndate " + this.getDateCreated() +
+                "\nyou have created a total of " + (getTotalNumberOfShapes() + 1) + " shapes.\n";
     }
 
 
@@ -107,5 +113,8 @@ public class GeometricObject extends Shape {
         return false;
     }
 
-
+    public static void main(String[] args) {
+        GeometricObject geo1 = new GeometricObject();
+        System.out.println(geo1);
+    }
 }
