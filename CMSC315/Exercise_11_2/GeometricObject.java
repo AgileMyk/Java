@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-public class GeometricObject extends Shape {
+public class GeometricObject extends Shape implements Comparable<GeometricObject> {
     protected String color;
     protected boolean filled;
     String type = "Geometric Object";
@@ -13,7 +13,6 @@ public class GeometricObject extends Shape {
     private double area;
     private static int totalNumberOfShapes = 0;
     protected static ArrayList<GeometricObject> geoObjects = new ArrayList<>();
-
 
     public static void totalNumberOfShapesInc() {
         totalNumberOfShapes++;
@@ -26,7 +25,6 @@ public class GeometricObject extends Shape {
     public GeometricObject() {
         setColor("white");
         setFilled(false);
-        totalNumberOfShapesInc();
         geoObjects.add(this);
     }
 
@@ -34,7 +32,6 @@ public class GeometricObject extends Shape {
         setColor(color);
         setFilled(filled);
         geoObjects.add(this);
-        totalNumberOfShapesInc();
     }
 
     public String getType() {
@@ -113,8 +110,42 @@ public class GeometricObject extends Shape {
         return false;
     }
 
+    @Override
+    public int compareTo(GeometricObject o) {
+        if (this.getPerimeter() == o.getPerimeter() &&
+                this.getArea() == o.getArea() &&
+                this.getColor().equals(o.getColor()) &&
+                this.isFilled() == o.isFilled()) {
+            return 0;
+        } else if (this.getPerimeter() > o.getPerimeter() &&
+                this.getArea() > o.getArea() &&
+                this.getColor().equals(o.getColor()) &&
+                this.isFilled() == o.isFilled()) {
+            return 1;
+        } else if (this.getPerimeter() > o.getPerimeter() &&
+                this.getArea() > o.getArea() &&
+                this.getColor().equals(o.getColor()) &&
+                this.isFilled() == o.isFilled()) {
+            return -1;
+        }
+        System.out.println("The color and filled attributes are not the same; use compareSize method");
+        return 2;
+    }
+
+    public int compareSize(GeometricObject o) {
+        if (this.getPerimeter() == o.getPerimeter() &&
+                this.getArea() == o.getArea()) {
+            return 0;
+        } else if (this.getPerimeter() > o.getPerimeter() &&
+                this.getArea() > o.getArea()) {
+            return 1;
+        } else
+            return -1;
+    }
+
     public static void main(String[] args) {
         GeometricObject geo1 = new GeometricObject();
         System.out.println(geo1);
     }
+
 }
