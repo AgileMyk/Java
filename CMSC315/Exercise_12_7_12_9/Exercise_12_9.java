@@ -15,26 +15,33 @@ public class Exercise_12_9 {
         Scanner in = new Scanner(System.in);
         System.out.print("Please enter a binary string number: ");
         String s = in.next();
+        double result = 0.0;
+        boolean status = true;
 
-        bin2DecB(s);
-
-        System.out.println("result: " + s);
-    }
-
-    public static void bin2DecB(String s) {
         try {
-            checkString(s, '1','0');
+            result = bin2DecB(s);
         } catch (BinaryFormatException e) {
+            status = false;
             System.out.println(e.getMessage());
         }
+        if (status) {
+            System.out.println("result: " + result);
+        } else {
+            System.out.println("there was an error, no double result");
+        }
     }
 
-    public static void checkString(String s1, char c1, char c2) throws BinaryFormatException {
-        for (char ele : s1.toCharArray()) {
-            if (ele != c1 || ele != c2) {
-                throw new BinaryFormatException(s1);
+    public static double bin2DecB(String s) throws BinaryFormatException {
+        double result = 0.0;
+        char[] c = s.toCharArray();
+        for (char ele : c) {
+            if (ele == '0' || ele == '1') {
+
+            } else {
+                throw new BinaryFormatException(s);
             }
         }
+        return Double.parseDouble(s);
     }
 
 }

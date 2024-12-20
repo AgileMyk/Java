@@ -10,28 +10,31 @@ import java.util.Scanner;
 public class Exercise_12_7 {
 
     public static void main(String[] args) {
+
+
+
         Scanner in = new Scanner(System.in);
-        String str;
-        double result = 0.0;
+        String str = "";
         System.out.println("Enter a binary string: ");
         try {
-            str = in.nextLine();
-            result = bin2Dec(str);
+            str = in.next();
+            bin2Dec(str);
         } catch (BinaryFormatException e) {
-            System.out.println("Invalid entry; non binary string");
+            System.out.println(e.getMessage());
         }
-        System.out.println("Result: "+result);
+        System.out.println("Result: "+ str);
     }
 
-    public static double bin2Dec(String s) throws BinaryFormatException {
-        double val = 0.0;
+    public static void bin2Dec(String s) throws BinaryFormatException {
         char[] c = s.toCharArray();
-        for (char value : c) {
-            if (value == '1' || value == '0') {
+        for (char ele : c) {
+            if (ele == '0' || ele == '1') {
+
+            } else {
                 throw new BinaryFormatException(s);
             }
         }
-        return val;
+
     }
 
  /*
