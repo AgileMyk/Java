@@ -13,6 +13,7 @@ public class Exercise_12_11 {
 
     public static void main(String[] args) throws IOException {
 
+    //
         File file = new File("CMSC315/Exercise_12_11/dis2.txt");
         System.out.println(file.exists());
         System.out.println(file.isFile());
@@ -20,11 +21,12 @@ public class Exercise_12_11 {
 
         try (Scanner in2 = new Scanner(file);
              FileWriter fw2 = new FileWriter(fileResult)) {
+            char[] tempAdd = {'0','.','0','.','0','.','0',' ',' ',' ',' '};
             while (in2.hasNextLine()) {
                 String tempLine = in2.nextLine();
-                char[] tempAdd = {'0','.','0','.','0','.','0',' ',' ',' ',' '};
+                String firstLetter = tempLine.substring(0, 1);
 
-                tempLine = tempLine.replaceFirst(String.valueOf(tempLine.charAt(0)),String.valueOf(tempAdd));
+                tempLine = tempLine.replaceFirst(String.valueOf(tempLine.charAt(0)),(firstLetter+String.valueOf(tempAdd)));
                 fw2.write(tempLine+"\n");
             }
         }
