@@ -29,13 +29,15 @@ public class Exercise_12_13 {
             File file = new File(args[0]);
             try (Scanner in = new Scanner(file)) {
                 while (in.hasNextLine()) {
+                    lineCount++;
                     //determine space count
-                    word += in.nextLine();
-                    n = word.length();
-                    space = word.replace(" ","").length();
-                    spaceCount = (n-space);
-                    wordCount = space + 1;
+                    word += in.nextLine() + "\n";
+
                 }
+                System.out.println("Word: " + word);
+                n = word.length();
+                space = word.replace(" ","").length();
+                spaceCount = (n-space);
             }
 
         }
@@ -45,4 +47,3 @@ public class Exercise_12_13 {
         System.out.println("space count: " + spaceCount);
     }
 }
-
