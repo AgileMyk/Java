@@ -21,6 +21,7 @@ public class Exercise_12_13 {
         int n = 0;
         int space = 0;
 
+
         if (args[0] == null || args[0].trim().isEmpty()) {
             System.out.println("Please enter a valid file name/specify a path");
             return;
@@ -32,7 +33,8 @@ public class Exercise_12_13 {
                     word += in.nextLine();
                     n = word.length();
                     space = word.replace(" ","").length();
-                    spaceCount += (n-space);
+                    spaceCount = (n-space);
+                    wordCount = space + 1;
                 }
             }
 
@@ -43,3 +45,4 @@ public class Exercise_12_13 {
         System.out.println("space count: " + spaceCount);
     }
 }
+
