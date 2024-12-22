@@ -56,7 +56,7 @@ public class Exercise_12_15 {
     public void orderValues(File file) throws FileNotFoundException {
         Scanner in = new Scanner(file);
         while (in.hasNext()) {
-
+            //
         }
     }
 
