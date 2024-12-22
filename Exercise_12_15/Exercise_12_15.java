@@ -8,6 +8,8 @@ file and display the data in increasing order.
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Exercise_12_15 {
@@ -51,13 +53,31 @@ public class Exercise_12_15 {
                 }
             }
         }
+
+        orderValues(file);
     }
 
-    public void orderValues(File file) throws FileNotFoundException {
+    public static void orderValues(File file) throws FileNotFoundException {
         Scanner in = new Scanner(file);
+        //test for length of 100
+
+        //create array of values to be reaccessed later for ordering
+        ArrayList<String> iterateOver =  new ArrayList<>();
         while (in.hasNext()) {
-            //
+            iterateOver.add(in.next());
+        }
+        if (iterateOver.size() != 100) {
+            System.out.printf("File: %s has %d values; %s must have 100 values. ", file.getName(), iterateOver.size(), file.getName());
+        } else {
+            int[] orderedArray = new int[100];
+            for (int i = 0; i < orderedArray.length; i++) {
+                orderedArray[i] = Integer.parseInt(iterateOver.get(i));
+            }
+            Arrays.sort(orderedArray);
+            System.out.printf("The values of %s in order are as follows:\n", file.getName());
+            for (int val : orderedArray) {
+                System.out.println(val);
+            }
         }
     }
-
 }
