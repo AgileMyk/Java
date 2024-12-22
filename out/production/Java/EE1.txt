@@ -1,0 +1,52 @@
+A high tension current is capable of forcing its way against considerable resistance, whereas, a low
+tension current must have its path made easy.
+
+Production of the Electric Current.—To produce a steady flow of water in a pipe two conditions are necessary.
+There must first be available a hydraulic pressure, or, as it is technically called, a “head” of water produced
+by a pump, or a difference of level or otherwise.
+
+In addition to the pressure there must also be a suitable path or channel provided for the water to flow through,
+or there will be no flow, however great the “head,” until something breaks down under the strain. In the case just
+cited, although there is full pressure in the water in the pipe, there is no current of water as long as the tap
+remains closed. The opening of the tap completes the necessary path (the greater part of which was already in
+existence) and the water flows.
+
+
+Fig. 36.—Hydraulic analogy of the electric current. If, say 10 gallons of water flow in every second into a system
+ of vessels and pipes of any shape, whether simple or more complicated as shown in the figure, and 10 gallons flow
+ out again per second, it is evident that through every cross section of any vessel or pipe of the system 10 gallons
+ of water pass every second. This follows from the fact that water is an uncompressible liquid and must be practically
+ of the same density throughout the system. The water moves slowly where the section is large and quickly where it
+ is small, and thus the quantity of water that flows through any part of the system is independent of the cross
+ section of that part. The same condition holds good for the electric current; if in a closed circuit a constant
+ current circulates, the same amount of electricity will pass every cross section per second. Hence the following
+ law: The magnitude of a constant current in any circuit is equal in all parts of the circuit.
+For the production of a steady electric current two very similar conditions are necessary. There must be a steadily
+maintained electric pressure, known under different aspects as “electromotive force,” “potential difference,” or
+“voltage.” This alone, however, is not sufficient. In addition, a suitable conducting path is necessary. Any break
+in this path occupied by unsuitable material acts like the closed tap in the analogous case above mentioned, and
+it is only when all such breaks have been properly bridged by suitable material, that is, by conductors, that the
+effects which denote the flow of the current will begin to be manifested.
+
+The necessary electromotive force or voltage required to cause the current to flow may be obtained:
+
+1. Chemically;
+2. Mechanically;
+3. Thermally.
+In the first method, two dissimilar metals such as copper and zinc called elements, are immersed in an exciting
+fluid or electrolyte.
+
+Series connection of a line of glass vessels.
+Fig. 37.—Volta’s “Crown of Cups.” The metallic elements C and Z each consisted of two metals, the plate C being of
+copper and the plate Z of zinc. They were placed, as shown, in the glass vessels, which contained salt water and
+ordinary water or lye. Into each vessel, except the two end ones, the copper end of one arc and the zinc end of the
+next were introduced, the series, however long, ending with copper dipping into the terminal vessel at one end and
+zinc into that at the other. The arrangement is almost exactly that of a modern one-fluid primary battery.
+When the elements are connected at their terminals by a wire or conductor a chemical action takes place, producing
+a current which flows from the copper to the zinc. This device is called a cell, and the combination of two or more of them connected so as to form a unit is known as a battery. The word battery is frequently used incorrectly for a single cell. That terminal of the element from which the current flows is called the plus or positive pole, and the terminal of the other element the negative pole.
+
+Cells are said to be primary or secondary according as they generate a current of themselves, or first require to be charged from an external source, storing up a current supply which is afterwards yielded in the reverse direction to that of the charging current.
+
+An electric current is generated mechanically by a dynamo. In either case no electricity is produced, but part of the supply already existing is simply set in motion by creating an electric pressure.
+
+An electric current, according to the third method, is generated directly from heat energy, as will be later explained; the current thus obtained is very feeble.
