@@ -1,5 +1,4 @@
 package Exercise_12_17;
-import java.util.HashSet;
 
 /*
 12.17 (Game: hangman) Rewrite Programming Exercise
@@ -31,7 +30,6 @@ The word is program. You missed 1 time
 Do you want to guess another word? Enter y or n>
  */
 
-import javax.print.DocFlavor;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -40,17 +38,26 @@ public class Exercise_12_17 {
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList<String> words = new ArrayList<>();
+        ArrayList<String> originalList = new ArrayList<>();
 
         File file = new File("Java/CMSC315/Exercise_12_17/EE1.txt");
         System.out.println(file.exists());
-        populateWordsArray(file, words);
+        //creates initial list of word options from a text file
+        //removes any word with dash/hyphens
+        populateWordsArray(file, originalList);
 
-        System.out.println("----------");
-        System.out.println(words.size());
-        for (String s : words) {
-            System.out.println(s);
+        System.out.println("----- original list -----");
+        System.out.println(originalList.size());
+        for (String word : originalList) {
+            System.out.println(word);
         }
+
+        //cleans original list, removing grammatical marks
+        ArrayList<String> finalResultsList = removePunctuation(originalList, file);
+
+
+        //creates chosen word for Hangman
+        String hangmanWord = randomWordGenerator(finalResultsList);
 
         Scanner fileChoice = new Scanner(System.in);
         System.out.println("Create a file name. Any space will end the file's name");
@@ -74,22 +81,25 @@ public class Exercise_12_17 {
         return s;
     }
 
+    //creates an array of words from a text file, removing any words with dash/hyphens
     public static void populateWordsArray(File file, ArrayList<String> arr) throws IOException {
         Scanner fileEdit = new Scanner(file);
 
-        // Temporary list to store new strings to be added
-        ArrayList<String> tempList = new ArrayList<>();
-
+        //remove words with hyphens
         while (fileEdit.hasNextLine()) {
             String word = fileEdit.next().toLowerCase();
             if (!word.contains("-") && !word.contains("—") && word.length() > 4) {
-                tempList.add(word);  // Add valid words to tempList
+                arr.add(word);  // Add valid words to tempList
             }
         }
+    }
+
+    public static ArrayList<String> removePunctuation(ArrayList<String> arr, File file) throws IOException {
+        Scanner fileEdit = new Scanner(file);
 
         // Process tempList for delimiters and clean up
         ArrayList<String> cleanedList = new ArrayList<>();
-        for (String currentString : tempList) {
+        for (String currentString : arr) {
             if (currentString.contains(",")) {
                 cleanedList.add(currentString.replace(",", ""));
             }
@@ -113,7 +123,23 @@ public class Exercise_12_17 {
                 cleanedList.add(currentString);
             }
         }
+        return cleanedList;
+    }
+    //remove repeating words
+    public static void SpecificString (String s, ArrayList < String > arr){
+        arr.add(s);
+        System.out.printf("'%s' added to the array\n", s);
+    }
 
+    //random word generator
+    public static String randomWordGenerator(ArrayList<String> arr){
+        int randomIndex = (int)(Math.random() * arr.size());
+        return arr.get(randomIndex);
+    }
+}
+
+
+     /*
         // Remove duplicates using a HashSet
         ArrayList<String> uniqueList = new ArrayList<>(new HashSet<>(cleanedList));
 
@@ -127,12 +153,8 @@ public class Exercise_12_17 {
 
         fileEdit.close();
     }
+      */
 
-            //remove repeating words
 
-            public static void SpecificString (String s, ArrayList < String > arr){
-                arr.add(s);
-                System.out.printf("'%s' added to the array\n", s);
-            }
-        }
+
 
