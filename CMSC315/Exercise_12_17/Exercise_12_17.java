@@ -101,7 +101,7 @@ public class Exercise_12_17 {
         }
     }
 
-    public static ArrayList<String> removePunctuation(ArrayList<String> arr) throws IOException {
+    public static ArrayList<String> removePunctuation(ArrayList<String> arr) {
 
         // Process tempList for delimiters and clean up
         ArrayList<String> cleanedList = new ArrayList<>();
@@ -124,11 +124,6 @@ public class Exercise_12_17 {
         }
         return cleanedList;
     }
-    //remove repeating words
-    public static void SpecificString (String s, ArrayList < String > arr){
-        arr.add(s);
-        System.out.printf("'%s' added to the array\n", s);
-    }
 
     //random word generator
     public static String randomWordGenerator(ArrayList<String> arr){
@@ -137,7 +132,7 @@ public class Exercise_12_17 {
     }
 }
 
-
+//FOR POTENTIAL LATER USE
      /*
         // Remove duplicates using a HashSet
         ArrayList<String> uniqueList = new ArrayList<>(new HashSet<>(cleanedList));
@@ -155,5 +150,12 @@ public class Exercise_12_17 {
       */
 
 
+    /*
+    //remove repeating words
+        public static void SpecificString (String s, ArrayList < String > arr){
+            arr.add(s);
+            System.out.printf("'%s' added to the array\n", s);
+        }
+     */
 
 
