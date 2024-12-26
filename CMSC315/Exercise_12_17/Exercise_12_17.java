@@ -63,6 +63,9 @@ public class Exercise_12_17 {
         //creates chosen word for Hangman
         String hangmanWord = randomWordGenerator(finalResultsList);
 
+        System.out.println("----- hangman word -----");
+        System.out.println(hangmanWord);
+
         Scanner fileChoice = new Scanner(System.in);
         System.out.println("Create a file name. Any space will end the file's name");
         String fileName = fileChoice.next();
@@ -105,21 +108,18 @@ public class Exercise_12_17 {
         for (String currentString : arr) {
             if (currentString.contains(",")) {
                 cleanedList.add(currentString.replace(",", ""));
-            }
-            if (currentString.contains(";")) {
+            } else if (currentString.contains(";")) {
                 cleanedList.add(currentString.replace(";", ""));
-            }
-            if (currentString.contains(".")) {
+            } else if (currentString.contains(".")) {
                 cleanedList.add(currentString.replace(".", ""));
-            }
-            if (currentString.contains(":")) {
+            } else if (currentString.contains(":")) {
                 cleanedList.add(currentString.replace(":", ""));
-            }
-            if (currentString.contains("?")) {
+            } else if (currentString.contains("?")) {
                 cleanedList.add(currentString.replace("?", ""));
-            }
-            if (currentString.contains("!")) {
+            } else if (currentString.contains("!")) {
                 cleanedList.add(currentString.replace("!", ""));
+            } else {
+                cleanedList.add(currentString);
             }
         }
         return cleanedList;
