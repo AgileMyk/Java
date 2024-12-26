@@ -52,9 +52,13 @@ public class Exercise_12_17 {
             System.out.println(word);
         }
 
+        System.out.println("----- final list -----");
         //cleans original list, removing grammatical marks
-        ArrayList<String> finalResultsList = removePunctuation(originalList, file);
-
+        ArrayList<String> finalResultsList = removePunctuation(originalList);
+        System.out.println(finalResultsList.size());
+        for (String word : finalResultsList) {
+            System.out.println(word);
+        }
 
         //creates chosen word for Hangman
         String hangmanWord = randomWordGenerator(finalResultsList);
@@ -94,8 +98,7 @@ public class Exercise_12_17 {
         }
     }
 
-    public static ArrayList<String> removePunctuation(ArrayList<String> arr, File file) throws IOException {
-        Scanner fileEdit = new Scanner(file);
+    public static ArrayList<String> removePunctuation(ArrayList<String> arr) throws IOException {
 
         // Process tempList for delimiters and clean up
         ArrayList<String> cleanedList = new ArrayList<>();
@@ -117,10 +120,6 @@ public class Exercise_12_17 {
             }
             if (currentString.contains("!")) {
                 cleanedList.add(currentString.replace("!", ""));
-            }
-            // Add the unmodified word if it doesn't need cleaning
-            if (!cleanedList.contains(currentString)) {
-                cleanedList.add(currentString);
             }
         }
         return cleanedList;
