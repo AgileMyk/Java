@@ -63,30 +63,9 @@ public class Exercise_12_17 {
         //creates chosen word for Hangman
         String hangmanWord = randomWordGenerator(finalResultsList);
 
-        System.out.println("----- hangman word -----");
-        System.out.println(hangmanWord);
-
-        Scanner fileChoice = new Scanner(System.in);
-        System.out.println("Create a file name. Any space will end the file's name");
-        String fileName = fileChoice.next();
-        System.out.println(fileName.length());
-        fileName = convertToDotText(fileName);
-        System.out.println(fileName.length());
-
-        File hangmanFile = new File(fileName);
-        System.out.println(hangmanFile.getName());
-
-        try (Scanner fileEdit = new Scanner(hangmanFile); PrintWriter filePW = new PrintWriter(hangmanFile)) {
-            System.out.println("Enter a word for the hangman game: ");
-            String word = fileEdit.next();
-            filePW.println(word);
-        }
+        executeHangman(hangmanWord);
     }
 
-    public static String convertToDotText(String s) {
-        s = s.endsWith(".txt") ? s : s + ".txt";
-        return s;
-    }
 
     //creates an array of words from a text file, removing any words with dash/hyphens
     public static void populateWordsArray(File file, ArrayList<String> arr) throws IOException {
@@ -130,7 +109,59 @@ public class Exercise_12_17 {
         int randomIndex = (int)(Math.random() * arr.size());
         return arr.get(randomIndex);
     }
-}
+
+    public static void executeHangman(String s) {
+
+        int totalCount = 0;
+        int missCount = 0;
+
+        char[] wordArray = s.toCharArray();
+        char[] guessResult = new char[wordArray.length];
+        for (int i = 0; i < wordArray.length; i++) {
+            guessResult[i] = '*';
+        }
+
+        while (totalCount != wordArray.length) {
+            System.out.print("Guess: enter a letter > ");
+            Scanner input = new Scanner(System.in);
+            char guess = input.next().charAt(0);
+            for (int i = 0; i < wordArray.length; i++) {
+                if (wordArray[i] == guess) {
+                    totalCount++;
+                    guessResult[i] = guess;
+                    System.out.print("The letter " + guess + " is in the word\n");
+                        if (i == guessResult.length - 1) {
+                            System.out.println("Your guess word is ");
+                            for (char c : guessResult) {
+                                System.out.print(c);
+                            }
+                            System.out.println("\n");
+                        } else {
+                            System.out.println("Your guess word is ");
+                            for (char c : guessResult) {
+                                System.out.print(c);
+                            }
+                            System.out.println("\n");
+                        }
+                    }
+
+                }
+            }
+
+        if (totalCount == wordArray.length) {
+            System.out.println("You guessed the word!");
+            totalCount = 0;
+        }
+           /*
+            for (int i = 0; i < guessResult.length; i++) {
+                if (guessResult[i] == '\u0000') {}
+            }
+            */
+        }
+
+    }
+
+
 
 //FOR POTENTIAL LATER USE
      /*
@@ -157,5 +188,32 @@ public class Exercise_12_17 {
             System.out.printf("'%s' added to the array\n", s);
         }
      */
+
+/*
+//code for older approach with user entry
+
+
+        Scanner fileChoice = new Scanner(System.in);
+        System.out.println("Create a file name. Any space will end the file's name");
+        String fileName = fileChoice.next();
+        System.out.println(fileName.length());
+        fileName = convertToDotText(fileName);
+        System.out.println(fileName.length());
+
+        File hangmanFile = new File(fileName);
+        System.out.println(hangmanFile.getName());
+
+        try (Scanner fileEdit = new Scanner(hangmanFile); PrintWriter filePW = new PrintWriter(hangmanFile)) {
+            System.out.println("Enter a word for the hangman game: ");
+            String word = fileEdit.next();
+            filePW.println(word);
+        }
+
+            public static String convertToDotText(String s) {
+        s = s.endsWith(".txt") ? s : s + ".txt";
+        return s;
+    }
+
+ */
 
 
