@@ -32,6 +32,7 @@ Do you want to guess another word? Enter y or n>
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Exercise_12_17 {
@@ -41,25 +42,12 @@ public class Exercise_12_17 {
         ArrayList<String> originalList = new ArrayList<>();
 
         File file = new File("Java/CMSC315/Exercise_12_17/EE1.txt");
-        System.out.println(file.exists());
         //creates initial list of word options from a text file
         //removes any word with dash/hyphens
         populateWordsArray(file, originalList);
 
-        System.out.println("----- original list -----");
-        System.out.println(originalList.size());
-        for (String word : originalList) {
-            System.out.println(word);
-        }
-
-        System.out.println("----- final list -----");
         //cleans original list, removing grammatical marks
         ArrayList<String> finalResultsList = removePunctuation(originalList);
-        System.out.println(finalResultsList.size());
-        for (String word : finalResultsList) {
-            System.out.println(word);
-        }
-
 
         //creates chosen word for Hangman
         String hangmanWord = randomWordGenerator(finalResultsList);
@@ -69,9 +57,10 @@ public class Exercise_12_17 {
         //determine if game will end or continue
         while (ask) {
             executeHangman(hangmanWord);
-            System.out.println("Would you like to play again? (y/n)");
+            System.out.println("\nWould you like to play again? (y/n)");
             char answer = playAgain.nextLine().charAt(0);
             if (answer == 'y') {
+                hangmanWord = randomWordGenerator(finalResultsList);
                 System.out.println("Here we go. You will be asked again at the end of the game if you'd like to continue or not");
             } else if (answer == 'n') {
                 System.out.println("Goodbye!");
@@ -114,6 +103,10 @@ public class Exercise_12_17 {
                 cleanedList.add(currentString.replace("?", ""));
             } else if (currentString.contains("!")) {
                 cleanedList.add(currentString.replace("!", ""));
+            } else if (currentString.contains("”")) {
+                cleanedList.add(currentString.replace("”", ""));
+            } else if (currentString.contains("“")) {
+                cleanedList.add(currentString.replace("“", ""));
             } else {
                 cleanedList.add(currentString);
             }
@@ -129,111 +122,71 @@ public class Exercise_12_17 {
 
     public static void executeHangman(String s) {
 
-        int totalCount = 0;
-        int missCount = 0;
-
         char[] wordArray = s.toCharArray();
         char[] guessResult = new char[wordArray.length];
+        //create guessArray with all '*'
         for (int i = 0; i < wordArray.length; i++) {
             guessResult[i] = '*';
         }
 
+        int attemptsCount = 0;
+        int missCount = 0;
 
 
-        while (totalCount != wordArray.length) {
-            System.out.print("Guess: enter a letter > ");
+        //boolean condition used to check letter match and move to next step
+        boolean status = false;
+        //boolean condition to test if user inputs a non-letter guess
+        boolean isNonLetter = false;
+
+        for (char c : wordArray) {
+            System.out.print(c);
+        }
+
+        while (!Arrays.equals(guessResult, wordArray)) {
             Scanner input = new Scanner(System.in);
-            char guess = input.next().charAt(0);
-            for (int i = 0; i < wordArray.length; i++) {
-                if (wordArray[i] == guess) {
-                    totalCount++;
-                    guessResult[i] = guess;
-                    System.out.print("The letter " + guess + " is in the word\n");
-                        if (i == guessResult.length - 1) {
-                            System.out.println("Your guess word is ");
-                            for (char c : guessResult) {
-                                System.out.print(c);
-                            }
-                            System.out.println("\n");
-                        } else {
-                            System.out.println("Your guess word is ");
-                            for (char c : guessResult) {
-                                System.out.print(c);
-                            }
-                            System.out.println("\n");
-                        }
-                    }
 
+            System.out.print("\nGuess: enter a letter > ");
+            char guess = input.nextLine().charAt(0);
+            attemptsCount++;
+            for (int i = 0; i < wordArray.length; i++) {
+                if (!Character.isLetter(guess)) {
+                    isNonLetter = true;
+                }
+                if (wordArray[i] == guess) {
+                    guessResult[i] = guess;
+                    status = true;
                 }
             }
 
-        if (totalCount == wordArray.length) {
-            System.out.println("You guessed the word!");
-            totalCount = 0;
-        }
-
-           /*
-            for (int i = 0; i < guessResult.length; i++) {
-                if (guessResult[i] == '\u0000') {}
+            if (isNonLetter) {
+                System.out.printf("You typed in %s; that's not a letter...\n", guess);
+                System.out.print("of course the ");
+                missCount++;
+                isNonLetter = false;
             }
-            */
+
+            if (status) {
+                System.out.println("the letter '" + guess + "' is in the word");
+            } else {
+                System.out.print("the letter '" + guess + "' is not in the word\n");
+                missCount++;
+            }
+            reportProgress(guessResult, wordArray);
         }
 
+        if (Arrays.equals(guessResult, wordArray)) {
+            System.out.println("You guessed the word!");
+            System.out.printf("It took you %d attempts to guess the word, with %s misses.\n ", attemptsCount, missCount);
+        }
     }
 
-
-
-//FOR POTENTIAL LATER USE
-     /*
-        // Remove duplicates using a HashSet
-        ArrayList<String> uniqueList = new ArrayList<>(new HashSet<>(cleanedList));
-
-        // Add unique words to the main array
-        arr.addAll(uniqueList);
-
-        // Log the additions
-        for (String s : uniqueList) {
-            System.out.printf("'%s' added to the array\n", s);
+    public static void reportProgress(char[] chars, char[] chars2) {
+        if (!Arrays.equals(chars, chars2)) {
+            System.out.print("Your guess word progress is ");
+            for (char c : chars) {
+                System.out.print(c);
+            }
         }
-
-        fileEdit.close();
+        System.out.println();
     }
-      */
-
-
-    /*
-    //remove repeating words
-        public static void SpecificString (String s, ArrayList < String > arr){
-            arr.add(s);
-            System.out.printf("'%s' added to the array\n", s);
-        }
-     */
-
-/*
-//code for older approach with user entry
-
-
-        Scanner fileChoice = new Scanner(System.in);
-        System.out.println("Create a file name. Any space will end the file's name");
-        String fileName = fileChoice.next();
-        System.out.println(fileName.length());
-        fileName = convertToDotText(fileName);
-        System.out.println(fileName.length());
-
-        File hangmanFile = new File(fileName);
-        System.out.println(hangmanFile.getName());
-
-        try (Scanner fileEdit = new Scanner(hangmanFile); PrintWriter filePW = new PrintWriter(hangmanFile)) {
-            System.out.println("Enter a word for the hangman game: ");
-            String word = fileEdit.next();
-            filePW.println(word);
-        }
-
-            public static String convertToDotText(String s) {
-        s = s.endsWith(".txt") ? s : s + ".txt";
-        return s;
-    }
-
- */
-
-
+}
