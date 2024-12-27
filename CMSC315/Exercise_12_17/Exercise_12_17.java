@@ -60,10 +60,27 @@ public class Exercise_12_17 {
             System.out.println(word);
         }
 
+
         //creates chosen word for Hangman
         String hangmanWord = randomWordGenerator(finalResultsList);
-
-        executeHangman(hangmanWord);
+        //used to repeat game if desired
+        boolean ask = true;
+        Scanner playAgain = new Scanner(System.in);
+        //determine if game will end or continue
+        while (ask) {
+            executeHangman(hangmanWord);
+            System.out.println("Would you like to play again? (y/n)");
+            char answer = playAgain.nextLine().charAt(0);
+            if (answer == 'y') {
+                System.out.println("Here we go. You will be asked again at the end of the game if you'd like to continue or not");
+            } else if (answer == 'n') {
+                System.out.println("Goodbye!");
+                ask = false;
+            } else {
+                System.out.println("Invalid entry, exiting game.");
+                ask = false;
+            }
+        }
     }
 
 
@@ -121,6 +138,8 @@ public class Exercise_12_17 {
             guessResult[i] = '*';
         }
 
+
+
         while (totalCount != wordArray.length) {
             System.out.print("Guess: enter a letter > ");
             Scanner input = new Scanner(System.in);
@@ -152,6 +171,7 @@ public class Exercise_12_17 {
             System.out.println("You guessed the word!");
             totalCount = 0;
         }
+
            /*
             for (int i = 0; i < guessResult.length; i++) {
                 if (guessResult[i] == '\u0000') {}
