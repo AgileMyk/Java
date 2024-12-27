@@ -161,8 +161,6 @@ public class Exercise_12_17 {
             if (isNonLetter) {
                 System.out.printf("You typed in %s; that's not a letter...\n", guess);
                 System.out.print("of course the ");
-                missCount++;
-                isNonLetter = false;
             }
 
             if (status) {
