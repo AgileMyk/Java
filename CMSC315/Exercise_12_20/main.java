@@ -39,19 +39,17 @@ public class main {
             try (Scanner fileScanner = new Scanner(fileInQuestion);
                  FileWriter fileWriter = new FileWriter(fileInQuestion)) {
                 while (fileScanner.hasNextLine()) {
-                    if (fileScanner.nextLine().endsWith("chapter5") ||
-                            fileScanner.nextLine().endsWith("chapter4") ||
-                            fileScanner.nextLine().endsWith("chapter3") ||
-                            fileScanner.nextLine().endsWith("chapter2") ||
-                            fileScanner.nextLine().endsWith("chapter1")   ) {
-                        String toRemove = fileScanner.nextLine();
-                        System.out.println("toRemove: " + toRemove);
-                        String toRemoveEdit = toRemove.substring(0, toRemove.length() - phraseLength);
-                        System.out.println("toRemoveEdit" + toRemoveEdit);
-                        fileWriter.write(toRemoveEdit + "\n");
-                    } else {
-                        System.out.println("There were no valid lines to edit");
-                        System.exit(0);
+                    if (fileScanner.nextLine().startsWith("package ")) {
+                        if (fileScanner.nextLine().endsWith(String.valueOf("chapter".matches("\\d")))) {
+                            String toRemove = fileScanner.nextLine();
+                            System.out.println("toRemove: " + toRemove);
+                            String toRemoveEdit = toRemove.substring(0, toRemove.length() - phraseLength);
+                            System.out.println("toRemoveEdit" + toRemoveEdit);
+                            fileWriter.write(toRemoveEdit + "\n");
+                        } else {
+                            System.out.println("There were no valid lines to edit");
+                            System.exit(0);
+                        }
                     }
                 }
             }
