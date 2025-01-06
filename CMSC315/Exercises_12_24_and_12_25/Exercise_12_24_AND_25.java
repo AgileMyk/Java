@@ -53,6 +53,10 @@ public class Exercise_12_24_AND_25 {
         for (Faculty faculty : facultyMembers) {
             System.out.println(faculty);
         }
+        Faculty.totalSalaries();
+        Faculty.totalSalaries_assistant();
+        Faculty.totalSalaries_assistant();
+        Faculty.totalSalaries_assistant();
     }
 
     public static Faculty parseFacultyInformation(String line) {
@@ -77,5 +81,6 @@ public class Exercise_12_24_AND_25 {
         }
         return new Faculty(fName,lName,status,salary);
     }
+
 }
 
