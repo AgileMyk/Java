@@ -18,7 +18,6 @@ public class main {
 
 
     public static Scanner fileQuestions = new Scanner(System.in);
-    public static final int phraseLength = 7;
 
     public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException {
 
@@ -37,23 +36,37 @@ public class main {
         System.out.println(fileInQuestion.getName() + " exists: " + fileInQuestion.exists());
         if (fileInQuestion.exists()) {
             try (Scanner fileScanner = new Scanner(fileInQuestion);
-                 FileWriter fileWriter = new FileWriter(fileInQuestion)) {
+                 FileWriter fileWriter = new FileWriter(fileInQuestion, true)) {
+                int count = 0;
                 while (fileScanner.hasNextLine()) {
-                    if (fileScanner.nextLine().startsWith("package ")) {
-                        if (fileScanner.nextLine().endsWith(String.valueOf("chapter".matches("\\d")))) {
-                            String toRemove = fileScanner.nextLine();
-                            System.out.println("toRemove: " + toRemove);
-                            String toRemoveEdit = toRemove.substring(0, toRemove.length() - phraseLength);
-                            System.out.println("toRemoveEdit" + toRemoveEdit);
-                            fileWriter.write(toRemoveEdit + "\n");
-                        } else {
+                    count++;
+                    String tempString = fileScanner.nextLine();
+                    System.out.println("tempString: " + tempString);
+                    if (tempString.startsWith("package ") && count < 2) {
+                        System.out.println("package found");
+                    } else {
+                        System.out.println("no appropriate file was found (no first line beginning with 'package')");
+                    }
+                        System.out.println("The initial line was found: " + tempString);
+                        int index = tempString.indexOf("chapter");
+                        index += 7;
+                        int remainingLength = tempString.substring(index).length();
+                        if (tempString.substring(tempString.length() - remainingLength).matches("[\\d]+")) {
+                        System.out.println("The check for chapteri was found");
+                       } else {
                             System.out.println("There were no valid lines to edit");
                             System.exit(0);
+                        }
+                        fileWriter.write(tempString + "\n");
+                        System.out.println(tempString + " was written to the first line");
+                        System.out.println("The resulting file is as follows: ");
+                        while (fileScanner.hasNextLine()) {
+                            System.out.println(fileScanner.nextLine());
                         }
                     }
                 }
             }
-        }
+
 
     }
 
@@ -82,6 +95,11 @@ public class main {
         }
         System.out.println("the result: " + changeableResult);
         return changeableResult;
+    }
+
+    //remove targeted ending from String value of fileInQuestion
+    public static String convertString(String input, int val) {
+        return input.substring(0,input.length() - val);
     }
 
     //searching through file list of available files
