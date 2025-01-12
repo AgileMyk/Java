@@ -35,44 +35,53 @@ java Exercise12_27 *
  */
 
 import java.io.File;
+//import java.io.IO;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Exercise12_27 {
     static boolean location = false;
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        int fileCount = 0;
         System.out.print("Enter a directory name: ");
         File chosenFile = fileForDir(sc.next());
+        System.out.print("name: " + chosenFile.getName());
         makeDir(chosenFile);
+        System.out.println("is dir: " + chosenFile.isDirectory());
 
-
+        System.out.print("We are going to populate your directory with 10 files");
+        ArrayList <File> addedFiles = makeFilesList();
+        for (File file : addedFiles) {
+            file = new File(chosenFile, String.valueOf(file));
+        }
+        //populateDir();
     }
 
     public static File fileForDir(String name) {
-        location = namePrompt();
-        if (sc.next().equalsIgnoreCase("t") || sc.next().equalsIgnoreCase("top")) {
-            if (Character.isDigit(name.charAt(0))) {
-                System.out.println("Invalid directory name: " + name);
-                System.out.print("The first letter must not be a digit");
-                System.out.println("Please enter a valid directory name.");
-                fileForDir(sc.next());
-            }
+        if (Character.isDigit(name.charAt(0))) {
+            System.out.println("Invalid directory name: " + name);
+            System.out.println("The first letter must not be a digit");
+            System.out.println("Please enter a valid directory name.");
+            fileForDir(sc.next());
         }
+        location = namePrompt();
         if (location) {
-            name = "\\Java\\CMSC315\\Exercise_12_26_mergedWith_27" + name;
+            name = "C:\\Users\\agile\\IdeaProjects\\Java\\CMSC315\\Exercise_12_26_mergedWith_27\\" + name;
         }
         return new File(name);
     }
 
     public static boolean namePrompt() {
-        System.out.print("Would you like to create a directory at the top level or the present level?");
-        if (!sc.next().equalsIgnoreCase("t") || !sc.next().equalsIgnoreCase("top")) {
+        System.out.print("Would you like to create a directory at the top level or the present level?  ");
+        if (sc.next().equalsIgnoreCase("p") || sc.next().equalsIgnoreCase("present")) {
+            System.out.println("true");
             return true;
-        } else if (!sc.next().equalsIgnoreCase("p") || !sc.next().equalsIgnoreCase("present")) {
+        } else if (!sc.next().equalsIgnoreCase("t") || !sc.next().equalsIgnoreCase("top") &&
+                   !sc.next().equalsIgnoreCase("p") || !sc.next().equalsIgnoreCase("present")) {
             System.out.print("please enter 't' or 'top' or 'p' or 'present'");
             namePrompt();
         }
+        System.out.println("false");
         return false;
     }
 
@@ -84,6 +93,20 @@ public class Exercise12_27 {
         }
     }
 
+    public static ArrayList<File> makeFilesList() {
+        ArrayList<File> files = new ArrayList<>();
+        while (files.size() < 10) {
+            System.out.print("Enter file name: ");
+                files.add(new File(sc.next()));
+        }
+        return files;
+    }
+
+    /*
+    public static File createFile(String fileName) throws IOException {
+
+    }
+     */
 
 }
 
