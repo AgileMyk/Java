@@ -35,26 +35,25 @@ java Exercise12_27 *
  */
 
 import java.io.File;
-//import java.io.IO;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Exercise12_27 {
     static boolean location = false;
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
+        File aFile = new File("aFile");
+        File bFile = new File("aFile","bFile");
+        System.out.println(aFile.isFile());
+        System.out.println(bFile.isFile());
+        System.out.println(aFile.exists());
+        System.out.println(bFile.exists());
         System.out.print("Enter a directory name: ");
         File chosenFile = fileForDir(sc.next());
-        System.out.print("name: " + chosenFile.getName());
+        System.out.print("name: " + chosenFile.getName() + "\n");
         makeDir(chosenFile);
-        System.out.println("is dir: " + chosenFile.isDirectory());
 
-        System.out.print("We are going to populate your directory with 10 files");
-        ArrayList <File> addedFiles = makeFilesList();
-        for (File file : addedFiles) {
-            file = new File(chosenFile, String.valueOf(file));
-        }
-        //populateDir();
+        populateDirectory(chosenFile);
     }
 
     public static File fileForDir(String name) {
@@ -67,46 +66,60 @@ public class Exercise12_27 {
         location = namePrompt();
         if (location) {
             name = "C:\\Users\\agile\\IdeaProjects\\Java\\CMSC315\\Exercise_12_26_mergedWith_27\\" + name;
-        }
+        } else
+            name = "C:\\Users\\agile\\IdeaProjects\\" + name;
         return new File(name);
     }
 
     public static boolean namePrompt() {
-        System.out.print("Would you like to create a directory at the top level or the present level?  ");
-        if (sc.next().equalsIgnoreCase("p") || sc.next().equalsIgnoreCase("present")) {
-            System.out.println("true");
-            return true;
-        } else if (!sc.next().equalsIgnoreCase("t") || !sc.next().equalsIgnoreCase("top") &&
-                   !sc.next().equalsIgnoreCase("p") || !sc.next().equalsIgnoreCase("present")) {
-            System.out.print("please enter 't' or 'top' or 'p' or 'present'");
-            namePrompt();
-        }
-        System.out.println("false");
-        return false;
+        boolean b = false;
+        System.out.println("Would you like to create a directory at the top level or the present level?");
+        String response = sc.next().trim();
+         if (response.equalsIgnoreCase("p") || response.equalsIgnoreCase("present")) {
+             b = true;
+         } else if (response.equalsIgnoreCase("t") || response.equalsIgnoreCase("top")) {
+             b = false;
+         } else {
+             System.out.print("please enter 't' or 'top' or 'p' or 'present'\n");
+             namePrompt();
+         }
+         return b;
     }
+
+    public static void populateDirectory(File dir) {
+        if (!dir.isDirectory()) {
+            System.out.println("Invalid file input: " + dir.getName() + " is not a directory");
+        }
+        if (!dir.exists()) {
+            System.out.println("Invalid file input: " + dir.getName() + " does not exist");
+        }
+
+        System.out.println("We are going to populate your directory with 10 files");
+        for (int fileCounter = 0; fileCounter < 10; fileCounter++) {
+            System.out.print("Enter a file name: ");
+            String fileName = sc.next()+".txt";
+            File currentFile = new File(dir, fileName);
+            if (currentFile.exists()) {
+                System.out.println("File already exists");
+            }
+            try {
+                currentFile.createNewFile();
+            } catch (IOException e) {
+                System.out.println(currentFile.getName() + " <- there was an error with the following file creation attempt");
+            }
+        }
+    }
+
 
     public static void makeDir(File file) {
         if (file.mkdirs()) {
-            System.out.println("Directory created successfully: " + file.getAbsolutePath());
+            System.out.println("Directory created successfully: \nPath\t" + file.getAbsolutePath());
         } else {
             System.out.println("Directory already exists: " + file.getAbsolutePath());
         }
     }
 
-    public static ArrayList<File> makeFilesList() {
-        ArrayList<File> files = new ArrayList<>();
-        while (files.size() < 10) {
-            System.out.print("Enter file name: ");
-                files.add(new File(sc.next()));
-        }
-        return files;
-    }
 
-    /*
-    public static File createFile(String fileName) throws IOException {
-
-    }
-     */
 
 }
 
