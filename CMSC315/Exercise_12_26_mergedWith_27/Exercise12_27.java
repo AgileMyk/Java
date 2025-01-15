@@ -71,6 +71,17 @@ public class Exercise12_27 {
         return new File(name);
     }
 
+    public static File nameForFile(File dir, String name) {
+        if (Character.isDigit(name.charAt(0))) {
+            System.out.println("Invalid directory name: " + name);
+            System.out.println("The first letter must not be a digit");
+            System.out.println("Please enter a valid directory name.");
+            nameForFile(dir, sc.next());
+        }
+
+        return new File(dir, name);
+    }
+
     public static boolean namePrompt() {
         boolean b = false;
         System.out.println("Would you like to create a directory at the top level or the present level?");
@@ -98,7 +109,7 @@ public class Exercise12_27 {
         for (int fileCounter = 0; fileCounter < 10; fileCounter++) {
             System.out.print("Enter a file name: ");
             String fileName = sc.next()+".txt";
-            File currentFile = new File(dir, fileName);
+            File currentFile = nameForFile(dir, fileName);
             if (currentFile.exists()) {
                 System.out.println("File already exists");
             }
