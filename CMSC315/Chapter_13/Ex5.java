@@ -1,5 +1,8 @@
 package Chapter_13;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
+
 /*
 *13.5 (Enable GeometricObject comparable) Modify the GeometricObject class
 to implement the Comparable interface and define a static max method in the
@@ -37,11 +40,20 @@ public class Ex5 {
         private String color = "white";
         private boolean filled;
         private final java.util.Date dateCreated;
-
+        public final ArrayList<Double> sides = new ArrayList<>();
         @Override
         public int compareTo(GeometricObject o) {
             return Double.compare(this.getArea(), o.getArea());
         }
+
+        /*
+        public double getSides() {
+            for (int i = 0; i < sides.size() - 2; i++) {
+                return sides.get(i);
+            }
+            return sides.getLast();
+        }
+         */
 
         abstract public double getArea();
 
@@ -77,6 +89,7 @@ public class Ex5 {
                     dateCreated + "\ncolor: " + color +
                     " and filled: " + filled;
              }
+
     }
     static class Circle extends GeometricObject {
         private double radius;
