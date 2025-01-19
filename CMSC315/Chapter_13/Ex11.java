@@ -18,29 +18,38 @@ clone method, and compare the two objects using the compareTo method.
 import Chapter_13.Ex5.GeometricObject;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Ex11 {
     public static void main(String[] args) {
         Octagon o1 = new Octagon();
+        System.out.println(o1.getRegular());
         o1.toString();
-        Octagon o2 = new Octagon(1,2,1,2,1,2,1,2);
-        o2.toString();
-        Octagon o3 = o1;
-        o3.compareTo(o1);
+        Octagon o3 = new Octagon(2,1,2,1,2,1,2,1);
+        o3.toString();
+
+        System.out.println(o1.compareTo(o3));
     }
 
     static class Octagon extends GeometricObject implements Cloneable, Comparable<GeometricObject> {
 
         private boolean isRegular;
-        private final Scanner forSides = new Scanner(System.in);
         private final ArrayList<Double> sides = new ArrayList<>();
         private double perimeter = 0;
 
-        public Octagon() {
-            autoSetSides();
+        public void setRegular(boolean isRegular) {
+            this.isRegular = true;
         }
+
+        public Octagon() {
+            for (int i = 0; i < 8; i++) {
+                this.sides.add(1.0);
+            }
+            this.perimeter = 8.0;
+            setRegular(true);
+        }
+
+
         public Octagon(double side1, double side2, double side3, double side4,
                        double side5, double side6, double side7, double side8) {
             this.sides.add(side1);
@@ -55,22 +64,13 @@ public class Ex11 {
         }
 
         public boolean getRegular() {
-            if (Objects.equals(this.sides.get(0), this.sides.get(1)) &&
-                    Objects.equals(this.sides.get(0), this.sides.get(2)) &&
-                    Objects.equals(this.sides.get(0), this.sides.get(3)) &&
-                    Objects.equals(this.sides.get(0), this.sides.get(4)) &&
-                    Objects.equals(this.sides.get(0), this.sides.get(5)) &&
-                    Objects.equals(this.sides.get(0), this.sides.get(6)) &&
-                    Objects.equals(this.sides.get(0), this.sides.get(7)))
-                return true;
-            return false;
-        }
-
-        public void autoSetSides() {
-            for (int i = 0; i < sides.size(); i++) {
-                this.sides.add(1.0);
-            }
-            this.perimeter = 8.0;
+            return this.sides.get(0).equals(this.sides.get(1)) &&
+                    this.sides.get(0).equals(this.sides.get(2)) &&
+                    this.sides.get(0).equals(this.sides.get(3)) &&
+                    this.sides.get(0).equals(this.sides.get(4)) &&
+                    this.sides.get(0).equals(this.sides.get(5)) &&
+                    this.sides.get(0).equals(this.sides.get(6)) &&
+                    this.sides.get(0).equals(this.sides.get(7));
         }
 
         public void reportSides() {
@@ -100,7 +100,7 @@ public class Ex11 {
         @Override
         public String toString() {
             for (int i = 0; i < sides.size(); i++) {
-                System.out.println("side " + i + ": " + sides.get(i));
+                System.out.println("side " + (i+1) + ": " + sides.get(i));
             }
             System.out.println("Perimeter: " + perimeter);
             System.out.println("regularity: " + getRegular());
@@ -115,12 +115,12 @@ public class Ex11 {
         @Override
         public int compareTo(GeometricObject o) {
             int result = 0;
-            for (int i = 0; i < this.sides.size(); i++) {
-                if (o.sides.get(i) == this.sides.get(i)) {
-                    result = 0;
-
+                if (o.getArea() > this.getArea()) {
+                    result = -1;
                 }
-            }
+                if (o.getArea() < this.getArea()) {
+                    result = 1;
+                }
             return result;
         }
     }
