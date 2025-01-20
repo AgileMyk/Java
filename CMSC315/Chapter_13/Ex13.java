@@ -31,11 +31,12 @@ public class Ex13 {
 
         try {
             Course course3 = (Course) course1.clone();
+            System.out.println("Course course3 clone:");
+            course3.toString();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
 
-        System.out.println("Course course3 clone:");
 
 
     }
