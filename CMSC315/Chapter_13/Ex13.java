@@ -8,16 +8,39 @@ students field.
 
 public class Ex13 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
 
-        System.out.println(generateRandomName());
-        System.out.println(generateRandomName());
-        System.out.println(generateRandomName());
 
         Course course1 = new Course("first");
+        System.out.println("Course course1 before population:");
+        for (String student : course1.getStudents()) {
+            System.out.println(student);
+        }
+
+        course1.populateAllStudents();
+        System.out.println("\nCourse course1 after population:");
+        for (String student : course1.getStudents()) {
+            System.out.println(student);
+        }
+
+        System.out.println("\ntoString test:");
+        course1.toString();
 
         Course course2 = new Course("second");
+        System.out.println("Course course2 before population:");
+
+        try {
+            Course course3 = (Course) course1.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Course course3 clone:");
+
+
     }
+
+
 
     static public class Course implements Cloneable, Comparable<Course> {
         private final String courseName;
@@ -27,6 +50,12 @@ public class Ex13 {
         public Course(String courseName) {
              this.courseName = courseName;
              }
+
+        public void populateAllStudents() {
+            for (int i = 0; i < students.length; i++) {
+                this.students[i] = generateRandomName();
+            }
+        }
 
          public void addStudent(String student) {
              students[numberOfStudents] = student;
@@ -57,17 +86,27 @@ public class Ex13 {
          @Override
          public Object clone() throws CloneNotSupportedException {
             Course clone = new Course(this.courseName);
-            for (String s :this.getStudents()) {
+            for (String s :this.students) {
                 clone.addStudent(s);
             }
             return clone;
          }
+
+        @Override
+        public String toString() {
+            System.out.println("Course name: " + courseName);
+            for (String s: this.students) {
+                System.out.println(s);
+            }
+            return "";
+        }
 
          @Override
          public int compareTo(Course course) {
                 return 0;
              }
         }
+
 
         public static String generateRandomName() {
             int randomLength = (int) (Math.random() * 5) + 4;
