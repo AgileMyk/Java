@@ -82,10 +82,12 @@ public class Ex15 {
          }
         @Override
              public boolean equals(Object other) {
-            if ((this.subtract((Rational)(other))).getNumerator() == 0)
-             return true;
-             else
-                 return false; }
+            if (other instanceof Rational) {
+                return (this.subtract((Rational) (other))).getNumerator().equals(BigInteger.ZERO);
+            } else
+                System.out.println("ERROR: Rational object is not a Rational object");
+            return false;
+          }
              @Override //
  public int intValue() {
              return (int)doubleValue();
