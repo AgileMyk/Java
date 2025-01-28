@@ -31,12 +31,14 @@ public class Ex15 {
          private static BigInteger gcd(BigInteger n, BigInteger d) {
              BigInteger n1 = n.abs();
              BigInteger n2 = d.abs();
-             int gcd = 1;
+             BigInteger gcd = BigInteger.ONE;
 
-             for (int k = 1; k <= n1 && k <= n2; k++) {
-                 if (n1 % k == 0 && n2 % k == 0)
+
+             for (BigInteger k = BigInteger.ONE; k.compareTo(n1) < 0 || k.compareTo(n1) == 0
+                                             &&  k.compareTo(n2) < 0 || k.compareTo(n2) == 0;) {
+                 if (n1.mod(k).equals(BigInteger.ZERO) && n2.mod(k).equals(BigInteger.ZERO))
                      gcd = k;
-                }
+             }
             return gcd;
              }
              /** Return numerator */
