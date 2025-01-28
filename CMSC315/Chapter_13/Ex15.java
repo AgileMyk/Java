@@ -33,9 +33,8 @@ public class Ex15 {
              BigInteger n2 = d.abs();
              BigInteger gcd = BigInteger.ONE;
 
-
              for (BigInteger k = BigInteger.ONE; k.compareTo(n1) < 0 || k.compareTo(n1) == 0
-                                             &&  k.compareTo(n2) < 0 || k.compareTo(n2) == 0;) {
+                     &&  k.compareTo(n2) < 0 || k.compareTo(n2) == 0; k = k.add(BigInteger.ONE)) {
                  if (n1.mod(k).equals(BigInteger.ZERO) && n2.mod(k).equals(BigInteger.ZERO))
                      gcd = k;
              }
@@ -76,7 +75,7 @@ public class Ex15 {
          }
          @Override public String
         toString() {
-             if (BigInteger.valueOf(1)) return
+             if (this.denominator.equals(BigInteger.ONE)) return
                      numerator + "";
              else return
                      numerator + "/" + denominator;
