@@ -4,20 +4,87 @@ package Chapter_13;
 Rational class in Listing 13.13 using BigInteger for the numerator and
 denominator. Write a test program that prompts the user to enter two rational -
 numbers and display the results as shown in the following sample run:
-Enter the first rational number: 3
-Enter the second second number:23 +2=50
-3 –2= 30
-3 *2= 210
-3 /2=32is 0.0020025 */
+Enter the first rational number: 3 354 <-ENTER
+Enter the second number: 7 2389 <-ENTER
+3/454 + 7/2389 = 10345/1084606
+3/454 – 7/2389 = 3989/1084606
+3/454 * 7/2389 = 21/1084606
+3/454 / 7/2389 = 7167/3178
+7/2389 is 0.0029300962745918793 */
 
 import java.math.BigInteger;
+import java.util.Scanner;
+import java.util.stream.StreamSupport;
+
 
 public class Ex15 {
     public static final int MAX_VALUE = 2147483647;
     public static final int MIN_VALUE = -2147483648;
-    public class Rational extends Number implements Comparable<Rational> {
-    private BigInteger numerator = new BigInteger("0");
-    private BigInteger denominator = new BigInteger("1");
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter the first rational number: ");
+        BigInteger n1 = new BigInteger("1");
+        BigInteger n2 = new BigInteger("1");
+        BigInteger n3 = new BigInteger("1");
+        BigInteger n4 = new BigInteger("1");
+        int count = 0;
+        while (in.hasNextLine() && count != 2) {
+            n1 = in.nextBigInteger();
+            count++;
+            n2 = in.nextBigInteger();
+            count++;
+        }
+        Rational r1 = new Rational(n1, n2);
+        System.out.print("Enter the second rational number: ");
+        while (in.hasNextLine() && count != 4) {
+            n3 = in.nextBigInteger();
+            count++;
+            n4 = in.nextBigInteger();
+            count++;
+        }
+        Rational r2 = new Rational(n3, n4);
+        //outputs
+        printIntro(r1, r2, "+");
+        System.out.print(" ");
+        printResult(r1, r2, "+");
+        System.out.print("\n");
+        printIntro(r1, r2, "-");
+        System.out.print(" ");
+        printResult(r1, r2, "-");
+        System.out.print("\n");
+        printIntro(r1, r2, "*");
+        System.out.print(" ");
+        printResult(r1, r2, "*");
+        System.out.print("\n");
+        printIntro(r1, r2, "/");
+        System.out.print(" ");
+        printResult(r1, r2, "/");
+        System.out.print("\n" + r2.getNumerator() + "/" + r2.getDenominator() + " is " + r2.doubleValue() + "\n");
+    }
+
+    public static void printIntro(Rational first, Rational second, String symbol) {
+        System.out.printf("%s  %s  %s", first.toString(),symbol, second.toString());
+    }
+    public static void printResult(Rational first, Rational second, String symbol) {
+        if (symbol.equals("+".trim())) {
+            System.out.print("= " + first.add(second));
+        } else if (symbol.equals("-".trim())) {
+            System.out.print("= " + first.subtract(second));
+        } else if (symbol.equals("*".trim())) {
+            System.out.print("= " + first.multiply(second));
+        } else if (symbol.equals("/".trim())) {
+            System.out.print("= " + first.divide(second));
+        } else {
+            System.out.println("There was an invalid value entry");
+        }
+    }
+
+
+
+    public static class Rational extends Number implements Comparable<Rational> { //make static?
+    private BigInteger numerator; //make final?
+    private BigInteger denominator; //make final?
 
     public Rational() {
             this(new BigInteger("0"), new BigInteger("1"));
@@ -53,7 +120,7 @@ public class Ex15 {
         } /** Subtract a
   rational number from this rational */
           public Rational subtract(Rational secondRational) {
-              BigInteger n = denominator.subtract(secondRational.getNumerator());
+              BigInteger n = numerator.subtract(secondRational.getNumerator());
               BigInteger d = denominator.subtract(secondRational.getDenominator());
             return new Rational(n, d);
             }
@@ -95,29 +162,31 @@ public class Ex15 {
 
           @Override //
   public float floatValue() {
-             return (float)doubleValue();
+              return Float.parseFloat(String.valueOf(numerator)) / Float.parseFloat(String.valueOf(denominator));
              }
 
           @Override //
  public double doubleValue() {
-              double tempDouble = numerator.divide(denominator).doubleValue();
-             return numerator.divide(denominator);
+              return Double.parseDouble(String.valueOf(numerator)) / Double.parseDouble(String.valueOf(denominator));
              }
 
           @Override //
   public long longValue() {
-             return (long)doubleValue();
+              return Long.parseLong(String.valueOf(numerator)) / Long.parseLong(String.valueOf(denominator));
              }
 
           @Override //
   public int compareTo(Rational o) {
-             if (this.subtract(o).getNumerator() > 0) {
-                 return 1;
-             } else if (this.subtract(o).getNumerator() < 0) {
-                 return - 1;
-             } else
+              BigInteger temp = this.subtract(o).getNumerator();
+              if (temp.compareTo(BigInteger.ZERO) > 0) {
+                  return 1;
+              } else if (temp.compareTo(BigInteger.ONE) < 0) {
+                  return -1;
+              } else
              return 0;
          }
   }
+
+
 
 }
