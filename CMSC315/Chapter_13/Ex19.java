@@ -25,31 +25,41 @@ public class Ex19 {
     public static void main(String[] args) {
             Scanner in = new Scanner(System.in);
             System.out.print("Enter a decimal number: ");
-            String value = in.next().trim();
+            StringBuilder value = new StringBuilder(in.next().trim());
+            if (value.charAt(0) == '.') {
+                value.insert(0, "0");
+            }
+            System.out.print(value);
 
             //set integer and decimal values in array for retrieval
             String[] values = new String[2];
-            values[0] = value.split("\\.")[0];
-            values[1] = value.split("\\.")[1];
-
+            //values[0] = value.split("\\.")[0];
+            //values[1] = value.split("\\.")[1];
             //pass decimal value to conversion method
-            convertValue(values[1]);
+            requestDecimal(convertIntegerValue(values[0]), convertDecimalValue(values[1]));
     }
 
-    public static Rational convertValue(String s) {
+    public static Rational convertIntegerValue(String s) {
+        System.out.println(new Rational(new BigInteger(s), BigInteger.ONE));
+        return new Rational(new BigInteger(s), BigInteger.ONE);
+    }
+    public static Rational convertDecimalValue(String s) {
         //determine size of multiplier for fraction value
         StringBuilder multiplier = new StringBuilder("1");
         int zeros = s.length();
         multiplier.append("0".repeat(zeros));
+        System.out.println("mult: " + multiplier);
         String sMultiplier = multiplier.toString();
         //create fraction representation via BigInteger  --> String s/1
         Rational r1 = new Rational(new BigInteger(s), new BigInteger("1"));
         //begin fraction conversion, multiplying String s/1 by the necessary multiplier
-        return r1.multiply(new Rational(new BigInteger(sMultiplier), new BigInteger(sMultiplier)));
+        System.out.println(new Rational(new BigInteger(s), new BigInteger(sMultiplier)));
+        return r1.multiply(new Rational(new BigInteger(s), new BigInteger(sMultiplier)));
     }
-    public static void requestDecimal() {
-        String result = "";
-        System.out.printf("The fraction number is %s", result);
+    public static void requestDecimal(Rational r1, Rational r2) {
+        System.out.println("r1: " + r1);
+        System.out.println("r2: " + r2);
+        System.out.printf("The fraction number is %s", r1.add(r2));
     }
 
 }
