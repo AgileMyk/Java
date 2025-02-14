@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class test1 {
-//
+
     static String equalsInBG() {
         return " \u001b[43mequals\u001b[0m ";
     }
