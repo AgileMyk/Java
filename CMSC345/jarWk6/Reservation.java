@@ -1,5 +1,5 @@
 package jarWk6;
-//
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -36,12 +36,11 @@ public class Reservation {
     // CHANGES MADE
     public Reservation(int var1, String var2, String var3, String var4) {
         this.guestID = var1;
-        Scanner room = new Scanner(System.in);
         if (!Objects.equals(var2, roomTypes[0]) ||
             !Objects.equals(var2, roomTypes[1]) ||
             !Objects.equals(var2, roomTypes[2])) {
-            correctRoomType();
-            setRoom(room.next().trim());
+            correctRoomTypeStatement();
+            setRoom(var2);
         }
         this.roomType = var2;
         this.reservationStartDate = var3;
