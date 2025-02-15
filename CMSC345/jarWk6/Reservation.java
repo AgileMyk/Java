@@ -16,6 +16,7 @@ public class Reservation {
     private String reservationEndDate;
     private long reservationNumberOfDays;
     private String[] roomTypes = {"RoomWBath", "RoomWView", "NormalRoom"};
+    private String[] months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 
     public String OverBook() {
         return "not done";
@@ -44,9 +45,53 @@ public class Reservation {
         }
         this.roomType = var2;
         this.reservationStartDate = var3;
+        //test for correct startDate
+        //test for valid months
+        /*
+        for (String month: months) {
+            if (!datePattern.startsWith(month.toLowerCase())) {
+                System.out.println("Please enter a valid date format ");
+                for (String correctMonthValues: months) {
+                    System.out.println(correctMonthValues);
+                }
+                this.setReservationStartDate()
+            }
+        //test for valid days
+            if (this.getMonth().equals(months[1])) {
+
+            } else if (this.getMonth().equals(months[3]) ||
+                       this.getMonth().equals(months[5]) ||
+                       this.getMonth().equals(months[8]) ||
+                       this.getMonth().equals(months[10])) {
+
+            } else if (this.getMonth().equals(months[0]) ||
+                       this.getMonth().equals(months[2]) ||
+                       this.getMonth().equals(months[4]) ||
+                       this.getMonth().equals(months[6]) ||
+                       this.getMonth().equals(months[7]) ||
+                       this.getMonth().equals(months[9]) ||
+                       this.getMonth().equals(months[11])) {
+
+            }
+        }
+         */
+        //test for valid dats
         this.reservationEndDate = var4;
+        //test for correct startDate
+        //test for valid months
+        //test for valid dats
+
     }
 
+    //setting date Specifics
+    public void SetMonth(String var1) {}
+    public String getMonth() {
+        return "";
+    }
+    public void setDay(String var1) {}
+    public void getDay() {}
+    public void setYear(String var1) {}
+    public void getYear() {}
     public UUID getReservationID() {
         return this.reservationID;
     }
