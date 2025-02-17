@@ -83,4 +83,9 @@ public class Reservation {
 
     public void dropReservation() {
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

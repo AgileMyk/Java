@@ -1,94 +1,14 @@
 package jarWk6Unedit;
-
 import jarWk6.Assert;
-
 import java.util.Date;
-//
-
-//Create black-box test cases to test the constructor \nand the getters methods of the Reservation
-
 public class TestReservation {
-    /*
-        Currently, the Reservation class makes these assumptions:
-    a)
-    All arguments input data values to any of the parameters of the Reservation public components are assumed
-    to be valid. The Reservation class does not check for valid argument values, and it assumes they are valid.
-    No testing for valid input data is required. This also means that all the arguments of any test method
-    should contain valid values.
-    b) It is also assumed that the order of all inputted reservation dates is valid. That is reservation end
-    date > reservation start date. The Reservation class does not check for valid order for reservation dates,
-    and it assumes it is valid. No testing for valid order of reservation date is required. This also means
-    that the order of reservation dates of any test method should be valid.
-    The reservation record includes these attributes:
-    a) a unique system-generated reservation ID based on Java universally unique identifier (UUID)data type
-     b) system-generated date of when the reservation is made (current date) of Java date data type
-     c) the guest ID of Java int data type
-     d) the reserved room type. There are 3 room types which are “RoomWBath”, “RoomWView”, and “NormalRoom”
-     and they are all of type String. There are 2 rooms of room type “NormalRoom”, all other room types have
-     only 1 room
-     e) reservation start date of type String of this pattern: MMM dd, yyyy
-    f) reservation end date of type String of this pattern: MMM dd, yyyy
-    The Reservation class p\nrovides getters and setters public methods for most of these attributes.
-     Additionally, the Reservation class provides two public methods as follows:
-    a) Once an instance of the Reservation class is created, the calculateReversationNumberOfDays()returns
-    the number of days between the end and start dates of a reservation record including the start date and
-    excluding the end date. For example, for a reservation start date of “Jan 02, 2025” and a reservation end
-    date of “Jan 05, 2025”, this method will return 3.
-    b) Once an instance of the Reservation class is created, the calculateReservationBillAmount()returns the
-    bill amount due from a guest for the reservation as a Java double value. The bill amount is simply the
-    number of reservation days times the daily rate of the reserved room type. The daily rates per room types
-    are as follows: “RoomWBath” -> [$200], “RoomWView” -> [$175], and “NormalRoom” -> [$125]
-
-         */
     public static void main(String[] args) throws Exception {
         String datePattern = "MMM dd, yyyy";
-
         System.out.println("Testing Constructor");
         System.out.println("--------------------------------------");
-        // No testing for valid input data is required. This also means that all the
-        // arguments of any test method should contain valid values.
-        // ...This also means that the order of reservation dates of any test method should be valid.
-
-        //using boundary-value construction
-
-        /*
-        (int var1 -> guestID
-        String var2 -> roomType
-        String var3 -> reservationStartDate
-        String var4 -> reservationEndDate
-         */
-
         String n = "NormalRoom";
         String b = "RoomWBath";
         String v = "RoomWView";
-
-        String m1 = "Jan ";
-        String m2 = "Feb ";
-        String m3 = "Mar ";
-        String m4 = "Apr ";
-        String m5 = "May ";
-        String m6 = "Jun ";
-        String m7 = "Jul ";
-        String m8 = "Aug ";
-        String m9 = "Sep ";
-        String m10 = "Oct ";
-        String m11 = "Nov ";
-        String m12 = "Dec ";
-
-        String d1 = "-1, ";
-        String d2 = "0, ";
-        String d3 = "1, ";
-        String d4 = "15, ";
-        String d5 = "30, ";
-        String d6 = "33, ";
-
-        String year1 = "-1";
-        String year2 = "0";
-        String year3 = "0000";
-        String year4 = "9999";
-        String year5 = "00000";
-        String year6 = "2025";
-
         int resNum1 = -1;
         int resNum2 = 0005;
         int resNum3 = 100000;
@@ -130,8 +50,10 @@ public class TestReservation {
         //reservationDate
         System.out.println("\ntesting getters for correct dates (should all be the same)\n");
         for (Reservation r : Reserves) {
-            Reservation tempRes = r1;
-            Assert.assertEqualsDate(r.getReservationDate(), tempRes.getReservationDate());
+            System.out.println(r.getReservationDate());
+        }
+        for (Reservation r : Reserves) {
+            Assert.assertEqualsDate(r.getReservationDate(), r1.getReservationDate());
         }
 
         //testing for potential date conflicts
@@ -163,23 +85,6 @@ public class TestReservation {
         for (Reservation r : Reserves) {
             System.out.println("reservation " + r + ": " + r.getReservationEndDate());
         }
-        //test for calculateReservationNumberOfDays
-      /*public long calculateReversationNumberOfDays() throws Exception {
-        long var1 = (new SimpleDateFormat(this.datePattern)).parse(this.reservationStartDate).getTime();
-        long var3 = (new SimpleDateFormat(this.datePattern)).parse(this.reservationEndDate).getTime();
-        this.reservationNumberOfDays = (var3 - var1) / 8640000L;
-        return (var3 - var1) / 86400000L;
-
-        *Once an instance of the Reservation class is created, the calculateReversationNumberOfDays()returns the number
-        of days between the end and start dates of a reservation record including the start date and excluding the end
-        date. For example, for a reservation start date of “Jan 02, 2025” and a reservation end date of “Jan 05, 2025”,
-        this method will return 3.
-
-        }*/
-        //rationale:
-        //test for positive-positive with non-consecutive and consecutive dates
-        //test for negative-positive
-        //test for negative-negative
 
         Reservation r1a = new Reservation(resNum1, n, "Jan 01, 2012", "Jan 11, 2012");
         Reservation r2a = new Reservation(resNum1, n, "Feb 01, 2012", "Feb 02, 2012");
@@ -204,7 +109,91 @@ public class TestReservation {
         Assert.assertEqualsLong(r5a.calculateReversationNumberOfDays(), correctValueTest1);
         Assert.assertEqualsLong(r6a.calculateReversationNumberOfDays(), correctValueTest4);
 
+
+        Reservation setters = new Reservation(2, n, "Feb 02, 2222", "Feb 02, 2222");
+        System.out.println("Reservation for setter testing\n");
+        System.out.println("All initial numeric values set to 2 (including month of Feb)");
+        System.out.println("initial room set to NormalRoom");
+
+        System.out.println("----------getters for all set values----------");
+        System.out.println(
+        setters.getReservationDate() + "\n" +
+        setters.getGuestID() + "\n" +
+        setters.getReservationStartDate() + "\n" +
+        setters.getReservationEndDate() + "\n" +
+        setters.getRoomType() + "\n" +
+        setters.getReservationID()
+        );
+        //values to test against
+        int newInt = 3;
+        String newDate ="Mar 03, 3333";
+        String newRoom = "RoomWView";
+        System.out.println("all numeric values set to 3, room set to RoomWView");
+        setters.setGuestID(3);
+        setters.setReservationStartDate(newDate);
+        setters.setReservationEndDate(newDate);
+        setters.setRoom("RoomWView");
+        System.out.println("\n----------getters for all adjusted values----------\n");
+        Assert.assertEqualsInt(setters.getGuestID(), newInt);
+        System.out.print("start date:     ");
+        Assert.assertEqualsString(setters.getReservationStartDate(), newDate);
+        System.out.print("end date:     ");
+        Assert.assertEqualsString(setters.getReservationEndDate(), newDate);
+        Assert.assertEqualsString(setters.getRoomType(), newRoom);
+
+        System.out.println("\nTesting calculateReversationNumberOfDays");
+        System.out.println("----------------------------------------");
+
+        Reservation lowerDate = new Reservation(resNum1, n, "Jan 01, 2022", "Jan 03, 2022");
+        long correctVal1 = 2;
+        Reservation overlappingDates = new Reservation(resNum1, n, "Jan 28, 2022", "Feb 03, 2022");
+        long correctVal2 = 6;
+        Reservation inverseDates = new Reservation(resNum1, n, "Feb 03, 2022", "Jan 28, 2022");
+        long correctVal3 = -6;
+        System.out.println("Testing two values within same month");
+        Assert.assertEqualsLong(lowerDate.calculateReversationNumberOfDays(), correctVal1);
+        System.out.println("Testing two values overlapping the end of a month");
+        Assert.assertEqualsLong(overlappingDates.calculateReversationNumberOfDays(), correctVal2);
+        System.out.println("Testing an end date subtracted from a start date: should return negative value");
+        Assert.assertEqualsLong(inverseDates.calculateReversationNumberOfDays(), correctVal3);
+
     }
+
 }
 
 
+    /*
+        Currently, the Reservation class makes these assumptions:
+    a)
+    All arguments input data values to any of the parameters of the Reservation public components are assumed
+    to be valid. The Reservation class does not check for valid argument values, and it assumes they are valid.
+    No testing for valid input data is required. This also means that all the arguments of any test method
+    should contain valid values.
+    b) It is also assumed that the order of all inputted reservation dates is valid. That is reservation end
+    date > reservation start date. The Reservation class does not check for valid order for reservation dates,
+    and it assumes it is valid. No testing for valid order of reservation date is required. This also means
+    that the order of reservation dates of any test method should be valid.
+    The reservation record includes these attributes:
+    a) a unique system-generated reservation ID based on Java universally unique identifier (UUID)data type
+     b) system-generated date of when the reservation is made (current date) of Java date data type
+     c) the guest ID of Java int data type
+     d) the reserved room type. There are 3 room types which are “RoomWBath”, “RoomWView”, and “NormalRoom”
+     and they are all of type String. There are 2 rooms of room type “NormalRoom”, all other room types have
+     only 1 room
+     e) reservation start date of type String of this pattern: MMM dd, yyyy
+    f) reservation end date of type String of this pattern: MMM dd, yyyy
+    The Reservation class p\nrovides getters and setters public methods for most of these attributes.
+     Additionally, the Reservation class provides two public methods as follows:
+    a) Once an instance of the Reservation class is created, the calculateReversationNumberOfDays()returns
+    the number of days between the end and start dates of a reservation record including the start date and
+    excluding the end date. For example, for a reservation start date of “Jan 02, 2025” and a reservation end
+    date of “Jan 05, 2025”, this method will return 3.
+    b) Once an instance of the Reservation class is created, the calculateReservationBillAmount()returns the
+    bill amount due from a guest for the reservation as a Java double value. The bill amount is simply the
+    number of reservation days times the daily rate of the reserved room type. The daily rates per room types
+    are as follows: “RoomWBath” -> [$200], “RoomWView” -> [$175], and “NormalRoom” -> [$125]
+
+         */
+
+
+//Create black-box test cases to test the constructor \nand the getters methods of the Reservation
