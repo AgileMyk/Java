@@ -40,7 +40,7 @@ public class TestReservation {
     are as follows: “RoomWBath” -> [$200], “RoomWView” -> [$175], and “NormalRoom” -> [$125]
 
          */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String datePattern = "MMM dd, yyyy";
 
         System.out.println("Testing Constructor");
@@ -163,6 +163,46 @@ public class TestReservation {
         for (Reservation r : Reserves) {
             System.out.println("reservation " + r + ": " + r.getReservationEndDate());
         }
+        //test for calculateReservationNumberOfDays
+      /*public long calculateReversationNumberOfDays() throws Exception {
+        long var1 = (new SimpleDateFormat(this.datePattern)).parse(this.reservationStartDate).getTime();
+        long var3 = (new SimpleDateFormat(this.datePattern)).parse(this.reservationEndDate).getTime();
+        this.reservationNumberOfDays = (var3 - var1) / 8640000L;
+        return (var3 - var1) / 86400000L;
+
+        *Once an instance of the Reservation class is created, the calculateReversationNumberOfDays()returns the number
+        of days between the end and start dates of a reservation record including the start date and excluding the end
+        date. For example, for a reservation start date of “Jan 02, 2025” and a reservation end date of “Jan 05, 2025”,
+        this method will return 3.
+
+        }*/
+        //rationale:
+        //test for positive-positive with non-consecutive and consecutive dates
+        //test for negative-positive
+        //test for negative-negative
+
+        Reservation r1a = new Reservation(resNum1, n, "Jan 01, 2012", "Jan 11, 2012");
+        Reservation r2a = new Reservation(resNum1, n, "Feb 01, 2012", "Feb 02, 2012");
+        Reservation r3a = new Reservation(resNum1, n, "Jan 11, 2012", "Jan 01, 2012");
+        Reservation r4a = new Reservation(resNum1, n, "Feb 02, 2012", "Feb 01, 2012");
+        Reservation r5a = new Reservation(resNum1, n, "Dec 22, 2012", "Jan 01, 2013");
+        Reservation r6a = new Reservation(resNum1, n, "Jan 01, 2012", "Dec 31, 2011");
+
+        long correctValueTest1 = 10;
+        long correctValueTest2 = 1;
+        long correctValueTest3 = -10;
+        long correctValueTest4 = -1;
+
+        System.out.println("Testing calculateReversationNumberOfDays:");
+        System.out.println("-------------------------------------");
+
+        Assert.assertEqualsLong(r1a.calculateReversationNumberOfDays(), correctValueTest1);
+        Assert.assertEqualsLong(r2a.calculateReversationNumberOfDays(), correctValueTest2);
+        Assert.assertEqualsLong(r3a.calculateReversationNumberOfDays(), correctValueTest3);
+        Assert.assertEqualsLong(r4a.calculateReversationNumberOfDays(), correctValueTest4);
+        System.out.println("\ntesting for dates that span the new year:");
+        Assert.assertEqualsLong(r5a.calculateReversationNumberOfDays(), correctValueTest1);
+        Assert.assertEqualsLong(r6a.calculateReversationNumberOfDays(), correctValueTest4);
 
     }
 }
