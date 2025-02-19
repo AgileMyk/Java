@@ -69,13 +69,12 @@ public class Reservation {
     }
 
     public double calculateReservationBillAmount() throws Exception {
-        if (this.roomType.equals("RoomWBath")) {
-            return (double)(200L * this.reservationNumberOfDays);
-        } else if (this.roomType.equals("RoomWView")) {
-            return (double)(175L * this.calculateReversationNumberOfDays());
-        } else {
-            return this.roomType.equals("NormalRoom") ? (double)(120L * this.calculateReversationNumberOfDays()) : 0.0D;
-        }
+        return switch (this.roomType) {
+            case "RoomWBath" -> (double) (200L * this.calculateReversationNumberOfDays());
+            case "RoomWView" -> (double) (175L * this.calculateReversationNumberOfDays());
+            case "NormalRoom" -> (double) (120L * this.calculateReversationNumberOfDays());
+            default -> 0.00;
+        };
     }
 
     public void updateReservation() {

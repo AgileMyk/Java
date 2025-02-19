@@ -157,6 +157,33 @@ public class TestReservation {
         System.out.println("Testing an end date subtracted from a start date: should return negative value");
         Assert.assertEqualsLong(inverseDates.calculateReversationNumberOfDays(), correctVal3);
 
+
+        //calculateReservationBillAmount Testing
+
+        Reservation normalTestRes1 = new Reservation(001, n, "Jan 01, 2022", "Jan 11, 2022");
+        Reservation bathTestRes2 = new Reservation(002, b, "Jan 01, 2022", "Jan 11, 2022");
+        Reservation viewTestRes3 = new Reservation(003, v, "Jan 01, 2022", "Jan 11, 2022");
+        int correctValNormal1 = 120 * 10;
+        int correctValBath2 = 200 * 10;
+        int correctValView3 = 175 * 10;
+
+
+        System.out.println("\nTesting calculateReversationNumberOfDays");
+        System.out.println("--------------------");
+        System.out.println("Prices are multiplied by 10 (10 day stays)");
+
+        System.out.println("\n120 per NormalRoom @ 10 days:");
+        System.out.println(normalTestRes1.calculateReservationBillAmount());
+        Assert.assertEqualsDouble(normalTestRes1.calculateReservationBillAmount(), correctValNormal1);
+
+        System.out.println("\n200 per RoomWBath @ 10 days:");
+        System.out.println(bathTestRes2.calculateReservationBillAmount());
+        Assert.assertEqualsDouble(bathTestRes2.calculateReservationBillAmount(), correctValBath2);
+
+        System.out.println("\n175 per RoomWView @ 10 days:");
+        System.out.println(viewTestRes3.calculateReservationBillAmount());
+        Assert.assertEqualsDouble(viewTestRes3.calculateReservationBillAmount(), correctValView3);
+
     }
 
 }
