@@ -1,3 +1,4 @@
+/*
 package JavaFxAsgn.images;
 
 import javafx.application.Application;
@@ -42,3 +43,5 @@ public class Ex14_1 extends Application {
         launch(args);
     }
 }
+
+ */
