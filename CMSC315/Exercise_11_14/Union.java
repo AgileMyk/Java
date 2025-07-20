@@ -5,6 +5,7 @@ package Exercise_11_14;
 union of two array lists of integers using the following header:
 public static ArrayList<Integer> union(
 ArrayList<Integer> list1, ArrayList<Integer> list2)
+
  */
 
 import java.lang.reflect.Array;
@@ -18,21 +19,33 @@ public class Union {
                                   "double", "boolean", "char", "string", "date", "object"};
 
     static Scanner sc = new Scanner(System.in);
-    private ArrayList list2 = new ArrayList();
 
     public static void main(String[] args) {
         System.out.println("We are going to create two separate arraylists and combine them with a union method");
         System.out.println("You will be asked to choose a type of among the common data types in Java..." +
                 "if you choose a primitive type, the resulting data type will be the associated wrapper object");
 
+        //ask for arraylist with type
         System.out.println("Please choose a data type:");
         String type1 = sc.next().trim().toLowerCase();
 
+        //ensure answer associates with valid data type
         String finalInput = getType(type1);
-        System.out.println("You've chosen " + finalInput + " as your data type in the ArrayList");
 
-        //ArrayList list1 = createArrayList(type1);
-        //System.out.println(list1);
+        ArrayList arrList1 = createArrayList(finalInput);
+
+        System.out.println("You have created an arrayList that can contain the following data types: " + finalInput);
+
+        dataAddQuery();
+
+
+        //System.out.println("Please choose a second data type:");
+        //String type2 = sc.next().trim().toLowerCase();
+
+        //ask for arraylist with type
+        //String finalInput2 = getType(type2);
+        //dataAddQuery(type2);
+
 
 
     }
@@ -85,19 +98,50 @@ public class Union {
             return new ArrayList<Date>();
         } else if (var.equals("object")) {
             return new ArrayList<>();
-        } else {
-            System.out.println("Please choose a valid data type: ");
-            for (String type : typesList) {
-                System.out.print(" " + type);
-            }
-            System.out.println();
-            String input = sc.next().trim();
-            createArrayList(input);
         }
-        System.out.println("exiting; creating a new ArrayList of Objects    ");
+        System.out.println("An arrayList containing the " + var + " data type");
         return new ArrayList<>();
     }
+
+    public static long dataAddQuery() {
+        System.out.println("Would you like to add items?: ");
+        String choice = sc.next().trim().toLowerCase();
+        long i = 0;
+        if (choice.equals("yes".toLowerCase()) || choice.equals("y".toLowerCase())) {
+            System.out.println("How many items?");
+            String answer = sc.next().trim().toLowerCase();
+            //check if input is a valid numerical value
+            String stringNumber = "";
+            boolean numStatus = false;
+            for (int j = 0; j < answer.length(); j++) {
+                if (Character.isDigit(answer.charAt(j))) {
+                    numStatus = true;
+                } else {
+                    numStatus = false;
+                }
+            }
+            //convert string representation of valid number value to long data type
+            if (numStatus) {
+                i = Long.parseLong(answer);
+            } else {
+                System.out.println("invalid value entry: " + answer);
+            }
+        } else if (choice.equals("no".toLowerCase()) || choice.equals("n".toLowerCase())) {
+            System.out.println("Good bye");
+        } else {
+            System.out.println("Please enter yes/y or no/n");
+            dataAddQuery();
+        }
+        System.out.println("number of items: " + i);
+        return i;
+    }
+
+
+    public static void addPrompt(String dataType, ArrayList arrList ) {
+        System.out.println("Would you like to add items to " + arrList +"?");
+    }
 }
+
 /*
 SWITCH OPTION
 
