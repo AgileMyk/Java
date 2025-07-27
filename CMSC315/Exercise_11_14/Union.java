@@ -39,8 +39,6 @@ public class Union {
 
         ArrayList arrList1 = createArrayList(finalInput);
 
-        System.out.println("You have created an arrayList that can contain the following data types: " + finalInput);
-
         String lengthOfArray = dataAddQuery();
         System.out.println("your array: " + arrList1);
         System.out.println("length:" + lengthOfArray);
@@ -118,7 +116,6 @@ public class Union {
             System.out.println("How many items?");
             answer = sc.next().trim().toLowerCase();
 
-
             //check if input is a valid numerical value
             boolean numStatus = false;
             for (int j = 0; j < answer.length(); j++) {
@@ -143,7 +140,7 @@ public class Union {
             System.out.println("Good bye");
         } else {
             System.out.println("Please enter yes/y or no/n");
-            dataAddQuery();
+            answer = dataAddQuery();
         }
         return answer;
     }
