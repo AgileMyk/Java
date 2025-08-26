@@ -28,6 +28,7 @@ public class Union {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+
         System.out.println("We are going to create two separate arraylists and combine them with a union method");
         System.out.println("You will be asked to choose a type of among the common data types in Java..." +
                 "if you choose a primitive type, the resulting data type will be the associated wrapper object");
@@ -42,18 +43,20 @@ public class Union {
         ArrayList arrList1 = createArrayList(finalInput);
         String lengthOfArray = dataAddQuery();
 
-        System.out.printf("Let's populate the array with items of the %s type\n", type1);
-        for (int i = 0; i < Integer.parseInt(lengthOfArray); i++) {
-            System.out.printf("please type a value of the type %s:  ", type1);
+        if (Integer.parseInt(lengthOfArray) > 0) {
+            System.out.printf("Let's populate the array with items of the %s type\n", type1);
+            for (int i = 0; i < Integer.parseInt(lengthOfArray); i++) {
+                System.out.printf("please type a value of the type %s:  ", type1);
 
-            //ADD
-            fillArray(arrList1, type1);
+                //ADD
+                fillArray(arrList1, type1);
+            }
         }
 
 
         //------------------ARRAY TWO      BELOW IS REPEATED, ADDRESS DRY
         //ask for arraylist with type
-        System.out.println("Please choose a data type:");
+        //System.out.println("Please choose a data type:");
         //String type2 = sc.next().trim().toLowerCase();
 
         //ensure answer associates with valid data type within final array of valid options
@@ -134,7 +137,10 @@ public class Union {
         if (choice.equals("yes".toLowerCase()) || choice.equals("y".toLowerCase())) {
             System.out.println("How many items?");
             answer = sc.next().trim().toLowerCase();
-
+            if (answer.contains("-")) {
+                answer = answer.substring(1);
+                System.out.println("an invalid value with a negative was given; answer changed to it's positive form: " + answer);
+            }
             //check if input is a valid numerical value
             boolean numStatus = false;
             for (int j = 0; j < answer.length(); j++) {
@@ -157,10 +163,12 @@ public class Union {
                 }
             } else if (choice.equals("no".toLowerCase()) || choice.equals("n".toLowerCase())) {
             System.out.println("Good bye");
+            //System.exit(0);
         } else {
             System.out.println("Please enter yes/y or no/n");
             answer = dataAddQuery();
         }
+
         return answer;
     }
 
@@ -195,10 +203,6 @@ public class Union {
         System.out.println("Would you like to add items to " + arrList +"?");
     }
 
-    //overridden item adding method
-    public static String addItem(String item) {
-            return "";
-    }
 }
 
 
