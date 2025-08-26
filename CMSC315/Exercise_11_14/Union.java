@@ -20,6 +20,8 @@ import java.util.Scanner;
 
 public class Union {
 
+    ArrayList<Double> arr2 = new ArrayList();
+
     private static final String[] typesList = {"short", "int", "integer", "long", "float",
                                   "double", "boolean", "char", "string", "date", "object"};
 
@@ -34,14 +36,31 @@ public class Union {
         System.out.println("Please choose a data type:");
         String type1 = sc.next().trim().toLowerCase();
 
-        //ensure answer associates with valid data type
+        //ensure answer associates with valid data type within final array of valid options
         String finalInput = getType(type1);
 
         ArrayList arrList1 = createArrayList(finalInput);
-
         String lengthOfArray = dataAddQuery();
-        System.out.println("your array: " + arrList1);
-        System.out.println("length:" + lengthOfArray);
+
+        System.out.printf("Let's populate the array with items of the %s type\n", type1);
+        for (int i = 0; i < Integer.parseInt(lengthOfArray); i++) {
+            System.out.printf("please type a value of the type %s:  ", type1);
+
+            //ADD
+            fillArray(arrList1, type1);
+        }
+
+
+        //------------------ARRAY TWO      BELOW IS REPEATED, ADDRESS DRY
+        //ask for arraylist with type
+        System.out.println("Please choose a data type:");
+        //String type2 = sc.next().trim().toLowerCase();
+
+        //ensure answer associates with valid data type within final array of valid options
+        //String finalInput2 = getType(type2);
+
+        //ArrayList arrList2 = createArrayList(finalInput);
+        //String lengthOfArray2 = dataAddQuery();
     }
 
     //cycles through available data types, testing against valid choices, returns valid chosen type
@@ -145,11 +164,43 @@ public class Union {
         return answer;
     }
 
+    public static void fillArray(ArrayList l, String arrayType) {
+        if (arrayType.equals(typesList[0])) { //short
+            l.add(Short.parseShort(sc.next().trim()));
+        } else if (arrayType.equals(typesList[1])
+                || (arrayType.equals(typesList[2]))) { //int, integer
+            l.add(Integer.parseInt(sc.next().trim()));
+        } else if (arrayType.equals(typesList[3])) {  //long
+            l.add(Long.parseLong(sc.next().trim()));
+        } else if (arrayType.equals(typesList[4])) {
+            l.add(Float.parseFloat(sc.next().trim()));
+        } else if (arrayType.equals(typesList[5]))  { //decimal nums
+            l.add(Double.parseDouble(sc.next().trim()));
+        } else if (arrayType.equals(typesList[6])) { //boolean
+            l.add(Boolean.parseBoolean(sc.next().trim()));
+        } else if (arrayType.equals(typesList[7])) { //char
+            l.add(Character.getNumericValue(sc.next().trim().charAt(0)));
+        } else if (arrayType.equals(typesList[8])) { //string
+            l.add(sc.next().trim());
+        } else if (arrayType.equals(typesList[9])) { //date
+            l.add(Date.parse(sc.next().trim()));
+        } else if (arrayType.equals(typesList[10])) { //object
+            //ADDRESS FOR INSERTING OBJECTS
+        }
+        System.out.println("your array: " + l);
+        System.out.println("length:" + l.size());
+    }
+
     public static void addPrompt(String dataType, ArrayList arrList ) {
         System.out.println("Would you like to add items to " + arrList +"?");
     }
 
+    //overridden item adding method
+    public static String addItem(String item) {
+            return "";
+    }
 }
+
 
 /*
 SWITCH OPTION
