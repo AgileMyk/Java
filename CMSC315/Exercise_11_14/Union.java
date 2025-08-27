@@ -2,7 +2,6 @@ package Exercise_11_14;
 
 //NEXT:
 
-//FIX DATE LOOP SIZE ISSUE
 //ALLOW FOR OBJECT ADDITION
 
 /*
@@ -41,9 +40,9 @@ public class Union {
         String type1 = dataTypeQuery();
 
         //ensure answer associates with valid data type within final array of valid options
-        String finalInput = chooseType(type1);
-        ArrayList arrList1 = createArrayList(finalInput);
-        String lengthOfArray1 = dataAddQuery();
+        String askedType = chooseType(type1);
+        ArrayList arrList1 = createArrayListByType(askedType);
+        String lengthOfArray1 = arrayPopulator();
 
         populateArray(lengthOfArray1, type1, arrList1);
 
@@ -51,10 +50,12 @@ public class Union {
         String type2 = dataTypeQuery();
 
         //ensure answer associates with valid data type within final array of valid options
-        String finalInput2 = chooseType(type1);
-        ArrayList arrList2 = createArrayList(finalInput);
-        String lengthOfArray2 = dataAddQuery();
+        String askedType2 = chooseType(type2);
+        ArrayList arrList2 = createArrayListByType(askedType2);
+        String lengthOfArray2 = arrayPopulator();
         populateArray(lengthOfArray2, type2, arrList2);
+
+        arrayUnion(arrList1, arrList2);
 
     }
 
@@ -83,7 +84,7 @@ public class Union {
 
     }
 
-    public static ArrayList<? extends Object> createArrayList(String var) {
+    public static ArrayList<? extends Object> createArrayListByType(String var) {
         if (var.equals("short")) {
             System.out.println("you have created an ArrayList containing shorts(wrapped as Short) ");
             return new ArrayList<Short>();
@@ -122,7 +123,7 @@ public class Union {
         return new ArrayList<>();
     }
 
-    public static String dataAddQuery() {
+    public static String arrayPopulator() {
         String answer = "";
         System.out.println("Would you like to add items? ");
         String choice = sc.next().trim();
@@ -135,6 +136,8 @@ public class Union {
             }
             //check if input is a valid numerical value
             boolean numStatus = false;
+            int value = Integer.parseInt(answer);
+
             for (int j = 0; j < answer.length(); j++) {
                 if (Character.isDigit(answer.charAt(j)) && !answer.contains(".")) {
                     numStatus = true;
@@ -151,14 +154,14 @@ public class Union {
                             Please ensure your answer is a whole number
                             Let's begin again
                             """);
-                    answer = dataAddQuery();
+                    answer = arrayPopulator();
                 }
             } else if (choice.equals("no".toLowerCase()) || choice.equals("n".toLowerCase())) {
             System.out.println("Good bye");
             //System.exit(0);
         } else {
             System.out.println("Please enter yes/y or no/n");
-            answer = dataAddQuery();
+            answer = arrayPopulator();
         }
 
         return answer;
@@ -185,8 +188,12 @@ public class Union {
         } else if (arrayType.equals(typesList[9])) {
             System.out.println("\nEnter year: ");
             int yr = sc.nextInt();
-            System.out.println("Enter month: ");
+            System.out.println("Enter month: (in number format; 1-12)");
             int m = sc.nextInt();
+            while (m < 1 || m > 12) {
+                System.out.println("Invalid month (1-12)\nreenter month: ");
+                m = sc.nextInt();
+            }
             switch (m) {
                 case 1:
                     m = Calendar.JANUARY;
@@ -212,7 +219,7 @@ public class Union {
                     case 8:
                 m = Calendar.AUGUST;
                     break;
-                    case 9:
+                case 9:
                     m = Calendar.SEPTEMBER;
                     break;
                 case 10:
@@ -225,7 +232,6 @@ public class Union {
                     m = Calendar.DECEMBER;
                     break;
                 default:
-                    break;
             }
             System.out.println("Enter day: ");
             int d = sc.nextInt();
@@ -233,8 +239,6 @@ public class Union {
         } else if (arrayType.equals(typesList[10])) { //object
             //ADDRESS FOR INSERTING OBJECTS
         }
-        System.out.println("your array: " + l);
-        System.out.println("length:" + l.size());
     }
 
     public static void populateArray(String arrayLength, String arrayType, ArrayList l) {
@@ -243,21 +247,20 @@ public class Union {
             System.out.printf("Let's populate the array with items of the %s type\n", arrayType);
             for (int i = 0; i < k; i++) {
                 System.out.printf("please type a value of the type %s:  ", arrayType);
-                if (arrayType.equals(typesList[9])) {
-                    fillArray(l, arrayType);
-                }
-
                 //ADD
                 fillArray(l, arrayType);
             }
         }
     }
 
-    public static ArrayList arrayUnion(ArrayList l1, ArrayList l2) {
+    public static void arrayUnion(ArrayList l1, ArrayList l2) {
         ArrayList l = new ArrayList();
         l.addAll(l1);
         l.addAll(l2);
-        return l;
+        System.out.println("Below is a listing of what is contained within the resulting merge of ArrayLists: ");
+        for (Object o : l) {
+            System.out.println(o);
+        }
         //get type, make variable
         //compare both types
         //explain types don't match
