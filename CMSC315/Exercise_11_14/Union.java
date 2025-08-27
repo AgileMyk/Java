@@ -1,9 +1,8 @@
 package Exercise_11_14;
 
 //NEXT:
-// CREATE 2ND ARRAY, APPLY DRY
-// CHECK IF ARRAYS COMPATIBLE METHOD
-// COMBINE ARRAYS AND RETURN NEW ARRAY
+
+//FIX DATE LOOP SIZE ISSUE
 //ALLOW FOR OBJECT ADDITION
 
 /*
@@ -126,7 +125,7 @@ public class Union {
     public static String dataAddQuery() {
         String answer = "";
         System.out.println("Would you like to add items? ");
-        String choice = sc.next().trim().toLowerCase();
+        String choice = sc.next().trim();
         if (choice.equals("yes".toLowerCase()) || choice.equals("y".toLowerCase())) {
             System.out.println("How many items?");
             answer = sc.next().trim().toLowerCase();
@@ -240,8 +239,9 @@ public class Union {
 
     public static void populateArray(String arrayLength, String arrayType, ArrayList l) {
         if (Integer.parseInt(arrayLength) > 0) {
+            int k = Integer.parseInt(arrayLength);
             System.out.printf("Let's populate the array with items of the %s type\n", arrayType);
-            for (int i = 0; i < Integer.parseInt(arrayLength); i++) {
+            for (int i = 0; i < k; i++) {
                 System.out.printf("please type a value of the type %s:  ", arrayType);
                 if (arrayType.equals(typesList[9])) {
                     fillArray(l, arrayType);
