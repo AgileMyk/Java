@@ -16,7 +16,9 @@ ArrayList<Integer> list1, ArrayList<Integer> list2)
 
 import java.io.File;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -46,9 +48,6 @@ public class Union {
 
         populateArray(lengthOfArray1, type1, arrList1);
 
-
-        //------------------ARRAY TWO      BELOW IS REPEATED, ADDRESS DRY
-        //ask for arraylist with type
         //ask for arraylist with type
         String type2 = dataTypeQuery();
 
@@ -184,8 +183,54 @@ public class Union {
             l.add(Character.getNumericValue(sc.next().trim().charAt(0)));
         } else if (arrayType.equals(typesList[8])) { //string
             l.add(sc.next().trim());
-        } else if (arrayType.equals(typesList[9])) { //date
-            l.add(Date.parse(sc.next().trim()));
+        } else if (arrayType.equals(typesList[9])) {
+            System.out.println("\nEnter year: ");
+            int yr = sc.nextInt();
+            System.out.println("Enter month: ");
+            int m = sc.nextInt();
+            switch (m) {
+                case 1:
+                    m = Calendar.JANUARY;
+                    break;
+                case 2:
+                m = Calendar.FEBRUARY;
+                    break;
+                    case 3:
+                m = Calendar.MARCH;
+                    break;
+                    case 4:
+                m = Calendar.APRIL;
+                    break;
+                    case 5:
+                m = Calendar.MAY;
+                    break;
+                    case 6:
+                m = Calendar.JUNE;
+                    break;
+                    case 7:
+                m = Calendar.JULY;
+                    break;
+                    case 8:
+                m = Calendar.AUGUST;
+                    break;
+                    case 9:
+                    m = Calendar.SEPTEMBER;
+                    break;
+                case 10:
+                    m = Calendar.OCTOBER;
+                    break;
+                case 11:
+                    m = Calendar.NOVEMBER;
+                    break;
+                case 12:
+                    m = Calendar.DECEMBER;
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("Enter day: ");
+            int d = sc.nextInt();
+            l.add(new Date(yr,m,d));
         } else if (arrayType.equals(typesList[10])) { //object
             //ADDRESS FOR INSERTING OBJECTS
         }
@@ -198,11 +243,27 @@ public class Union {
             System.out.printf("Let's populate the array with items of the %s type\n", arrayType);
             for (int i = 0; i < Integer.parseInt(arrayLength); i++) {
                 System.out.printf("please type a value of the type %s:  ", arrayType);
+                if (arrayType.equals(typesList[9])) {
+                    fillArray(l, arrayType);
+                }
 
                 //ADD
                 fillArray(l, arrayType);
             }
         }
+    }
+
+    public static ArrayList arrayUnion(ArrayList l1, ArrayList l2) {
+        ArrayList l = new ArrayList();
+        l.addAll(l1);
+        l.addAll(l2);
+        return l;
+        //get type, make variable
+        //compare both types
+        //explain types don't match
+        //convert one type to the other
+        //unite arrays
+        //return united array
     }
 
     public static String dataTypeQuery() {
