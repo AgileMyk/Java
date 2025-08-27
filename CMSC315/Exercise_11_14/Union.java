@@ -1,9 +1,10 @@
 package Exercise_11_14;
 
 //NEXT:
-// ADD POPULATE CREATED ARRAY METHODS
+// CREATE 2ND ARRAY, APPLY DRY
 // CHECK IF ARRAYS COMPATIBLE METHOD
 // COMBINE ARRAYS AND RETURN NEW ARRAY
+//ALLOW FOR OBJECT ADDITION
 
 /*
 11.14 (Combine two lists) Write a method that returns the
@@ -13,14 +14,13 @@ ArrayList<Integer> list1, ArrayList<Integer> list2)
 
  */
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Union {
-
-    ArrayList<Double> arr2 = new ArrayList();
 
     private static final String[] typesList = {"short", "int", "integer", "long", "float",
                                   "double", "boolean", "char", "string", "date", "object"};
@@ -29,45 +29,39 @@ public class Union {
 
     public static void main(String[] args) {
 
+        File first = new File("Exercise_11_14","first.txt");
+
+        System.out.println(first.getAbsolutePath());
         System.out.println("We are going to create two separate arraylists and combine them with a union method");
-        System.out.println("You will be asked to choose a type of among the common data types in Java..." +
-                "if you choose a primitive type, the resulting data type will be the associated wrapper object");
+        System.out.println("You will be asked to choose a type from among the common data types in Java...");
+                //"if you choose a primitive type, the resulting data type will be the associated wrapper object");
 
         //ask for arraylist with type
-        System.out.println("Please choose a data type:");
-        String type1 = sc.next().trim().toLowerCase();
+        String type1 = dataTypeQuery();
 
         //ensure answer associates with valid data type within final array of valid options
-        String finalInput = getType(type1);
-
+        String finalInput = chooseType(type1);
         ArrayList arrList1 = createArrayList(finalInput);
-        String lengthOfArray = dataAddQuery();
+        String lengthOfArray1 = dataAddQuery();
 
-        if (Integer.parseInt(lengthOfArray) > 0) {
-            System.out.printf("Let's populate the array with items of the %s type\n", type1);
-            for (int i = 0; i < Integer.parseInt(lengthOfArray); i++) {
-                System.out.printf("please type a value of the type %s:  ", type1);
-
-                //ADD
-                fillArray(arrList1, type1);
-            }
-        }
+        populateArray(lengthOfArray1, type1, arrList1);
 
 
         //------------------ARRAY TWO      BELOW IS REPEATED, ADDRESS DRY
         //ask for arraylist with type
-        //System.out.println("Please choose a data type:");
-        //String type2 = sc.next().trim().toLowerCase();
+        //ask for arraylist with type
+        String type2 = dataTypeQuery();
 
         //ensure answer associates with valid data type within final array of valid options
-        //String finalInput2 = getType(type2);
+        String finalInput2 = chooseType(type1);
+        ArrayList arrList2 = createArrayList(finalInput);
+        String lengthOfArray2 = dataAddQuery();
+        populateArray(lengthOfArray2, type2, arrList2);
 
-        //ArrayList arrList2 = createArrayList(finalInput);
-        //String lengthOfArray2 = dataAddQuery();
     }
 
     //cycles through available data types, testing against valid choices, returns valid chosen type
-    public static String getType(String input) {
+    public static String chooseType(String input) {
         String returnVal = "";
         boolean b = false;
         for (int i = 0; i < typesList.length; i++) {
@@ -84,7 +78,7 @@ public class Union {
             }
             System.out.println();
             String additionalAttempt = sc.next().trim();
-            returnVal = getType(additionalAttempt);
+            returnVal = chooseType(additionalAttempt);
         }
         //System.out.println("returnVal: " + returnVal);
         return returnVal;
@@ -197,6 +191,23 @@ public class Union {
         }
         System.out.println("your array: " + l);
         System.out.println("length:" + l.size());
+    }
+
+    public static void populateArray(String arrayLength, String arrayType, ArrayList l) {
+        if (Integer.parseInt(arrayLength) > 0) {
+            System.out.printf("Let's populate the array with items of the %s type\n", arrayType);
+            for (int i = 0; i < Integer.parseInt(arrayLength); i++) {
+                System.out.printf("please type a value of the type %s:  ", arrayType);
+
+                //ADD
+                fillArray(l, arrayType);
+            }
+        }
+    }
+
+    public static String dataTypeQuery() {
+        System.out.println("Please choose a data type:");
+        return sc.next().trim().toLowerCase();
     }
 
     public static void addPrompt(String dataType, ArrayList arrList ) {
