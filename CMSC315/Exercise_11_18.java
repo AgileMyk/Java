@@ -14,9 +14,11 @@ that contains characters 'a' , 'b' , and 'c' .
  */
     public static void main(String[] args) {
 
+
         Scanner sc = new Scanner(System.in);
         System.out.println("please type a word: ");
-        String word = sc.next();
+        String word = sc.next().trim();
+
 
         ArrayList<Character> alist = toCharacterArray(word);
         for (Character c : alist) {
